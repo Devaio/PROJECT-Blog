@@ -1,0 +1,43 @@
+doctype 5
+html(lang="en", ng-app="BlogApp")
+	head
+
+		
+		title Clarissa Blog
+		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+		meta(name="description", content="")
+		meta(http-equiv="content-type", content="text/html;charset=UTF-8")
+		meta(property="og:image", content="")
+		meta(property="og:title", content="")
+		meta(property="og:description", content="")	
+
+		base(href="/")
+
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js")
+		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js")
+		script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-aria.min.js")
+		script(src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js")
+		
+
+
+		link(rel="stylesheet", href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css")
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic")
+
+		- if(typeof ENV !== 'undefined') {
+
+			//- CSS Build File
+			link(rel="stylesheet", href="/public/css/dist/styles.min.css")
+			//- JS Build File
+			script(src="/public/js/dist/build.min.js")
+
+		- } else {
+			link(rel="stylesheet", href="/public/css/lib/styles.css")
+			script(src="/public/js/lib/scripts.js")
+		- }
+
+
+
+	body
+		block content
