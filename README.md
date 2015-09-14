@@ -1,8 +1,16 @@
 # Blog
 
-## Setting Up Local Variables
+## Dependencies
+######Preprocessors
 
-Run `heroku plugins:install git://github.com/ddollar/heroku-config.git`
+    CoffeeScript
+    Stylus
+
+## Setting Up Environments
+
+######Initial
+`heroku plugins:install git://github.com/ddollar/heroku-config.git`
+
 
 Create a folder for your .env files - ex: `development.env`
 
