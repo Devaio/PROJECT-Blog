@@ -6,9 +6,9 @@ performLogin = (req, res, next, user) ->
 		if err
 			return next(err)
 		# Otherwise, send the user
-		# setTimeout () ->
-		res.send {user : user}
-		# , 5000
+		setTimeout () ->
+			res.send {user : user}
+		, 5000
 	return
 
 
