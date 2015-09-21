@@ -4,10 +4,10 @@ angular.module 'BlogApp'
 		this.authCheck = (cb) ->
 			$http.get '/api/me'
 				.then (returnData) ->
-					console.log 'RETURN FROM ME', returnData.data
 					if returnData.data.user
 						cb(returnData.data.user)
 					else
+						console.log 'no user'
 						$location.url '/'
 						
 	]

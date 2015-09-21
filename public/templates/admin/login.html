@@ -1,5 +1,5 @@
-<!--<h1>Admin Login</h1>-->
-
+<nav navheight="navheight"></nav>
+<h1 class="md-title">Login</h1>
 <div layout="row" layout-wrap class="container">
 	<div flex="40" offset="30">
 		<form ng-submit="login()">
@@ -15,7 +15,7 @@
 		</form>
 	</div>
 	<div flex="40" offset="30">
-		<div ng-if="loginProgress" layout="row" layout-sm="column" layout-align="center">
+		<div ng-if="loading" layout="row" layout-sm="column" layout-align="center">
 			<md-progress-circular md-mode="indeterminate"></md-progress-circular>
 		</div>
 	</div>

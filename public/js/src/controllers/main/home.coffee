@@ -1,7 +1,6 @@
 angular.module 'BlogApp'
 	.controller 'homeCont', ['$scope', ($scope) ->
-		$scope.test = 'hello'
-
+		$scope.navheight = 'large'
 		console.log 'hello!'
 
 		$scope.something = () ->

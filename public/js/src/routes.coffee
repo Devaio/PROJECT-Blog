@@ -26,6 +26,11 @@ angular.module 'BlogApp'
 				controller: 'adminDashboard',
 				templateUrl:'/public/templates/admin/dashboard.html'
 			}
+			.state 'adminAddPost', {
+				url: '/admin/addpost',
+				controller: 'adminAddPost',
+				templateUrl:'/public/templates/admin/addpost.html'
+			}
 			# .state 'adminCMS', {
 			# 	url: '/admin/login',
 			# 	controller: 'adminLogin',

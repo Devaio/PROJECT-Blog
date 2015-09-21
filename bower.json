@@ -1,0 +1,19 @@
+{
+  "name": "clarissa-blog",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Devaio/PROJECT-Blog",
+  "authors": [
+    "devaio <robert.camp@outlook.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "textAngular": "~1.4.5"
+  }
+}

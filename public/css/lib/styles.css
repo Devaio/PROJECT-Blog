@@ -21,8 +21,30 @@
 .pull-right {
   float: right;
 }
+.margin-top-small {
+  margin-top: 30px;
+}
+.margin-top-med {
+  margin-top: 45px;
+}
+.margin-top-large {
+  margin-top: 60px;
+}
+.button-med {
+  height: 50px;
+}
+.button-ex-pad {
+  padding: 5px 15px;
+  margin: 0;
+}
+.loader-space {
+  margin: 0px 15px;
+}
 .warning-text {
   color: #f00;
+}
+.dash-main-button {
+  height: 50px;
 }
 .main-header {
   height: 100vh;
@@ -31,4 +53,7 @@
   .main-header {
     height: 50vh;
   }
+}
+.main-header.header-small {
+  height: 200px;
 }

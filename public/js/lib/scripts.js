@@ -1,11 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource']);
+angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'textAngular']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
-  return $mdThemingProvider.theme('default').primaryPalette('teal').accentPalette('cyan').warnPalette('light-green');
+  return $mdThemingProvider.theme('default').primaryPalette('teal').accentPalette('deep-purple').warnPalette('light-green');
 });
 
 require('./services/authService');
+
+require('./directives/nav');
 
 require('./controllers/main/home');
 
@@ -13,29 +15,54 @@ require('./controllers/admin/adminLogin');
 
 require('./controllers/admin/adminDashboard');
 
+require('./controllers/admin/adminAddPost');
+
 require('./routes');
 
 
-},{"./controllers/admin/adminDashboard":2,"./controllers/admin/adminLogin":3,"./controllers/main/home":4,"./routes":5,"./services/authService":6}],2:[function(require,module,exports){
-angular.module('BlogApp').controller('adminDashboard', [
-  '$scope', 'authService', function($scope, authService) {
+},{"./controllers/admin/adminAddPost":2,"./controllers/admin/adminDashboard":3,"./controllers/admin/adminLogin":4,"./controllers/main/home":5,"./directives/nav":6,"./routes":7,"./services/authService":8}],2:[function(require,module,exports){
+angular.module('BlogApp').controller('adminAddPost', [
+  '$scope', '$location', 'authService', function($scope, $location, authService) {
+    $scope.navheight = 'small';
+    $scope.loading = false;
     return authService(function(stuff) {
-      return console.log('!', stuff);
+      console.log('!', stuff);
+      return $scope.submitPost = function() {
+        var _ref;
+        if ((_ref = $scope.newPost) != null ? _ref.length : void 0) {
+          return $scope.loading = true;
+        }
+      };
     });
   }
 ]);
 
 
 },{}],3:[function(require,module,exports){
+angular.module('BlogApp').controller('adminDashboard', [
+  '$scope', '$location', 'authService', function($scope, $location, authService) {
+    $scope.navheight = 'small';
+    return authService(function(stuff) {
+      console.log('!', stuff);
+      return $scope.addPost = function() {
+        return $location.url('/admin/addpost');
+      };
+    });
+  }
+]);
+
+
+},{}],4:[function(require,module,exports){
 angular.module('BlogApp').controller('adminLogin', [
   '$scope', '$http', '$location', function($scope, $http, $location) {
     console.log('adminLogin!');
-    $scope.loginProgress = false;
+    $scope.navheight = 'small';
+    $scope.loading = false;
     return $scope.login = function() {
-      $scope.loginProgress = true;
+      $scope.loading = true;
       $scope.loginError = '';
       return $http.post('/admin/login', $scope.adminUser).then(function(returnData) {
-        $scope.loginProgress = false;
+        $scope.loading = false;
         if (returnData.data.error) {
           return $scope.loginError = returnData.data.error;
         } else {
@@ -47,17 +74,30 @@ angular.module('BlogApp').controller('adminLogin', [
 ]);
 
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
   '$scope', function($scope) {
-    $scope.test = 'hello';
+    $scope.navheight = 'large';
     console.log('hello!');
     return $scope.something = function() {};
   }
 ]);
 
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
+angular.module('BlogApp').directive('nav', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '/public/templates/directives/nav.html',
+    scope: {
+      navheight: '='
+    },
+    link: function($scope) {}
+  };
+});
+
+
+},{}],7:[function(require,module,exports){
 angular.module('BlogApp').config([
   '$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -78,20 +118,24 @@ angular.module('BlogApp').config([
       url: '/admin/dashboard',
       controller: 'adminDashboard',
       templateUrl: '/public/templates/admin/dashboard.html'
+    }).state('adminAddPost', {
+      url: '/admin/addpost',
+      controller: 'adminAddPost',
+      templateUrl: '/public/templates/admin/addpost.html'
     });
   }
 ]);
 
 
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 angular.module('BlogApp').service('authService', [
   '$http', '$location', function($http, $location) {
     return this.authCheck = function(cb) {
       return $http.get('/api/me').then(function(returnData) {
-        console.log('RETURN FROM ME', returnData.data);
         if (returnData.data.user) {
           return cb(returnData.data.user);
         } else {
+          console.log('no user');
           return $location.url('/');
         }
       });

@@ -1,0 +1,27 @@
+<nav navheight="navheight"></nav>
+<h1 class="md-title"> Create post </h1>
+
+
+<div layout="row" layout-wrap class="container">
+	
+	<div flex="100">
+		<text-angular ng-model="newPost"></text-angular>
+	<div>
+	 
+	<div flex="100" class="margin-top-med">
+		<div layout="row" layout-sm="column" layout-align="end">
+			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
+			
+			<md-button ng-click="submitPost()" class="button-ex-pad button-med md-raised md-accent">Create Post!</md-button>
+			
+		</div>
+	</div>
+	
+	<div flex="100">
+		<div layout="row" layout-sm="row" layout-align="center">
+			<p class="md-body-2 warning-text">{{postError}}</p>
+		</div>
+	</div>
+	
+
+</div>
