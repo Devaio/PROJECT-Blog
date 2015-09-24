@@ -25,14 +25,17 @@ html(lang="en", ng-app="BlogApp")
 		// script(src='/public/js/dist/textAngular.min.js')
 		script(src='/public/js/dist/quill.min.js')
 		script(src='/public/js/dist/ngQuill.min.js')
+		
+		
 		link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css", rel="stylesheet", integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==", crossorigin="anonymous")
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
-		link(rel='stylesheet', href='/public/css/dist/textAngular.css')
+		// link(rel='stylesheet', href='/public/css/dist/textAngular.css')
+		link(rel='stylesheet', href='/public/css/dist/quill.base.css')
+		link(rel='stylesheet', href='/public/css/dist/quill.snow.css')
+			
 		link(rel="stylesheet", href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css")
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic")
-		link(rel="stylesheet", href="/public/css/dist/quill.base.css")
-		link(rel="stylesheet", href="/public/css/dist/quill.snow.css")
-		
+
 		- if(typeof ENV !== 'undefined') {
 
 			//- CSS Build File
