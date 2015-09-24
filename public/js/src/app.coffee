@@ -1,4 +1,4 @@
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'textAngular'])
+angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngQuill'])
 
 
 angular.module('BlogApp')

@@ -20,6 +20,8 @@ middleware = {
 module.exports = (app, passport, redis) ->
 	# Controllers
 	accounts = require '../controllers/accounts'
+	posts = require '../controllers/posts'
+	
 	auth = require '../controllers/auth'
 	
 
@@ -28,6 +30,10 @@ module.exports = (app, passport, redis) ->
 		console.log 'API ME'
 		console.log 'REQ USER', req.user
 		res.send {user : req.user}
+		
+	app.get '/api/posts', posts.get
+	app.post '/api/posts', posts.upsert
+	app.delete '/api/posts/:id', posts.delete
 	
 
 	# Login

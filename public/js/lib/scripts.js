@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'textAngular']);
+angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngQuill']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
   return $mdThemingProvider.theme('default').primaryPalette('teal').accentPalette('deep-purple').warnPalette('light-green');
@@ -22,16 +22,16 @@ require('./routes');
 
 },{"./controllers/admin/adminAddPost":2,"./controllers/admin/adminDashboard":3,"./controllers/admin/adminLogin":4,"./controllers/main/home":5,"./directives/nav":6,"./routes":7,"./services/authService":8}],2:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
-  '$scope', '$location', 'authService', function($scope, $location, authService) {
+  '$scope', '$location', '$http', 'authService', function($scope, $location, $http, authService) {
     $scope.navheight = 'small';
     $scope.loading = false;
+    $scope.newPost = {
+      tags: []
+    };
     return authService(function(stuff) {
       console.log('!', stuff);
       return $scope.submitPost = function() {
-        var _ref;
-        if ((_ref = $scope.newPost) != null ? _ref.length : void 0) {
-          return $scope.loading = true;
-        }
+        return console.log($scope.message);
       };
     });
   }

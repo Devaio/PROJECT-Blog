@@ -47,7 +47,7 @@
   height: 50px;
 }
 .main-header {
-  height: 100vh;
+  height: 80vh;
 }
 @media (min-width: 769px) {
   .main-header {
@@ -56,4 +56,16 @@
 }
 .main-header.header-small {
   height: 200px;
+}
+.tool-large {
+  height: 20vh;
+}
+@media (min-width: 769px) {
+  .tool-large {
+    height: auto;
+  }
+}
+.ql-container {
+  border: thin solid #000;
+  min-height: 400px;
 }

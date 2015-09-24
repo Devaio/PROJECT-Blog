@@ -33,6 +33,7 @@ module.exports = class Main
 
 
 	upsert: (data, req, res, cb) =>
+		self = @
 		cb = cb ? () ->
 		if req.params.id?
 			query = {_id : req.params.id}
@@ -45,6 +46,7 @@ module.exports = class Main
 
 				cb()
 		else
+			console.log @model
 			newModelInstance = new @model(data)
 			newModelInstance.save (err, doc) ->
 				if err

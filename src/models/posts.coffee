@@ -9,8 +9,7 @@ moment = require 'moment'
 posts = new Schema
 	title : String,
 	content : String
-	tags : {type : Array, default : []}
-	# DO TAGS NEED TO BE SEPARATE MODEL??
+	tags : [{type : Schema.ObjectId, ref : "Tag"}]
 	createdAt : String
 	
 # posts.pre 'save', (next) ->

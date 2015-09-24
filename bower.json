@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
+    "ngQuill": "ngquill#~1.0.12",
     "textAngular": "~1.4.5"
   }
 }

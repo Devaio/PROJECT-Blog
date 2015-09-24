@@ -5,8 +5,59 @@
 <div layout="row" layout-wrap class="container">
 	
 	<div flex="100">
-		<text-angular ng-model="newPost"></text-angular>
+		<md-input-container flex>
+
+			<label class="md-headline">Title</label>
+			<input class="md-display-2" ng-model="newPost.title">
+			
+		</md-input-container>
+	</div>	
+	
+	<div flex="100">
+		<!--<text-angular ng-model="newPost.content"></text-angular>-->
+		
+		<ng-quill-editor 
+			ng-model="message" 
+			toolbar="true" 
+			link-tooltip="true" 
+			image-tooltip="true" 
+			toolbar-entries="font size bold list bullet italic underline strike align color background link image" 
+			editor-required="true" 
+			error-class="input-error">
+			
+		</ng-quill-editor>
+		
+		
 	<div>
+	 
+	<div flex="100">
+		
+		<!--This is for auto-complete chips - probably need this!-->
+		<!--<md-chips ng-model="tags" md-autocomplete-snap md-require-match="true">
+			<md-autocomplete
+				md-selected-item="selectedTag"
+				md-search-text="tagText"
+				md-items="tag in querySearch(tagText)"
+				md-item-text="tag.name"	
+				placeholder="Tag">
+				<span md-highlight-text="tagText">{{tag.name}}</span>
+			</md-autocomplete>
+			<md-chip-template>
+				<span>
+					<strong>{{$chip.name}}</strong>
+				</span>
+			</md-chip-template>
+		</md-chips>
+		-->
+		
+		<md-chips ng-model="newPost.tags">
+			 <input placeholder="Tag">	
+		</md-chips>
+	
+		
+		
+		
+	</div> 
 	 
 	<div flex="100" class="margin-top-med">
 		<div layout="row" layout-sm="column" layout-align="end">
