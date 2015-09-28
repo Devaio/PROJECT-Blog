@@ -63,11 +63,12 @@ class Posts extends Main
 			body.tags = tagList
 			
 			
-			# newPost = new Post(body)
-			# newPost.save (err, doc) ->
-			# 	console.log err, doc
+			newPost = new Post(body)
+			newPost.save (err, doc) ->
+				console.log err, doc
+				res.send {data : doc}
 			
-			super(body, req, res)
+			# super(body, req, res)
 
 				
 module.exports = new Posts()
