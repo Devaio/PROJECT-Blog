@@ -32,8 +32,12 @@ module.exports = (app, passport, redis) ->
 		res.send {user : req.user}
 		
 	app.get '/api/posts', posts.get
-	app.post '/api/posts', posts.upsert
+	app.post '/api/posts', posts.createPost
+	app.post '/api/posts/:id', posts.updatePost
+	
 	app.delete '/api/posts/:id', posts.delete
+	
+	app.get '/api/tags', posts.getTags
 	
 
 	# Login

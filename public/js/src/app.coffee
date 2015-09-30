@@ -1,4 +1,4 @@
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngQuill'])
+angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngQuill', 'ngSanitize'])
 
 
 angular.module('BlogApp')
@@ -11,9 +11,12 @@ angular.module('BlogApp')
 
 # Include Services
 require './services/authService'
-
+	
 # Include Directives
 require './directives/nav'
+
+# Include Factories
+require './factories/post-tag'
 
 # Include Controllers
 require './controllers/main/home'

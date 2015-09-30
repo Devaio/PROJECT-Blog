@@ -42,12 +42,20 @@ class Posts extends Main
 		super(Post)
 
 	get : (req, res) ->
-		super(req, res)
+		
+		Post.find({}).populate('tags').exec (err, posts) ->
+			res.send posts
+		
+		# super(req, res)
+
+	getTags : (req, res) ->
+		Tag.find {}, (err, tags) ->
+			res.send tags
 
 	delete : (req, res) ->
 		super(req, res)
 
-	upsert : (req, res) ->
+	createPost : (req, res) ->
 		self = @
 		body = req.body
 		
@@ -66,9 +74,13 @@ class Posts extends Main
 			newPost = new Post(body)
 			newPost.save (err, doc) ->
 				console.log err, doc
-				res.send {data : doc}
+				res.send doc
 			
 			# super(body, req, res)
-
+	updatePost : (req, res) ->
+		Post.update {_id : req.params.id}, req.body, (err, post) ->
+			
+			Post.findOne {_id : req.params.id}, (err, post) ->
+				res.send post
 				
 module.exports = new Posts()

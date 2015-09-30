@@ -11,7 +11,7 @@ module.exports = class Main
 		q = helpers.queryBuilder(req)
 
 		@model.find(q.query).sort(q.sortQuery).exec (err, data) ->
-			res.send {data : data}
+			res.send data
 			cb()
 
 
@@ -27,7 +27,7 @@ module.exports = class Main
 			if err
 				res.send err
 			else
-				res.send {data : data}
+				res.send data
 			cb()
 
 
@@ -42,7 +42,7 @@ module.exports = class Main
 					console.log err
 					res.send JSON.stringify({error : 'An error occured. Please try again.'})
 				else
-					res.send {data : data}
+					res.send data
 
 				cb()
 		else
@@ -53,5 +53,5 @@ module.exports = class Main
 					console.log err
 					res.send JSON.stringify({error : 'An error occured. Please try again.'})
 				else
-					res.send {data : doc}
+					res.send doc
 				cb()
