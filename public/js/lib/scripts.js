@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngQuill', 'ngSanitize']);
+angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
   return $mdThemingProvider.theme('default').primaryPalette('teal').accentPalette('deep-purple').warnPalette('light-green');
@@ -13,6 +13,10 @@ require('./factories/post-tag');
 
 require('./controllers/main/home');
 
+require('./controllers/main/post');
+
+require('./controllers/main/tag');
+
 require('./controllers/admin/adminLogin');
 
 require('./controllers/admin/adminDashboard');
@@ -22,9 +26,9 @@ require('./controllers/admin/adminAddPost');
 require('./routes');
 
 
-},{"./controllers/admin/adminAddPost":2,"./controllers/admin/adminDashboard":3,"./controllers/admin/adminLogin":4,"./controllers/main/home":5,"./directives/nav":6,"./factories/post-tag":7,"./routes":8,"./services/authService":9}],2:[function(require,module,exports){
+},{"./controllers/admin/adminAddPost":2,"./controllers/admin/adminDashboard":3,"./controllers/admin/adminLogin":4,"./controllers/main/home":5,"./controllers/main/post":6,"./controllers/main/tag":7,"./directives/nav":8,"./factories/post-tag":9,"./routes":10,"./services/authService":11}],2:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
-  '$scope', '$location', '$http', 'authService', function($scope, $location, $http, authService) {
+  '$scope', '$location', '$http', '$timeout', 'authService', function($scope, $location, $http, $timeout, authService) {
     $scope.navheight = 'small';
     $scope.loading = false;
     $scope.newPost = {
@@ -33,7 +37,19 @@ angular.module('BlogApp').controller('adminAddPost', [
     return authService(function(stuff) {
       console.log('!', stuff);
       return $scope.submitPost = function() {
-        return console.log($scope.message);
+        var _ref, _ref1;
+        console.log($scope.newPost);
+        if ((_ref = $scope.newPost) != null ? (_ref1 = _ref.content) != null ? _ref1.length : void 0 : void 0) {
+          $scope.loading = true;
+          console.log($scope.newPost);
+          return $http.post('/api/posts', $scope.newPost).then(function(returnData) {
+            console.log(returnData);
+            $scope.loading = false;
+            return $timeout(function() {
+              return $location.url('/posts/' + returnData.data._id);
+            });
+          });
+        }
       };
     });
   }
@@ -88,6 +104,36 @@ angular.module('BlogApp').controller('homeCont', [
 
 
 },{}],6:[function(require,module,exports){
+angular.module('BlogApp').controller('postCont', [
+  '$scope', '$sce', '$stateParams', 'postTagFactory', function($scope, $sce, $stateParams, postTagFactory) {
+    $scope.navheight = 'small';
+    console.log($stateParams);
+    $scope.post = postTagFactory.postModel.get({
+      id: $stateParams.id
+    });
+    return $scope.$sce = $sce;
+  }
+]);
+
+
+},{}],7:[function(require,module,exports){
+angular.module('BlogApp').controller('tagCont', [
+  '$scope', '$sce', '$stateParams', 'postTagFactory', function($scope, $sce, $stateParams, postTagFactory) {
+    $scope.navheight = 'small';
+    console.log($stateParams);
+    $scope.tag = postTagFactory.tagModel.get({
+      id: $stateParams.id
+    });
+    $scope.$sce = $sce;
+    $scope.posts = postTagFactory.postModel.query({
+      tag: $stateParams.id
+    });
+    return console.log($scope);
+  }
+]);
+
+
+},{}],8:[function(require,module,exports){
 angular.module('BlogApp').directive('nav', function() {
   return {
     restrict: 'E',
@@ -100,7 +146,7 @@ angular.module('BlogApp').directive('nav', function() {
 });
 
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 angular.module('BlogApp').factory('postTagFactory', [
   '$resource', function($resource) {
     var postModel, tagModel;
@@ -119,7 +165,7 @@ angular.module('BlogApp').factory('postTagFactory', [
 ]);
 
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 angular.module('BlogApp').config([
   '$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -132,6 +178,14 @@ angular.module('BlogApp').config([
       url: '/about',
       controller: 'homeCont',
       templateUrl: '/public/templates/main/about.html'
+    }).state('post', {
+      url: '/posts/:id',
+      controller: 'postCont',
+      templateUrl: '/public/templates/main/post.html'
+    }).state('tag', {
+      url: '/tags/:id',
+      controller: 'tagCont',
+      templateUrl: '/public/templates/main/tag.html'
     }).state('adminLogin', {
       url: '/admin/login',
       controller: 'adminLogin',
@@ -149,7 +203,7 @@ angular.module('BlogApp').config([
 ]);
 
 
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 angular.module('BlogApp').service('authService', [
   '$http', '$location', function($http, $location) {
     return this.authCheck = function(cb) {

@@ -8,11 +8,16 @@ module.exports = class Main
 
 	get : (req, res, cb) =>
 		cb = cb ? () ->
-		q = helpers.queryBuilder(req)
-
-		@model.find(q.query).sort(q.sortQuery).exec (err, data) ->
-			res.send data
-			cb()
+			
+		if req.params.id
+			@model.findOne {_id : req.params.id}, (err, data) ->
+				res.send data
+		else
+			q = helpers.queryBuilder(req)
+	
+			@model.find(q.query).sort(q.sortQuery).exec (err, data) ->
+				res.send data
+				cb()
 
 
 	delete : (req, res, cb) =>

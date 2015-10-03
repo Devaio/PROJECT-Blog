@@ -1,6 +1,6 @@
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngQuill', 'ngSanitize'])
+angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular'])
 
-
+#  'ngQuill'
 angular.module('BlogApp')
 	.config ($mdThemingProvider) ->
 		$mdThemingProvider.theme('default')
@@ -20,6 +20,8 @@ require './factories/post-tag'
 
 # Include Controllers
 require './controllers/main/home'
+require './controllers/main/post'
+require './controllers/main/tag'
 require './controllers/admin/adminLogin'
 require './controllers/admin/adminDashboard'
 require './controllers/admin/adminAddPost'

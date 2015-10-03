@@ -1,0 +1,28 @@
+<md-content class="md-padding" layout="column">
+	
+	<div flex="100" ng-repeat="post in posts">
+		
+		<!--Title and Preview -->
+			<h3 class="home-post-title md-display-2">
+				<a ng-href="/posts/{{post._id}}" target="_blank">
+					{{post.title}}
+				</a>		
+			</h3>
+		<p class="home-post-preview"> 
+			<span class="md-subhead" ng-bind-html="$sce.trustAsHtml(post.content)"></span>
+		</p>
+		
+		<!--Tag List-->
+		<md-chips ng-model="post.tags" readonly="true">
+			<md-chip-template>
+				<a ng-href="/tags/{{$chip._id}}">
+					<p>{{$chip.name}}</p>
+					<md-tooltip>
+						See {{$chip.name | uppercase}} Posts
+					</md-tooltip>
+				</a>
+			</md-chip-template>
+		</md-chips>
+		<!--<md-divider ng-if="!$last"></md-divider>-->
+	</div>
+</md-content>

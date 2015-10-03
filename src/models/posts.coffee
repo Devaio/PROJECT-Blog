@@ -12,15 +12,7 @@ posts = new Schema
 	tags : [{type : Schema.ObjectId, ref : "Tag"}]
 	createdAt : String
 	
-# posts.pre 'save', (next) ->
-# 	# First, check to see if the password has been modified. If not, just move on.
-# 	if !@isModified('password')
-# 		return next()
-# 	# Store access to "this", which represents the current user document
-# 	user = this
-# 	user.password = passwords.encrypt user.password
-# 	next()
-# 	return
+
 posts.path('createdAt').default () ->
 	return moment().format('X')
 

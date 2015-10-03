@@ -42,9 +42,18 @@ class Posts extends Main
 		super(Post)
 
 	get : (req, res) ->
+		q = {}
+		# Create tag finder query
+		if req.query.tag
+			q.tags = {$elemMatch : {$eq : req.query.tag} } 
 		
-		Post.find({}).populate('tags').exec (err, posts) ->
-			res.send posts
+		
+		if req.params.id
+			Post.findOne({_id : req.params.id}).populate('tags').exec (err, post) ->
+				res.send post
+		else
+			Post.find(q).populate('tags').exec (err, posts) ->
+				res.send posts
 		
 		# super(req, res)
 

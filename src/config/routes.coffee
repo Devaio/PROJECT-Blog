@@ -21,6 +21,8 @@ module.exports = (app, passport, redis) ->
 	# Controllers
 	accounts = require '../controllers/accounts'
 	posts = require '../controllers/posts'
+	tags = require '../controllers/tags'
+	
 	
 	auth = require '../controllers/auth'
 	
@@ -32,12 +34,14 @@ module.exports = (app, passport, redis) ->
 		res.send {user : req.user}
 		
 	app.get '/api/posts', posts.get
+	app.get '/api/posts/:id', posts.get
 	app.post '/api/posts', posts.createPost
 	app.post '/api/posts/:id', posts.updatePost
 	
 	app.delete '/api/posts/:id', posts.delete
 	
-	app.get '/api/tags', posts.getTags
+	app.get '/api/tags', tags.get
+	app.get '/api/tags/:id', tags.get
 	
 
 	# Login
