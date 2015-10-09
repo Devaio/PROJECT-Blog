@@ -78,6 +78,107 @@
     height: auto;
   }
 }
+.hex-row {
+  clear: left;
+  height: 100px;
+}
+.hex-row.hex-row-2 {
+  margin-left: -90px;
+  margin-top: 16px;
+}
+.hex-row.hex-row-3 {
+  margin-top: 16px;
+  margin-left: -90px;
+}
+.hex-row.hex-row-4 {
+  margin-top: 16px;
+  margin-left: 0px;
+}
+.hex-row.hex-row-5 {
+  margin-top: 16px;
+  margin-left: 0px;
+}
+.hex-row.hex-row-6 {
+  margin-top: 16px;
+  margin-left: 0px;
+}
+.hex {
+  float: left;
+  overflow: hidden;
+  visibility: hidden;
+  width: 85px;
+  height: 100px;
+  -webkit-transform: rotate(120deg);
+  -moz-transform: rotate(120deg);
+  -o-transform: rotate(120deg);
+  -ms-transform: rotate(120deg);
+  transform: rotate(120deg);
+  margin: 0 -69px -49px -42px;
+  background: rgba(255,0,0,0.5);
+}
+.hex-container {
+  display: inline-block;
+  width: 85px;
+}
+.hex-outer {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotate(-60deg);
+  -moz-transform: rotate(-60deg);
+  -o-transform: rotate(-60deg);
+  -ms-transform: rotate(-60deg);
+  transform: rotate(-60deg);
+}
+.hex-inner {
+  overflow: hidden;
+  position: relative;
+  visibility: visible;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotate(-60deg);
+  -moz-transform: rotate(-60deg);
+  -o-transform: rotate(-60deg);
+  -ms-transform: rotate(-60deg);
+  transform: rotate(-60deg);
+  background: #505050;
+  background: url("http://lorempixel.com/200/200/") 50% 50% no-repeat;
+}
+.hex-text-wrap {
+  position: absolute;
+  top: 200px;
+/*left:80px */
+  width: 100%;
+  height: 200px;
+  z-index: 500;
+  background: rgba(255,255,255,0.8);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.hex-text {
+  position: absolute;
+  top: 35px;
+/*left:52px */
+  width: 100%;
+  height: 135px;
+  z-index: 500;
+/*border:1px solid red*/
+}
+.hex-text a {
+  display: block;
+  text-align: center;
+}
+.hex-inner:hover .hex-text-wrap {
+  top: 0px;
+}
+.hex-nav {
+  position: absolute;
+  left: 0px;
+  top: -20px;
+}
 .ql-container {
   border: thin solid #000;
   min-height: 400px;
