@@ -9,8 +9,15 @@ class Tags extends Main
 		super(Tag)
 
 	get : (req, res) ->
-		super(req, res)
-
+		
+		if req.query.name
+			Tag.findOne {name : req.query.name}, (err, tag) ->
+				res.send tag
+		
+		else
+			Tag.find {}, (err, tags) ->
+				res.send tags
+		
 	delete : (req, res) ->
 		super(req, res)
 

@@ -122,11 +122,11 @@ angular.module('BlogApp').controller('tagCont', [
     $scope.navheight = 'small';
     console.log($stateParams);
     $scope.tag = postTagFactory.tagModel.get({
-      id: $stateParams.id
+      name: $stateParams.name
     });
     $scope.$sce = $sce;
     $scope.posts = postTagFactory.postModel.query({
-      tag: $stateParams.id
+      tag: $stateParams.name
     });
     return console.log($scope);
   }
@@ -141,7 +141,11 @@ angular.module('BlogApp').directive('nav', function() {
     scope: {
       navheight: '='
     },
-    link: function($scope) {}
+    controller: function($scope, $mdSidenav) {
+      return $scope.toggleNav = function() {
+        return $mdSidenav('right').toggle();
+      };
+    }
   };
 });
 
@@ -183,7 +187,7 @@ angular.module('BlogApp').config([
       controller: 'postCont',
       templateUrl: '/public/templates/main/post.html'
     }).state('tag', {
-      url: '/tags/:id',
+      url: '/tags/:name',
       controller: 'tagCont',
       templateUrl: '/public/templates/main/tag.html'
     }).state('adminLogin', {

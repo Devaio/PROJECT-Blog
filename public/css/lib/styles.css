@@ -43,6 +43,13 @@
 .text-center {
   text-align: center;
 }
+#hamburger-nav {
+  font-size: 36px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
 .warning-text {
   color: #f00;
 }
@@ -52,7 +59,7 @@
 .main-header {
   height: 80vh;
 }
-@media (min-width: 769px) {
+@media (min-width: 600px) {
   .main-header {
     height: 50vh;
   }
@@ -63,7 +70,7 @@
 .tool-large {
   height: 20vh;
 }
-@media (min-width: 769px) {
+@media (min-width: 600px) {
   .tool-large {
     height: auto;
   }

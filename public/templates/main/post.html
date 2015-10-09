@@ -12,7 +12,9 @@
 		<!--Tag List-->
 		<md-chips ng-model="post.tags" readonly="true">
 			<md-chip-template>
-				<p>{{$chip.name}}</p>
+				<a ng-href="/tags/{{$chip.name}}">
+					<p>{{$chip.name}}</p>
+				</a>
 			</md-chip-template>
 		</md-chips>
 	</div>

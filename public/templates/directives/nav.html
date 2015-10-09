@@ -1,20 +1,41 @@
+<div id="hamburger-nav" ng-click="toggleNav()" flex="15" hide-gt-sm>
+	<i class="fa fa-bars"></i>
+</div>	
+
+<md-sidenav md-component-id="right" class="md-sidenav-right" layout-align="start center">
+    <div layout="column">
+		<div class="text-center" flex="100">Home</div>
+		<div class="text-center" flex="100">Other</div>
+		<div class="text-center" flex="100">Another</div>
+		<div class="text-center" flex="100">Last One</div>	
+	</div>
+</md-sidenav>
+
+
 <md-whiteframe ng-class="{true : 'header-small'}[navheight === 'small']" class="md-whiteframe-z1 main-header" layout layout-align="center center">
+	
 	<h1 class="md-display-2">Bloggy Bloggadoo</h1>
 </md-whiteframe>
-<md-toolbar class="md-primary" ng-class="{true : 'tool-large'}[navheight === 'large']">
-	<div layout="row" layout-sm="column" layout-wrap>
-		<div flex="70">
-			<span>Toolbar: tall (md-accent)</span>
+<md-toolbar class="md-primary" ng-class="{true : 'tool-large'}[navheight === 'large']" layout="row" layout-align="center center" layout-sm="column">
+	<!--<div layout="row" layout-align="center end" layout-sm="column" >-->
+		
+		<div flex="100">
+			<div layout="row" layout-sm="column">
+				<div show-gt-sm hide class="text-center" flex="25">Home</div>
+				<div show-gt-sm hide class="text-center" flex="25">Other</div>
+				<div show-gt-sm hide class="text-center" flex="25">Another</div>
+				<div show-gt-sm hide class="text-center" flex="25">Last One</div>	
+			</div>
 		</div>		
-		<div flex>
+		
+		<!--<div flex>
 			<md-input-container class="md-accent">
 				<label>Search</label>
 				<input ng-model="query">
 			</md-input-container>
-		</div>
-	</div>
+		</div>-->
+	<!--</div>-->
 		
 </md-toolbar>
 
-
-<!--{  true:   'complete'  } [item.Id != 0]-->
+<!--$mdSidenav('left').toggle()-->

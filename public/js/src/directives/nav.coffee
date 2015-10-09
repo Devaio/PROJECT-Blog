@@ -6,6 +6,8 @@ angular.module 'BlogApp'
 			scope : {
 				navheight : '='
 			}
-			link : ($scope) ->
-				# console.log '!!', $scope
+			controller : ($scope, $mdSidenav) ->
+				$scope.toggleNav = () ->
+					# console.log $mdSidenav
+					$mdSidenav('right').toggle()
 		}

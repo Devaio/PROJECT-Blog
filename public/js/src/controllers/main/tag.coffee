@@ -3,10 +3,10 @@ angular.module 'BlogApp'
 		$scope.navheight = 'small'
 		console.log $stateParams
 		
-		$scope.tag = postTagFactory.tagModel.get({id : $stateParams.id})
+		$scope.tag = postTagFactory.tagModel.get({name : $stateParams.name})
 		$scope.$sce = $sce
 		
-		$scope.posts = postTagFactory.postModel.query({tag : $stateParams.id})
+		$scope.posts = postTagFactory.postModel.query({tag : $stateParams.name})
 
 		console.log $scope
 	]

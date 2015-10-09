@@ -22,7 +22,7 @@ angular.module 'BlogApp'
 				templateUrl: '/public/templates/main/post.html'
 			}
 			.state 'tag', {
-				url: '/tags/:id',
+				url: '/tags/:name',
 				controller: 'tagCont',
 				templateUrl: '/public/templates/main/tag.html'
 			}

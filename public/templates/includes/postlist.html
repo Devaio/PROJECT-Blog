@@ -15,7 +15,7 @@
 		<!--Tag List-->
 		<md-chips ng-model="post.tags" readonly="true">
 			<md-chip-template>
-				<a ng-href="/tags/{{$chip._id}}">
+				<a ng-href="/tags/{{$chip.name}}">
 					<p>{{$chip.name}}</p>
 					<md-tooltip>
 						See {{$chip.name | uppercase}} Posts

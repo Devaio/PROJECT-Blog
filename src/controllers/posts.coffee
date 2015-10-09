@@ -45,15 +45,19 @@ class Posts extends Main
 		q = {}
 		# Create tag finder query
 		if req.query.tag
-			q.tags = {$elemMatch : {$eq : req.query.tag} } 
-		
-		
-		if req.params.id
-			Post.findOne({_id : req.params.id}).populate('tags').exec (err, post) ->
-				res.send post
+			Tag.findOne {name : req.query.tag}, (err, tag) ->
+				q.tags = {$elemMatch : {$eq : tag._id} }
+				Post.find(q).populate('tags').exec (err, posts) ->
+					res.send posts
+				
 		else
-			Post.find(q).populate('tags').exec (err, posts) ->
-				res.send posts
+		
+			if req.params.id
+				Post.findOne({_id : req.params.id}).populate('tags').exec (err, post) ->
+					res.send post
+			else
+				Post.find(q).populate('tags').exec (err, posts) ->
+					res.send posts
 		
 		# super(req, res)
 
