@@ -52,6 +52,8 @@
 }
 .md-sidenav-right {
   position: fixed;
+  max-width: 80vw;
+  width: 80vw;
 }
 .warning-text {
   color: #f00;
@@ -82,21 +84,24 @@
   clear: left;
   height: 100px;
 }
+.hex-row.hex-row-1 {
+  margin-left: 45px;
+}
 .hex-row.hex-row-2 {
-  margin-left: -90px;
-  margin-top: 16px;
+  margin-left: 85px;
+  margin-top: -30px;
 }
 .hex-row.hex-row-3 {
-  margin-top: 16px;
-  margin-left: -90px;
+  margin-top: -30px;
+  margin-left: 45px;
 }
 .hex-row.hex-row-4 {
-  margin-top: 16px;
-  margin-left: 0px;
+  margin-top: -30px;
+  margin-left: 5px;
 }
 .hex-row.hex-row-5 {
-  margin-top: 16px;
-  margin-left: 0px;
+  margin-top: -30px;
+  margin-left: 45px;
 }
 .hex-row.hex-row-6 {
   margin-top: 16px;
@@ -106,7 +111,7 @@
   float: left;
   overflow: hidden;
   visibility: hidden;
-  width: 85px;
+  width: 75px;
   height: 100px;
   -webkit-transform: rotate(120deg);
   -moz-transform: rotate(120deg);
@@ -118,7 +123,7 @@
 }
 .hex-container {
   display: inline-block;
-  width: 85px;
+  width: 75px;
 }
 .hex-outer {
   overflow: hidden;
@@ -173,11 +178,6 @@
 }
 .hex-inner:hover .hex-text-wrap {
   top: 0px;
-}
-.hex-nav {
-  position: absolute;
-  left: 0px;
-  top: -20px;
 }
 .ql-container {
   border: thin solid #000;
