@@ -50,29 +50,34 @@ class Posts extends Main
 		super(Post)
 
 	get : (req, res) ->
-		q = {}
+		q = {deleted : false}
+		# Page Skipper
+		pageSkip = 0
+		if req.query.page
+			pageSkip = (req.query.page - 1) * 10
+		
 		# Create tag finder query
 		if req.query.tag
 			Tag.findOne {name : req.query.tag}, (err, tag) ->
 				q.tags = {$elemMatch : {$eq : tag._id} }
-				Post.find(q).sort('-createdAt').populate('tags').exec (err, posts) ->
+				Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
 					for post in posts
-						toReadableDate(post)
+						if post
+							toReadableDate(post)
 					res.send posts
 				
 		else
-			pageSkip = 0
-			if req.query.page
-				pageSkip = req.query.page * 10
+			
 			if req.params.id
-				Post.findOne({_id : req.params.id}).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, post) ->
-					for post in posts
+				Post.findOne({_id : req.params.id, deleted : false}).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, post) ->
+					if post
 						toReadableDate(post)
 					res.send post
 			else
 				Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
 					for post in posts
-						toReadableDate(post)
+						if post
+							toReadableDate(post)
 					res.send posts
 		
 		# super(req, res)
@@ -111,5 +116,6 @@ class Posts extends Main
 			
 			Post.findOne {_id : req.params.id}, (err, post) ->
 				res.send post
-				
+	delete : (req, res) ->
+		super(req, res)
 module.exports = new Posts()

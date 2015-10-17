@@ -98,16 +98,19 @@ angular.module('BlogApp').controller('homeCont', [
     $scope.navheight = 'large';
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
     $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
-    if (parseInt($stateParams.pageNum) === 1) {
+    $scope.showNextPage = true;
+    if (parseInt($stateParams.pageNum || 1) <= 1) {
       $location.url('/');
     }
-    if ($scope.posts.length < 10) {
-      console.log($scope.posts.length);
-      $scope.nextPage = null;
-    }
-    if ($scope.posts.length === 0) {
-      $location.url('/pages/' + parseInt($stateParams.pageNum) - 1);
-    }
+    $scope.$watch('posts.length', function() {
+      if ($scope.posts.length < 10) {
+        $scope.showNextPage = null;
+      } else {
+        $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
+        $scope.showNextPage = true;
+      }
+      return console.log($scope);
+    });
     $scope.$sce = $sce;
     return $scope.something = function() {};
   }
@@ -129,17 +132,31 @@ angular.module('BlogApp').controller('postCont', [
 
 },{}],7:[function(require,module,exports){
 angular.module('BlogApp').controller('tagCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', function($scope, $sce, $stateParams, postTagFactory) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', function($scope, $sce, $stateParams, postTagFactory, $location) {
     $scope.navheight = 'small';
-    console.log($stateParams);
+    console.log('State', $stateParams);
     $scope.tag = postTagFactory.tagModel.get({
       name: $stateParams.name
     });
     $scope.$sce = $sce;
     $scope.posts = postTagFactory.postModel.query({
-      tag: $stateParams.name
+      tag: $stateParams.name,
+      page: $stateParams.pageNum
     });
-    return console.log($scope);
+    $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
+    $scope.showNextPage = true;
+    if (parseInt($stateParams.pageNum) <= 1) {
+      $location.url("/tags/" + $stateParams.name);
+    }
+    $scope.$watch('posts.length', function() {
+      if ($scope.posts.length < 10) {
+        return $scope.showNextPage = null;
+      } else {
+        $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
+        return $scope.showNextPage = true;
+      }
+    });
+    return console.log('LENGTH', $scope.posts.length);
   }
 ]);
 
@@ -165,7 +182,6 @@ angular.module('BlogApp').directive('nav', function() {
 angular.module('BlogApp').factory('postTagFactory', [
   '$resource', '$stateParams', function($resource, $stateParams) {
     var postModel, tagModel;
-    console.log('STATE', $stateParams);
     postModel = $resource('/api/posts/:id', {
       id: '@_id'
     });
@@ -208,6 +224,10 @@ angular.module('BlogApp').config([
       templateUrl: '/public/templates/main/post.html'
     }).state('tag', {
       url: '/tags/:name',
+      controller: 'tagCont',
+      templateUrl: '/public/templates/main/tag.html'
+    }).state('tagPage', {
+      url: '/tags/:name/:pageNum',
       controller: 'tagCont',
       templateUrl: '/public/templates/main/tag.html'
     }).state('adminLogin', {

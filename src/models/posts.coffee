@@ -11,6 +11,7 @@ posts = new Schema
 	content : String
 	tags : [{type : Schema.ObjectId, ref : "Tag"}]
 	createdAt : String
+	deleted : {type : Boolean, default : false}
 	
 
 posts.path('createdAt').default () ->

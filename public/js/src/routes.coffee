@@ -31,6 +31,15 @@ angular.module 'BlogApp'
 				controller: 'tagCont',
 				templateUrl: '/public/templates/main/tag.html'
 			}
+			.state 'tagPage', {
+				url: '/tags/:name/:pageNum',
+				controller: 'tagCont',
+				templateUrl: '/public/templates/main/tag.html',
+				# resolve : {
+				# 	posts : () ->
+				# 		return postTagFactory.postModel.query({tag : $stateParams.name, page : $stateParams.pageNum})
+				# }
+			}
 			.state 'adminLogin', {
 				url: '/admin/login',
 				controller: 'adminLogin',

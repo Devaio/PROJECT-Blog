@@ -37,6 +37,7 @@ module.exports = (app, passport, redis) ->
 	app.get '/api/posts/:id', posts.get
 	app.post '/api/posts', posts.createPost
 	app.post '/api/posts/:id', posts.updatePost
+	app.get '/api/posts/delete/:id', posts.delete
 	
 	app.delete '/api/posts/:id', posts.delete
 	
