@@ -4,7 +4,7 @@ angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngSanitize'
 angular.module('BlogApp')
 	.config ($mdThemingProvider) ->
 		$mdThemingProvider.theme('default')
-			.primaryPalette('teal')
+			.primaryPalette('blue-grey')
 			.accentPalette('deep-purple')
 			.warnPalette('light-green')
 

@@ -2,7 +2,7 @@
 angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
-  return $mdThemingProvider.theme('default').primaryPalette('teal').accentPalette('deep-purple').warnPalette('light-green');
+  return $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('deep-purple').warnPalette('light-green');
 });
 
 require('./services/authService');

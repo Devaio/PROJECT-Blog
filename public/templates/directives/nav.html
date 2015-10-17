@@ -1,13 +1,13 @@
-<div id="hamburger-nav" ng-click="toggleNav()" flex="15" hide-gt-sm>
+<div id="hamburger-nav" ng-click="toggleNav()" flex="15" hide-gt-md>
 	<i class="fa fa-bars"></i>
 </div>	
 
 <md-sidenav md-component-id="right" class="md-sidenav-right" layout-align="start center">
     <div layout="column">
-		<div class="text-center" flex="100">Home</div>
+		<!--<div class="text-center" flex="100"><a href="/">Home</a></div>
 		<div class="text-center" flex="100">Other</div>
 		<div class="text-center" flex="100">Another</div>
-		<div class="text-center" flex="100">Last One</div>
+		<div class="text-center" flex="100">Last One</div>-->
 	</div>
 	
 	<ng-include src="'public/templates/includes/mobilehex.html'"></ng-include>
@@ -17,21 +17,26 @@
 
 
 
-
-<md-whiteframe ng-class="{true : 'header-small'}[navheight === 'small']" class="md-whiteframe-z1 main-header" layout layout-align="center center">
+<div class="whiteframe-hex-container">
+	<md-whiteframe   layout="column" class="md-whiteframe-z1 main-header" layout-align="center center">
+		
+		<h1 class="main-header-text text-center md-display-2"><a class="black-link" href="/">Bloggy Bloggadoo</a></h1>
+		
+	</md-whiteframe>
 	
-	<h1 class="text-center md-display-2">Bloggy Bloggadoo</h1>
-</md-whiteframe>
-<md-toolbar class="md-primary" ng-class="{true : 'tool-large'}[navheight === 'large']" layout="row" layout-align="center center" layout-sm="column">
+	<ng-include hide show-gt-md src="'public/templates/includes/hex.html'"></ng-include>
+</div>
+
+<md-toolbar class="md-primary" ng-class="{true : 'tool-large'}[navheight === 'large']" layout="row" layout-align="center center" layout-md="column">
 	<!--<div layout="row" layout-align="center end" layout-sm="column" >-->
 		
 		<div flex="100">
-			<div layout="row" layout-sm="column">
-				<div show-gt-sm hide class="text-center" flex="25">Home</div>
+			<!--<div layout="row" layout-sm="column">
+				<div show-gt-sm hide class="text-center" flex="25"><a href="/">Home</a></div>
 				<div show-gt-sm hide class="text-center" flex="25">Other</div>
 				<div show-gt-sm hide class="text-center" flex="25">Another</div>
 				<div show-gt-sm hide class="text-center" flex="25">Last One</div>	
-			</div>
+			</div>-->
 		</div>		
 		
 		<!--<div flex>

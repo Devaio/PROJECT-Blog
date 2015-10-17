@@ -49,11 +49,22 @@
   top: 0;
   right: 0;
   padding: 10px;
+  z-index: 5;
 }
 .md-sidenav-right {
   position: fixed;
   max-width: 80vw;
   width: 80vw;
+}
+.main-header-text {
+  z-index: 2;
+}
+.black-link {
+  color: #000;
+}
+.black-link:hover {
+  color: #000;
+  text-decoration: none;
 }
 .warning-text {
   color: #f00;
@@ -83,47 +94,6 @@
 .hex-row {
   clear: left;
   height: 100px;
-}
-.hex-row.hex-row-1 {
-  margin-left: 45px;
-}
-.hex-row.hex-row-2 {
-  margin-left: 80px;
-  margin-top: -40px;
-}
-.hex-row.hex-row-3 {
-  margin-top: -40px;
-  margin-left: 45px;
-}
-.hex-row.hex-row-4 {
-  margin-top: -40px;
-  margin-left: 10px;
-}
-.hex-row.hex-row-5 {
-  margin-top: -40px;
-  margin-left: 45px;
-}
-.hex-row.hex-row-6 {
-  margin-top: 16px;
-  margin-left: 0px;
-}
-.hex {
-  float: left;
-  overflow: hidden;
-  visibility: hidden;
-  width: 65px;
-  height: 100px;
-  -webkit-transform: rotate(120deg);
-  -moz-transform: rotate(120deg);
-  -o-transform: rotate(120deg);
-  -ms-transform: rotate(120deg);
-  transform: rotate(120deg);
-  margin: 0 -69px -49px -42px;
-  background: rgba(255,0,0,0.5);
-}
-.hex-container {
-  display: inline-block;
-  width: 65px;
 }
 .hex-outer {
   overflow: hidden;
@@ -184,9 +154,138 @@
 .hex-inner:hover .hex-text-wrap {
   top: 0px;
 }
-.hex-nav {
-  max-width: 250px;
+.hex-nav-mobile {
   margin: auto;
+  max-width: 250px;
+}
+@media (min-width: 600px) {
+  .hex-nav-mobile {
+    max-width: 500px;
+  }
+}
+.hex-nav-mobile .hex-row.hex-row-1 {
+  margin-left: 45px;
+}
+.hex-nav-mobile .hex-row.hex-row-2 {
+  margin-left: 80px;
+  margin-top: -40px;
+}
+@media (min-width: 960px) {
+  .hex-nav-mobile .hex-row.hex-row-2 {
+    margin-left: 45px;
+    margin-top: -22px;
+  }
+}
+.hex-nav-mobile .hex-row.hex-row-3 {
+  margin-top: -40px;
+  margin-left: 45px;
+}
+@media (min-width: 960px) {
+  .hex-nav-mobile .hex-row.hex-row-3 {
+    margin-top: -22px;
+    margin-left: 90px;
+  }
+}
+.hex-nav-mobile .hex-row.hex-row-4 {
+  margin-top: -40px;
+  margin-left: 10px;
+}
+@media (min-width: 960px) {
+  .hex-nav-mobile .hex-row.hex-row-4 {
+    margin-top: -22px;
+    margin-left: -45px;
+  }
+}
+.hex-nav-mobile .hex-row.hex-row-5 {
+  margin-top: -40px;
+  margin-left: 45px;
+}
+@media (min-width: 960px) {
+  .hex-nav-mobile .hex-row.hex-row-5 {
+    margin-top: -22px;
+    margin-left: 90px;
+  }
+}
+.hex-nav-mobile .hex-row.hex-row-6 {
+  margin-top: 16px;
+  margin-left: 0px;
+}
+.hex-nav-mobile .hex {
+  float: left;
+  overflow: hidden;
+  visibility: hidden;
+  width: 65px;
+  height: 100px;
+  -webkit-transform: rotate(120deg);
+  -moz-transform: rotate(120deg);
+  -o-transform: rotate(120deg);
+  -ms-transform: rotate(120deg);
+  transform: rotate(120deg);
+  margin: 0 -69px -49px -42px;
+  background: rgba(255,0,0,0.5);
+}
+@media (min-width: 960px) {
+  .hex-nav-mobile .hex {
+    width: 85px;
+  }
+}
+.hex-nav-mobile .hex-container {
+  display: inline-block;
+  width: 65px;
+}
+@media (min-width: 960px) {
+  .hex-nav-mobile .hex-container {
+    width: 85px;
+  }
+}
+.hex-nav-desktop {
+  position: absolute;
+  top: 20px;
+}
+.hex-nav-desktop .hex-row.hex-row-1 {
+  margin-left: 45px;
+}
+.hex-nav-desktop .hex-row.hex-row-2 {
+  margin-left: 45px;
+  margin-top: -22px;
+}
+.hex-nav-desktop .hex-row.hex-row-3 {
+  margin-top: -22px;
+  margin-left: 90px;
+}
+.hex-nav-desktop .hex-row.hex-row-4 {
+  margin-top: -22px;
+  margin-left: -45px;
+}
+.hex-nav-desktop .hex-row.hex-row-5 {
+  margin-top: -22px;
+  margin-left: 90px;
+}
+.hex-nav-desktop .hex-row.hex-row-6 {
+  margin-top: 16px;
+  margin-left: 0px;
+}
+.hex-nav-desktop .hex {
+  float: left;
+  overflow: hidden;
+  visibility: hidden;
+  width: 85px;
+  height: 100px;
+  -webkit-transform: rotate(120deg);
+  -moz-transform: rotate(120deg);
+  -o-transform: rotate(120deg);
+  -ms-transform: rotate(120deg);
+  transform: rotate(120deg);
+  margin: 0 -69px -49px -42px;
+  background: rgba(255,0,0,0.5);
+}
+.hex-nav-desktop .hex-container {
+  display: inline-block;
+  width: 85px;
+}
+.whiteframe-hex-container {
+  position: relative;
+  overflow: hidden;
 }
 .ql-container {
   border: thin solid #000;

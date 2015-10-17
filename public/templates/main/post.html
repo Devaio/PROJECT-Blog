@@ -1,21 +1,22 @@
 <nav navheight="navheight"></nav>
 <md-content class="md-padding" layout="column">
-	
-	<div flex="100">
-		
-		<!--Title and Preview -->
-		<h3 class="post-title md-display-2">{{post.title}}</h3>
-		<p class="post-content"> 
-			<span class="md-body-1" ng-bind-html="$sce.trustAsHtml(post.content)"></span>
-		</p>
-		
-		<!--Tag List-->
-		<md-chips ng-model="post.tags" readonly="true">
-			<md-chip-template>
-				<a ng-href="/tags/{{$chip.name}}">
-					<p>{{$chip.name}}</p>
-				</a>
-			</md-chip-template>
-		</md-chips>
+	<div class="container">
+		<div flex="100">
+			
+			<!--Title and Preview -->
+			<h3 class="post-title md-display-2">{{post.title}}</h3>
+			<p class="post-content"> 
+				<span class="md-body-1" ng-bind-html="$sce.trustAsHtml(post.content)"></span>
+			</p>
+			
+			<!--Tag List-->
+			<md-chips ng-model="post.tags" readonly="true">
+				<md-chip-template>
+					<a ng-href="/tags/{{$chip.name}}">
+						<p>{{$chip.name}}</p>
+					</a>
+				</md-chip-template>
+			</md-chips>
+		</div>
 	</div>
 </md-content>

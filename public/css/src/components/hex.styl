@@ -2,46 +2,7 @@
     clear: left
     height:100px
 }
-.hex-row.hex-row-1
-    margin-left:45px
-    
-.hex-row.hex-row-2 {
-    margin-left: 80px
-    margin-top: -40px
-}
-.hex-row.hex-row-3 {
-    margin-top: -40px;
-    margin-left: 45px;
-}
-.hex-row.hex-row-4 {
-    margin-top: -40px
-    margin-left: 10px
-}
-
-.hex-row.hex-row-5 {
-    margin-top: -40px
-    margin-left: 45px
-}
-.hex-row.hex-row-6 {
-    margin-top: 16px
-    margin-left: 0px
-}
-
-
-.hex{
-    float:left 
-    overflow:hidden 
-    visibility:hidden 
-    width:65px
-    height:100px
-    transform:rotate(120deg) 
-    margin:0 -69px -49px -42px 
-    background:rgba(255,0,0,0.5)
-}
-.hex-container {
-    display: inline-block
-    width:65px
-}           
+          
 .hex-outer {
     overflow:hidden 
     width:100% 
@@ -87,6 +48,124 @@
 .hex-inner:hover .hex-text-wrap{
     top:0px
 }
-.hex-nav
-    max-width 250px
+
+
+
+.hex-nav-mobile
+    
     margin auto
+    max-width 250px
+    @media $screen-sm
+        max-width 500px
+    
+    .hex-row.hex-row-1
+        margin-left:45px
+        
+    .hex-row.hex-row-2
+        margin-left: 80px
+        margin-top: -40px
+        @media $screen-md
+             margin-left: 45px
+             margin-top: -22px
+   
+   
+    .hex-row.hex-row-3
+        margin-top: -40px;
+        margin-left: 45px;
+        @media $screen-md
+            margin-top: -22px;
+            margin-left: 90px;
+    
+    .hex-row.hex-row-4
+        margin-top: -40px
+        margin-left: 10px
+        @media $screen-md
+            margin-top: -22px
+            margin-left: -45px
+    
+    
+    .hex-row.hex-row-5
+        margin-top: -40px
+        margin-left: 45px
+        @media $screen-md
+            margin-top: -22px
+            margin-left: 90px
+    .hex-row.hex-row-6
+        margin-top: 16px
+        margin-left: 0px
+    
+    
+    
+    .hex
+        float:left 
+        overflow:hidden 
+        visibility:hidden 
+        width:65px
+        height:100px
+        transform:rotate(120deg) 
+        margin:0 -69px -49px -42px 
+        background:rgba(255,0,0,0.5)
+        @media $screen-md
+            width 85px
+    
+    .hex-container 
+        display: inline-block
+        width:65px
+        @media $screen-md
+            width 85px
+    
+    
+    
+.hex-nav-desktop
+    position absolute
+    top 20px
+    
+    .hex-row.hex-row-1
+        margin-left:45px
+        
+    .hex-row.hex-row-2
+        margin-left: 45px
+        margin-top: -22px
+    
+    .hex-row.hex-row-3
+        margin-top: -22px;
+        margin-left: 90px;
+    
+    .hex-row.hex-row-4
+        margin-top: -22px
+        margin-left: -45px
+    
+    
+    .hex-row.hex-row-5
+        margin-top: -22px
+        margin-left: 90px
+    
+    .hex-row.hex-row-6
+        margin-top: 16px
+        margin-left: 0px
+    
+    
+    
+    .hex
+        float:left 
+        overflow:hidden 
+        visibility:hidden 
+        width:85px
+        height:100px
+        transform:rotate(120deg) 
+        margin:0 -69px -49px -42px 
+        background:rgba(255,0,0,0.5)
+    
+    .hex-container 
+        display: inline-block
+        width:85px
+    
+
+
+
+
+
+.whiteframe-hex-container
+    position relative
+    overflow hidden
+    
