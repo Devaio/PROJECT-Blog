@@ -88,19 +88,19 @@
   margin-left: 45px;
 }
 .hex-row.hex-row-2 {
-  margin-left: 85px;
-  margin-top: -30px;
+  margin-left: 80px;
+  margin-top: -40px;
 }
 .hex-row.hex-row-3 {
-  margin-top: -30px;
+  margin-top: -40px;
   margin-left: 45px;
 }
 .hex-row.hex-row-4 {
-  margin-top: -30px;
-  margin-left: 5px;
+  margin-top: -40px;
+  margin-left: 10px;
 }
 .hex-row.hex-row-5 {
-  margin-top: -30px;
+  margin-top: -40px;
   margin-left: 45px;
 }
 .hex-row.hex-row-6 {
@@ -111,7 +111,7 @@
   float: left;
   overflow: hidden;
   visibility: hidden;
-  width: 75px;
+  width: 65px;
   height: 100px;
   -webkit-transform: rotate(120deg);
   -moz-transform: rotate(120deg);
@@ -123,7 +123,7 @@
 }
 .hex-container {
   display: inline-block;
-  width: 75px;
+  width: 65px;
 }
 .hex-outer {
   overflow: hidden;
@@ -151,7 +151,7 @@
 }
 .hex-text-wrap {
   position: absolute;
-  top: 200px;
+  top: 0px;
 /*left:80px */
   width: 100%;
   height: 200px;
@@ -162,6 +162,11 @@
   -o-transition: all 0.3s;
   -ms-transition: all 0.3s;
   transition: all 0.3s;
+}
+@media (min-width: 600px) {
+  .hex-text-wrap {
+    top: 200px;
+  }
 }
 .hex-text {
   position: absolute;
@@ -178,6 +183,10 @@
 }
 .hex-inner:hover .hex-text-wrap {
   top: 0px;
+}
+.hex-nav {
+  max-width: 250px;
+  margin: auto;
 }
 .ql-container {
   border: thin solid #000;

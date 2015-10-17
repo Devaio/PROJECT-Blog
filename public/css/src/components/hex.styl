@@ -6,20 +6,20 @@
     margin-left:45px
     
 .hex-row.hex-row-2 {
-    margin-left: 85px
-    margin-top: -30px
+    margin-left: 80px
+    margin-top: -40px
 }
 .hex-row.hex-row-3 {
-    margin-top: -30px;
+    margin-top: -40px;
     margin-left: 45px;
 }
 .hex-row.hex-row-4 {
-    margin-top: -30px
-    margin-left: 5px
+    margin-top: -40px
+    margin-left: 10px
 }
 
 .hex-row.hex-row-5 {
-    margin-top: -30px
+    margin-top: -40px
     margin-left: 45px
 }
 .hex-row.hex-row-6 {
@@ -32,7 +32,7 @@
     float:left 
     overflow:hidden 
     visibility:hidden 
-    width:75px
+    width:65px
     height:100px
     transform:rotate(120deg) 
     margin:0 -69px -49px -42px 
@@ -40,7 +40,7 @@
 }
 .hex-container {
     display: inline-block
-    width:75px
+    width:65px
 }           
 .hex-outer {
     overflow:hidden 
@@ -60,16 +60,17 @@
     background:url(http://lorempixel.com/200/200/) 50% 50% no-repeat
 }
                 
-.hex-text-wrap {
+.hex-text-wrap
     position:absolute
-    top:200px 
+    top:0px 
     /*left:80px */
     width:100% 
     height:200px 
     z-index:500 
     background:rgba(255,255,255,0.8)
     transition:all 0.3s
-}
+    @media $screen-sm
+        top 200px
                 
 .hex-text{
     position:absolute 
@@ -86,3 +87,6 @@
 .hex-inner:hover .hex-text-wrap{
     top:0px
 }
+.hex-nav
+    max-width 250px
+    margin auto

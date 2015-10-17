@@ -6,4 +6,6 @@
 
 <div class="container">
 	<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
+	<a ng-if="(nextPage - 2) > 0" ng-href="/page/{{nextPage - 2}}">Previous Page</a>
+	<a ng-if="nextPage" ng-href="/page/{{nextPage}}">Next Page</a>
 </div>

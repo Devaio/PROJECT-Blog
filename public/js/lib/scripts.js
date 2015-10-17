@@ -94,9 +94,20 @@ angular.module('BlogApp').controller('adminLogin', [
 
 },{}],5:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
-  '$scope', '$sce', 'postTagFactory', function($scope, $sce, postTagFactory) {
+  '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', function($scope, $sce, postTagFactory, $stateParams, $location) {
     $scope.navheight = 'large';
-    $scope.posts = postTagFactory.posts;
+    $scope.posts = postTagFactory.posts($stateParams.pageNum);
+    $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
+    if (parseInt($stateParams.pageNum) === 1) {
+      $location.url('/');
+    }
+    if ($scope.posts.length < 10) {
+      console.log($scope.posts.length);
+      $scope.nextPage = null;
+    }
+    if ($scope.posts.length === 0) {
+      $location.url('/pages/' + parseInt($stateParams.pageNum) - 1);
+    }
     $scope.$sce = $sce;
     return $scope.something = function() {};
   }
@@ -152,8 +163,9 @@ angular.module('BlogApp').directive('nav', function() {
 
 },{}],9:[function(require,module,exports){
 angular.module('BlogApp').factory('postTagFactory', [
-  '$resource', function($resource) {
+  '$resource', '$stateParams', function($resource, $stateParams) {
     var postModel, tagModel;
+    console.log('STATE', $stateParams);
     postModel = $resource('/api/posts/:id', {
       id: '@_id'
     });
@@ -163,7 +175,11 @@ angular.module('BlogApp').factory('postTagFactory', [
     return {
       postModel: postModel,
       tagModel: tagModel,
-      posts: postModel.query()
+      posts: function(page) {
+        return postModel.query({
+          page: page
+        });
+      }
     };
   }
 ]);
@@ -176,6 +192,10 @@ angular.module('BlogApp').config([
     $urlRouterProvider.otherwise('/');
     return $stateProvider.state('home', {
       url: '/',
+      controller: 'homeCont',
+      templateUrl: '/public/templates/main/home.html'
+    }).state('pages', {
+      url: '/page/:pageNum',
       controller: 'homeCont',
       templateUrl: '/public/templates/main/home.html'
     }).state('about', {

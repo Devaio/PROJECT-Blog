@@ -4,6 +4,14 @@ async = require 'async'
 Post = mongoose.model('Post')
 Tag = mongoose.model('Tag')
 Main = require './main'
+moment = require 'moment'
+
+# Date Conversion helper methods
+toReadableDate = (doc) ->
+	doc.createdAt = moment.unix(doc.createdAt).format('MMM DD, YYYY')
+
+toUnixDate = (doc) ->
+	doc.createdAt = moment(doc.createdAt).format('X')
 
 createTagList = (newPostTags, cb) ->
 	tasks = []
@@ -47,16 +55,24 @@ class Posts extends Main
 		if req.query.tag
 			Tag.findOne {name : req.query.tag}, (err, tag) ->
 				q.tags = {$elemMatch : {$eq : tag._id} }
-				Post.find(q).populate('tags').exec (err, posts) ->
+				Post.find(q).sort('-createdAt').populate('tags').exec (err, posts) ->
+					for post in posts
+						toReadableDate(post)
 					res.send posts
 				
 		else
-		
+			pageSkip = 0
+			if req.query.page
+				pageSkip = req.query.page * 10
 			if req.params.id
-				Post.findOne({_id : req.params.id}).populate('tags').exec (err, post) ->
+				Post.findOne({_id : req.params.id}).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, post) ->
+					for post in posts
+						toReadableDate(post)
 					res.send post
 			else
-				Post.find(q).populate('tags').exec (err, posts) ->
+				Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
+					for post in posts
+						toReadableDate(post)
 					res.send posts
 		
 		# super(req, res)

@@ -1,5 +1,7 @@
 angular.module('BlogApp')
-	.factory('postTagFactory', ['$resource', ($resource) ->
+	.factory('postTagFactory', ['$resource', '$stateParams', ($resource,$stateParams) ->
+		console.log 'STATE', $stateParams
+		
 		
 		postModel = $resource('/api/posts/:id', {id : '@_id'})
 		
@@ -9,7 +11,8 @@ angular.module('BlogApp')
 		return {
 			postModel : postModel
 			tagModel : tagModel
-			posts : postModel.query()
+			posts : (page) ->
+				return postModel.query({page : page})
 		}
 		
 	])

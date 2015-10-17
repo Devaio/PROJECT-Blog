@@ -11,6 +11,11 @@ angular.module 'BlogApp'
 				controller: 'homeCont',
 				templateUrl: '/public/templates/main/home.html'
 			}
+			.state 'pages', {
+				url: '/page/:pageNum',
+				controller: 'homeCont',
+				templateUrl: '/public/templates/main/home.html'
+			}
 			.state 'about', {
 				url: '/about',
 				controller: 'homeCont',
