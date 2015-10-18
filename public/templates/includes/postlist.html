@@ -4,11 +4,11 @@
 		
 		<!--Title and Preview -->
 			<h3 class="home-post-title md-display-2">
-				<a class="black-link" ng-href="/posts/{{post._id}}" target="_blank">
+				<a class="gray-link" ng-href="/posts/{{post._id}}" target="_blank">
 					{{post.title}}
 				</a>		
 			</h3>
-			<p>{{post.createdAt}}</p>
+			<p class="date-text">{{post.createdAt}}</p>
 		<p class="home-post-preview"> 
 			<span class="md-subhead" ng-bind-html="$sce.trustAsHtml(post.content)"></span>
 		</p>
@@ -16,7 +16,7 @@
 		<!--Tag List-->
 		<md-chips ng-model="post.tags" readonly="true">
 			<md-chip-template>
-				<a ng-href="/tags/{{$chip.name}}">
+				<a class="black-link" ng-href="/tags/{{$chip.name}}">
 					<p>{{$chip.name}}</p>
 					<md-tooltip>
 						See {{$chip.name | uppercase}} Posts

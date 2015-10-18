@@ -66,6 +66,19 @@
   color: #000;
   text-decoration: none;
 }
+.gray-link {
+  color: #607d8b;
+}
+.gray-link:hover {
+  color: #000;
+  text-decoration: none;
+}
+.gray-text {
+  color: #607d8b;
+}
+.date-text {
+  font-style: italic;
+}
 .warning-text {
   color: #f00;
 }
@@ -84,12 +97,17 @@
   height: 200px;
 }
 .tool-large {
+  min-height: 0px;
   height: 20vh;
 }
 @media (min-width: 600px) {
   .tool-large {
-    height: auto;
+    height: 3px;
   }
+}
+.container {
+  padding: 0;
+  max-width: 1024px;
 }
 .hex-row {
   clear: left;
@@ -238,34 +256,42 @@
     width: 85px;
   }
 }
-.hex-nav-desktop {
+.hex-nav-desktop,
+.hex-nav-mirror {
   position: absolute;
   top: 20px;
 }
-.hex-nav-desktop .hex-row.hex-row-1 {
+.hex-nav-desktop .hex-row.hex-row-1,
+.hex-nav-mirror .hex-row.hex-row-1 {
   margin-left: 45px;
 }
-.hex-nav-desktop .hex-row.hex-row-2 {
+.hex-nav-desktop .hex-row.hex-row-2,
+.hex-nav-mirror .hex-row.hex-row-2 {
   margin-left: 45px;
   margin-top: -22px;
 }
-.hex-nav-desktop .hex-row.hex-row-3 {
+.hex-nav-desktop .hex-row.hex-row-3,
+.hex-nav-mirror .hex-row.hex-row-3 {
   margin-top: -22px;
   margin-left: 90px;
 }
-.hex-nav-desktop .hex-row.hex-row-4 {
+.hex-nav-desktop .hex-row.hex-row-4,
+.hex-nav-mirror .hex-row.hex-row-4 {
   margin-top: -22px;
   margin-left: -45px;
 }
-.hex-nav-desktop .hex-row.hex-row-5 {
+.hex-nav-desktop .hex-row.hex-row-5,
+.hex-nav-mirror .hex-row.hex-row-5 {
   margin-top: -22px;
   margin-left: 90px;
 }
-.hex-nav-desktop .hex-row.hex-row-6 {
+.hex-nav-desktop .hex-row.hex-row-6,
+.hex-nav-mirror .hex-row.hex-row-6 {
   margin-top: 16px;
   margin-left: 0px;
 }
-.hex-nav-desktop .hex {
+.hex-nav-desktop .hex,
+.hex-nav-mirror .hex {
   float: left;
   overflow: hidden;
   visibility: hidden;
@@ -279,9 +305,13 @@
   margin: 0 -69px -49px -42px;
   background: rgba(255,0,0,0.5);
 }
-.hex-nav-desktop .hex-container {
+.hex-nav-desktop .hex-container,
+.hex-nav-mirror .hex-container {
   display: inline-block;
   width: 85px;
+}
+.hex-nav-mirror {
+  position: absolute;
 }
 .whiteframe-hex-container {
   position: relative;

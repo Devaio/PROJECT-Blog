@@ -4,8 +4,6 @@
 <nav navheight="navheight"></nav>
 
 
-<div class="container">
 	<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
 	<a class="pull-left" ng-if="showNextPage" ng-href="/page/{{nextPage}}">Older Posts</a>
 	<a class="pull-right" ng-if="(nextPage - 2) > 0" ng-href="/page/{{nextPage - 2}}">Newer Posts</a>
-</div>
