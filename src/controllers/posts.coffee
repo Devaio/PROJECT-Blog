@@ -59,12 +59,16 @@ class Posts extends Main
 		# Create tag finder query
 		if req.query.tag
 			Tag.findOne {name : req.query.tag}, (err, tag) ->
-				q.tags = {$elemMatch : {$eq : tag._id} }
-				Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
-					for post in posts
-						if post
-							toReadableDate(post)
-					res.send posts
+				
+				if tag
+					q.tags = {$elemMatch : {$eq : tag._id} }
+					Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
+						for post in posts
+							if post
+								toReadableDate(post)
+						res.send posts
+				else
+					res.send []
 				
 		else
 			

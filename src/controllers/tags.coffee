@@ -12,7 +12,10 @@ class Tags extends Main
 		
 		if req.query.name
 			Tag.findOne {name : req.query.name}, (err, tag) ->
-				res.send tag
+				if tag
+					res.send tag
+				else
+					res.send {name : req.query.name}
 		
 		else
 			Tag.find {}, (err, tags) ->
