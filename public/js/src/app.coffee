@@ -20,6 +20,7 @@ require './factories/post-tag'
 
 # Include Controllers
 require './controllers/main/home'
+require './controllers/main/about'
 require './controllers/main/post'
 require './controllers/main/tag'
 require './controllers/admin/adminLogin'

@@ -18,7 +18,7 @@ angular.module 'BlogApp'
 			}
 			.state 'about', {
 				url: '/about',
-				controller: 'homeCont',
+				controller: 'aboutCont',
 				templateUrl: '/public/templates/main/about.html'
 			}
 			.state 'post', {

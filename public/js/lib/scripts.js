@@ -13,6 +13,8 @@ require('./factories/post-tag');
 
 require('./controllers/main/home');
 
+require('./controllers/main/about');
+
 require('./controllers/main/post');
 
 require('./controllers/main/tag');
@@ -26,7 +28,7 @@ require('./controllers/admin/adminAddPost');
 require('./routes');
 
 
-},{"./controllers/admin/adminAddPost":2,"./controllers/admin/adminDashboard":3,"./controllers/admin/adminLogin":4,"./controllers/main/home":5,"./controllers/main/post":6,"./controllers/main/tag":7,"./directives/nav":8,"./factories/post-tag":9,"./routes":10,"./services/authService":11}],2:[function(require,module,exports){
+},{"./controllers/admin/adminAddPost":2,"./controllers/admin/adminDashboard":3,"./controllers/admin/adminLogin":4,"./controllers/main/about":5,"./controllers/main/home":6,"./controllers/main/post":7,"./controllers/main/tag":8,"./directives/nav":9,"./factories/post-tag":10,"./routes":11,"./services/authService":12}],2:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
   '$scope', '$location', '$http', '$timeout', 'authService', function($scope, $location, $http, $timeout, authService) {
     $scope.navheight = 'small';
@@ -93,6 +95,14 @@ angular.module('BlogApp').controller('adminLogin', [
 
 
 },{}],5:[function(require,module,exports){
+angular.module('BlogApp').controller('aboutCont', [
+  '$scope', function($scope) {
+    return $scope.navheight = 'small';
+  }
+]);
+
+
+},{}],6:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
   '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', function($scope, $sce, postTagFactory, $stateParams, $location) {
     $scope.navheight = 'large';
@@ -117,7 +127,7 @@ angular.module('BlogApp').controller('homeCont', [
 ]);
 
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 angular.module('BlogApp').controller('postCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', function($scope, $sce, $stateParams, postTagFactory) {
     $scope.navheight = 'small';
@@ -130,7 +140,7 @@ angular.module('BlogApp').controller('postCont', [
 ]);
 
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 angular.module('BlogApp').controller('tagCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', function($scope, $sce, $stateParams, postTagFactory, $location) {
     $scope.navheight = 'small';
@@ -161,7 +171,7 @@ angular.module('BlogApp').controller('tagCont', [
 ]);
 
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 angular.module('BlogApp').directive('nav', function() {
   return {
     restrict: 'E',
@@ -178,7 +188,7 @@ angular.module('BlogApp').directive('nav', function() {
 });
 
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 angular.module('BlogApp').factory('postTagFactory', [
   '$resource', '$stateParams', function($resource, $stateParams) {
     var postModel, tagModel;
@@ -201,7 +211,7 @@ angular.module('BlogApp').factory('postTagFactory', [
 ]);
 
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 angular.module('BlogApp').config([
   '$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -216,7 +226,7 @@ angular.module('BlogApp').config([
       templateUrl: '/public/templates/main/home.html'
     }).state('about', {
       url: '/about',
-      controller: 'homeCont',
+      controller: 'aboutCont',
       templateUrl: '/public/templates/main/about.html'
     }).state('post', {
       url: '/posts/:id',
@@ -247,7 +257,7 @@ angular.module('BlogApp').config([
 ]);
 
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 angular.module('BlogApp').service('authService', [
   '$http', '$location', function($http, $location) {
     return this.authCheck = function(cb) {

@@ -134,8 +134,7 @@
   -o-transform: rotate(-60deg);
   -ms-transform: rotate(-60deg);
   transform: rotate(-60deg);
-  background: #505050;
-  background: url("http://lorempixel.com/200/200/") 50% 50% no-repeat;
+  background: #607d8b;
 }
 .hex-text-wrap {
   position: absolute;

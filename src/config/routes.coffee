@@ -5,7 +5,7 @@ middleware = {
 
 	authorize : (req, res, next) ->
 		if not req.isAuthenticated()
-			return res.redirect '/login'
+			return res.redirect '/'
 		else
 			next()
 
@@ -35,11 +35,11 @@ module.exports = (app, passport, redis) ->
 		
 	app.get '/api/posts', posts.get
 	app.get '/api/posts/:id', posts.get
-	app.post '/api/posts', posts.createPost
-	app.post '/api/posts/:id', posts.updatePost
-	app.get '/api/posts/delete/:id', posts.delete
+	app.post '/api/posts', middleware.authorize, posts.createPost
+	app.post '/api/posts/:id', middleware.authorize, posts.updatePost
+	app.get '/api/posts/delete/:id', middleware.authorize, posts.delete
 	
-	app.delete '/api/posts/:id', posts.delete
+	app.delete '/api/posts/:id', middleware.authorize, posts.delete
 	
 	app.get '/api/tags', tags.get
 	app.get '/api/tags/:id', tags.get
