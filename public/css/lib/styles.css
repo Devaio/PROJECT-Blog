@@ -79,6 +79,11 @@
 .date-text {
   font-style: italic;
 }
+@media (min-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
 .warning-text {
   color: #f00;
 }
