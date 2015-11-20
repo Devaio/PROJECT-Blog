@@ -14,7 +14,9 @@ angular.module 'BlogApp'
 			inline: false,
 			plugins : 'advlist autolink link image lists charmap print preview',
 			skin: 'lightgray',
-			theme : 'modern'
+			theme : 'modern',
+			browser_spellcheck : true
+			height : 800
 		}
 		
 		authService (stuff) ->

@@ -41,7 +41,9 @@ angular.module('BlogApp').controller('adminAddPost', [
       inline: false,
       plugins: 'advlist autolink link image lists charmap print preview',
       skin: 'lightgray',
-      theme: 'modern'
+      theme: 'modern',
+      browser_spellcheck: true,
+      height: 800
     };
     return authService(function(stuff) {
       console.log('!', stuff);
