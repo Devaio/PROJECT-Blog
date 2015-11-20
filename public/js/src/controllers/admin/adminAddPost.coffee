@@ -19,6 +19,7 @@ angular.module 'BlogApp'
 			height : 800
 			browser_spellcheck : true
 			fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt"
+			default_link_target: "_blank"
 			toolbar1 : 'core'
 			toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
 			# toolbar3 : 'emoticons textcolor'
