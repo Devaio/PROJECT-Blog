@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "ngQuill": "ngquill#~1.0.12",
-    "textAngular": "~1.4.5"
+    "textAngular": "~1.4.5",
+    "angular-ui-tinymce": "~0.0.10"
   }
 }

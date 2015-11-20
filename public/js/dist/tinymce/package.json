@@ -1,0 +1,67 @@
+{
+  "_args": [
+    [
+      "tinymce",
+      "C:\\Users\\Rob\\Projects\\clarissa-blog"
+    ]
+  ],
+  "_from": "tinymce@*",
+  "_id": "tinymce@4.2.8",
+  "_inCache": true,
+  "_location": "/tinymce",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "email": "spocke@moxiecode.com",
+    "name": "spocke"
+  },
+  "_npmVersion": "2.11.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "tinymce",
+    "raw": "tinymce",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-4.2.8.tgz",
+  "_shasum": "9a22dd7c27830dfa201766454911034aba68b795",
+  "_shrinkwrap": null,
+  "_spec": "tinymce",
+  "_where": "C:\\Users\\Rob\\Projects\\clarissa-blog",
+  "bugs": {
+    "url": "http://www.tinymce.com/develop/bugtracker.php"
+  },
+  "dependencies": {},
+  "description": "Web based JavaScript HTML WYSIWYG editor control.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "9a22dd7c27830dfa201766454911034aba68b795",
+    "tarball": "http://registry.npmjs.org/tinymce/-/tinymce-4.2.8.tgz"
+  },
+  "gitHead": "6d516557b3ef4a79e125892adab5f6dc6ebba63e",
+  "installable": true,
+  "keywords": [
+    "editor",
+    "html",
+    "javascript",
+    "richtext",
+    "tinymce",
+    "wysiwyg"
+  ],
+  "license": "LGPL-2.1",
+  "maintainers": [
+    {
+      "name": "spocke",
+      "email": "spocke@moxiecode.com"
+    }
+  ],
+  "name": "tinymce",
+  "optionalDependencies": {},
+  "scripts": {},
+  "version": "4.2.8"
+}

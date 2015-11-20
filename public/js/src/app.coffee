@@ -1,4 +1,4 @@
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular'])
+angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular'])
 
 #  'ngQuill'
 angular.module('BlogApp')

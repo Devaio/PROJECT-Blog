@@ -6,7 +6,16 @@ angular.module 'BlogApp'
 		$scope.newPost = {
 			tags : []
 		}
-
+		
+		
+		$scope.tinymceOptions = {
+			onChange: (e) ->
+				# put logic here for keypress and cut/paste changes
+			inline: false,
+			plugins : 'advlist autolink link image lists charmap print preview',
+			skin: 'lightgray',
+			theme : 'modern'
+		}
 		
 		authService (stuff) ->
 			console.log '!', stuff

@@ -14,8 +14,8 @@
 	</div>	
 	
 	<div flex="100">
-		<text-angular ng-model="newPost.content"></text-angular>
-		
+		<!--<text-angular ng-model="newPost.content"></text-angular>-->
+		 <textarea ui-tinymce="tinymceOptions" ng-model="newPost.content"></textarea>
 		<!--<ng-quill-editor 
 			ng-model="message" 
 			toolbar="true" 

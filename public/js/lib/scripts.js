@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-angular.module('BlogApp', ['ngMaterial', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular']);
+angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'textAngular']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
   return $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('deep-purple').warnPalette('light-green');
@@ -35,6 +35,13 @@ angular.module('BlogApp').controller('adminAddPost', [
     $scope.loading = false;
     $scope.newPost = {
       tags: []
+    };
+    $scope.tinymceOptions = {
+      onChange: function(e) {},
+      inline: false,
+      plugins: 'advlist autolink link image lists charmap print preview',
+      skin: 'lightgray',
+      theme: 'modern'
     };
     return authService(function(stuff) {
       console.log('!', stuff);
