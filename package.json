@@ -20,7 +20,6 @@
     "jquery.cookie": "^1.4.1",
     "mithril": "^0.1.30",
     "moment": "~2.5.1",
-    "mongoosastic": "~0.2.3",
     "mongoose": "^4.1.5",
     "mongoose-shortid": "~0.4.1",
     "mongoose-validator": "~0.2.2",
