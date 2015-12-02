@@ -18,7 +18,9 @@ cookieParser = require('cookie-parser')
 passport = require('passport')
 
 # Connect to the database and read model files
-mongoose.connect(global.process.env.DB_URI+'?slaveOk=true&connectTimeoutMS=10000')
+mongoose.connect(global.process.env.DB_URI+'?slaveOk=true&connectTimeoutMS=10000', (err) ->
+  console.log(err)
+)
 models = __dirname + '/models'
 fs.readdirSync(models).forEach (file) ->
   require(models + '/' + file)

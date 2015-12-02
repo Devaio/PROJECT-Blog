@@ -63,10 +63,11 @@ class Posts extends Main
 				if tag
 					q.tags = {$elemMatch : {$eq : tag._id} }
 					Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
+					  if posts
 						for post in posts
 							if post
 								toReadableDate(post)
-						res.send posts
+					  res.send posts
 				else
 					res.send []
 				
