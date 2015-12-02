@@ -8,7 +8,7 @@ if typeof(global.process.env.NODE_ENV) is 'undefined'
 		env(__dirname + '/../env/development.env')
 
 # Disable logs
-console.log = if global.process.env.NODE_ENV? and global.process.env.NODE_ENV is 'live' then () -> else console.log
+# console.log = if global.process.env.NODE_ENV? and global.process.env.NODE_ENV is 'live' then () -> else console.log
 
 express = require('express')
 bodyParser = require('body-parser')
