@@ -1,26 +1,26 @@
 <nav navheight="navheight"></nav>
 <h1 class="md-title">Login</h1>
 <div layout="row" layout-wrap class="container">
-	<div flex="40" offset="30">
-		<form ng-submit="login()">
-			<md-input-container flex>
+	<div flex="40" flex-offset="30">
+		<form ng-submit="loginFire()">
+			<md-input-container  layout="row" flex="100">
 				<label>Email</label>
 				<input ng-model="adminUser.email">
 			</md-input-container>
-			<md-input-container flex>
+			<md-input-container  layout="row" flex="100">
 				<label>Password</label>
 				<input type="password" ng-model="adminUser.password">
 			</md-input-container>
-			<md-button class="pull-right">Login</md-button>
+			<md-button class="pull-right" ng-click="loginFire()">Login</md-button>
 		</form>
 	</div>
-	<div flex="40" offset="30">
+	<div flex="40" flex-offset="30">
 		<div ng-if="loading" layout="row" layout-sm="column" layout-align="center">
 			<md-progress-circular md-mode="indeterminate"></md-progress-circular>
 		</div>
 	</div>
 	
-	<div flex="40" offset="30">
+	<div flex="40" flex-offset="30">
 		<div layout="row" layout-sm="row" layout-align="center">
 			<p class="md-body-2 warning-text">{{loginError}}</p>
 		</div>

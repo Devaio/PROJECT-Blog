@@ -111,7 +111,7 @@ class Posts extends Main
 		createTagList body.tags, (tagList) ->
 			body.tags = tagList
 			
-			
+			body.createdAt = moment.unix(body.createdAt / 1000).format('X')
 			newPost = new Post(body)
 			newPost.save (err, doc) ->
 				console.log err, doc

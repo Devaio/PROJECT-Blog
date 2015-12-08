@@ -34,7 +34,8 @@ angular.module('BlogApp').controller('adminAddPost', [
     $scope.navheight = 'small';
     $scope.loading = false;
     $scope.newPost = {
-      tags: []
+      tags: [],
+      createdAt: new Date()
     };
     $scope.tinymceOptions = {
       onChange: function(e) {},
@@ -58,6 +59,7 @@ angular.module('BlogApp').controller('adminAddPost', [
         if ((_ref = $scope.newPost) != null ? (_ref1 = _ref.content) != null ? _ref1.length : void 0 : void 0) {
           $scope.loading = true;
           console.log($scope.newPost);
+          $scope.newPost.createdAt = $scope.newPost.createdAt.getTime();
           return $http.post('/api/posts', $scope.newPost).then(function(returnData) {
             console.log(returnData);
             $scope.loading = false;
@@ -92,7 +94,8 @@ angular.module('BlogApp').controller('adminLogin', [
     console.log('adminLogin!');
     $scope.navheight = 'small';
     $scope.loading = false;
-    return $scope.login = function() {
+    return $scope.loginFire = function() {
+      console.log('yes!');
       $scope.loading = true;
       $scope.loginError = '';
       return $http.post('/admin/login', $scope.adminUser).then(function(returnData) {

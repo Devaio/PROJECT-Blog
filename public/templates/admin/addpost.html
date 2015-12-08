@@ -1,17 +1,24 @@
 <nav navheight="navheight"></nav>
-<h1 class="md-title"> Create post </h1>
+<h1 class="md-title text-center"> Create post </h1>
 
 
 <div layout="row" layout-wrap class="container">
 	
 	<div flex="100">
-		<md-input-container flex>
+		<md-input-container class="display-block" flex="100">
 
 			<label class="md-headline">Title</label>
-			<input class="md-display-2" ng-model="newPost.title">
+			<input ng-model="newPost.title">
 			
 		</md-input-container>
-	</div>	
+	</div>
+	<div flex="100">
+		<h1 class="md-title"> Date </h1>
+		
+		<md-datepicker ng-model="newPost.createdAt"></md-datepicker>
+		
+	</div>
+	
 	
 	<div flex="100">
 		<!--<text-angular ng-model="newPost.content"></text-angular>-->

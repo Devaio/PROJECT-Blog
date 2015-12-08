@@ -5,6 +5,7 @@ angular.module 'BlogApp'
 
 		$scope.newPost = {
 			tags : []
+			createdAt : new Date()
 		}
 		
 		
@@ -33,7 +34,7 @@ angular.module 'BlogApp'
 				if $scope.newPost?.content?.length
 					$scope.loading = true
 					console.log $scope.newPost
-					
+					$scope.newPost.createdAt = $scope.newPost.createdAt.getTime()
 					$http.post('/api/posts', $scope.newPost)
 						.then (returnData) ->
 							console.log returnData

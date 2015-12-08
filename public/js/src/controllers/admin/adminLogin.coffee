@@ -5,7 +5,8 @@ angular.module 'BlogApp'
 
 		$scope.loading = false
 		
-		$scope.login = () ->
+		$scope.loginFire = () ->
+			console.log 'yes!'
 			$scope.loading = true
 			$scope.loginError = ''
 			
