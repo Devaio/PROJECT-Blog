@@ -1,5 +1,5 @@
 <nav navheight="navheight"></nav>
-<h1 class="md-title text-center"> Create Post </h1>
+<h1 class="md-title text-center"> Update Post </h1>
 
 
 <div layout="row" layout-wrap class="container">
@@ -8,33 +8,21 @@
 		<md-input-container class="display-block" flex="100">
 
 			<label class="md-headline">Title</label>
-			<input ng-model="newPost.title">
+			<input ng-model="post.title">
 			
 		</md-input-container>
 	</div>
-	<div flex="33">
+	<div flex="100">
 		<h1 class="md-title"> Date </h1>
 		
-		<md-datepicker ng-model="newPost.createdAt"></md-datepicker>
+		<md-datepicker ng-model="post.createdAt"></md-datepicker>
 		
 	</div>
-    <div flex="67">
-		<h1 class="md-title"> Upload Photos </h1>
-
- 		 <div class="button" ngf-pattern="'image/*'"
-    ngf-accept="'image/*'" ngf-select ng-model="files" ngf-multiple="true" ngf-resize="{width: 1600, quality:0.9}" ngf-resize-if="resizeCheck($file, $width, $height)">Select</div>
-  		
-		  
-		<div ng-repeat="file in files">
-  			{{file.name}} <img width="200" ngf-thumbnail="file">
-  		</div>
-	  <button type="submit" ng-click="submit()">submit</button>
-    </div>
 	
 	
 	<div flex="100">
-		<!--<text-angular ng-model="newPost.content"></text-angular>-->
-		 <textarea ui-tinymce="tinymceOptions" ng-model="newPost.content"></textarea>
+		<!--<text-angular ng-model="post.content"></text-angular>-->
+		 <textarea ui-tinymce="tinymceOptions" ng-model="post.content"></textarea>
 		<!--<ng-quill-editor 
 			ng-model="message" 
 			toolbar="true" 
@@ -69,10 +57,13 @@
 		</md-chips>
 		-->
 		<h1 class="md-title"> Tags </h1>
-		<md-chips ng-model="newPost.tags">
-			 <input placeholder="Tag">	
-		</md-chips>
 	
+        <md-chips ng-model="post.tags">
+            <md-chip-template>
+                <p ng-if="$chip">{{$chip.name || $chip}}</p>
+            </md-chip-template>
+        </md-chips>
+    
 		
 		
 		
@@ -82,7 +73,7 @@
 		<div layout="row" layout-sm="column" layout-align="end">
 			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
 			
-			<md-button ng-click="submitPost()" class="button-ex-pad button-med md-raised md-accent">Create Post!</md-button>
+			<md-button ng-click="updatePost()" class="button-ex-pad button-med md-raised md-accent">Create Post!</md-button>
 			
 		</div>
 	</div>

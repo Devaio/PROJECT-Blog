@@ -1,4 +1,5 @@
-angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize'])
+require 'ng-file-upload'
+angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload'])
 
 #  'ngQuill'
 angular.module('BlogApp')
@@ -26,6 +27,8 @@ require './controllers/main/tag'
 require './controllers/admin/adminLogin'
 require './controllers/admin/adminDashboard'
 require './controllers/admin/adminAddPost'
+require './controllers/admin/adminUpdatePost'
+
 
 
 

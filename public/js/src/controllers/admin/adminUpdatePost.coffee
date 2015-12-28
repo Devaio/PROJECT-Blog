@@ -1,17 +1,11 @@
+
+
 angular.module 'BlogApp'
-	.controller 'adminAddPost', ['$scope','$location', '$http','$timeout', 'authService', 'Upload', ($scope, $location, $http, $timeout, authService, Upload) ->
+	.controller 'adminUpdatePost', ['$scope','$location', '$http','$timeout', 'authService', '$stateParams', 'postTagFactory', ($scope, $location, $http, $timeout, authService, $stateParams, postTagFactory) ->
 		$scope.navheight = 'small'
 		$scope.loading = false
-		console.log 'up', Upload
-		$scope.newPost = {
-			tags : []
-			createdAt : new Date()
-		}
-		
-		$scope.resizeCheck = (file, width, height) ->
-			# console.log 'resize!', width > 1600 or height > 1200
-			return width > 1600 or height > 1200
-		
+		$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
+        			
 		$scope.tinymceOptions = {
 			onChange: (e) ->
 				# put logic here for keypress and cut/paste changes
@@ -28,23 +22,22 @@ angular.module 'BlogApp'
 			toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
 			# toolbar3 : 'emoticons textcolor'
 		}
-		$scope.submit = () ->
-			 console.log $scope
+		
 		authService (stuff) ->
 			console.log '!', stuff
-			
-			$scope.submitPost = () ->	
-				console.log $scope.newPost
-				if $scope.newPost?.content?.length
+			console.log '--', $scope.post
+			$scope.updatePost = () ->	
+				console.log $scope.post
+				if $scope.post?.content?.length
 					$scope.loading = true
-					console.log $scope.newPost
-					$scope.newPost.createdAt = $scope.newPost.createdAt.getTime()
-					$http.post('/api/posts', $scope.newPost)
-						.then (returnData) ->
-							console.log returnData
-							$scope.loading = false
-							$timeout () ->
-								$location.url('/posts/' + returnData.data._id)
+					$scope.post.createdAt = $scope.post.createdAt.getTime()
+					
+                    # $http.post('/api/posts', $scope.post)
+					# 	.then (returnData) ->
+					# 		console.log returnData
+					# 		$scope.loading = false
+					# 		$timeout () ->
+					# 			$location.url('/posts/' + returnData.data._id)
 							
 					
 	]

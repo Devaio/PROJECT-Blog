@@ -12,6 +12,9 @@ toReadableDate = (doc) ->
 
 toUnixDate = (doc) ->
 	doc.createdAt = moment(doc.createdAt).format('X')
+	
+toJSDate = (doc) ->
+	doc.createdAt = moment.unix(doc.createdAt).toDate()
 
 createTagList = (newPostTags, cb) ->
 	tasks = []
@@ -119,10 +122,11 @@ class Posts extends Main
 			
 			# super(body, req, res)
 	updatePost : (req, res) ->
-		Post.update {_id : req.params.id}, req.body, (err, post) ->
+        console.log req.body.createdAt
+		# Post.update {_id : req.params.id}, req.body, (err, post) ->
 			
-			Post.findOne {_id : req.params.id}, (err, post) ->
-				res.send post
+		# 	Post.findOne {_id : req.params.id}, (err, post) ->
+		# 		res.send post
 	delete : (req, res) ->
 		super(req, res)
 module.exports = new Posts()

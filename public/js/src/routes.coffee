@@ -55,6 +55,11 @@ angular.module 'BlogApp'
 				controller: 'adminAddPost',
 				templateUrl:'/public/templates/admin/addpost.html'
 			}
+            .state 'adminUpdatePost', {
+				url: '/admin/updatepost/:id',
+				controller: 'adminUpdatePost',
+				templateUrl:'/public/templates/admin/updatepost.html'
+			}
 			# .state 'adminCMS', {
 			# 	url: '/admin/login',
 			# 	controller: 'adminLogin',
