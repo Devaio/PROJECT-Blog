@@ -44,6 +44,11 @@ module.exports = (app, passport, redis) ->
 	app.get '/api/tags', tags.get
 	app.get '/api/tags/:id', tags.get
 	
+	app.post '/api/media', (req, res) ->
+		console.log 'Uploading...'
+		console.log req.files
+		console.log '----'
+		console.log req.body
 
 	# Login
 	app.post '/admin/login', auth.login

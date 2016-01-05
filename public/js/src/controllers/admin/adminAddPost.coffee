@@ -30,6 +30,14 @@ angular.module 'BlogApp'
 		}
 		$scope.submit = () ->
 			 console.log $scope
+			 Upload.upload {
+				 url : '/api/media'
+				 data : {
+					 files : $scope.files
+				 }
+			 }
+			 
+			 
 		authService (stuff) ->
 			console.log '!', stuff
 			

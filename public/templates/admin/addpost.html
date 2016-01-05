@@ -21,14 +21,34 @@
     <div flex="67">
 		<h1 class="md-title"> Upload Photos </h1>
 
- 		 <div class="button" ngf-pattern="'image/*'"
-    ngf-accept="'image/*'" ngf-select ng-model="files" ngf-multiple="true" ngf-resize="{width: 1600, quality:0.9}" ngf-resize-if="resizeCheck($file, $width, $height)">Select</div>
+		<!--<md-button class="button-ex-pad button-med md-raised md-accent">Create Post!</md-button>-->
+
+
+ 		 <md-button class="button-ex-pad button-med md-raised md-primary" 
+		  	ngf-pattern="'image/*'"
+    		ngf-accept="'image/*'" 
+			ngf-select ng-model="files" 
+			ngf-multiple="true" 
+			ngf-resize="{width: 1600, quality:0.8}"
+			ngf-fix-orientation="true"
+			ngf-resize-if="resizeCheck($file, $width, $height)">
+			
+			Select
+		</md-button>
   		
-		  
-		<div ng-repeat="file in files">
-  			{{file.name}} <img width="200" ngf-thumbnail="file">
-  		</div>
-	  <button type="submit" ng-click="submit()">submit</button>
+		<div layout="row" layout-wrap>
+			<div ng-repeat="file in files">
+				<div layout="row">
+					<div>
+						<img width="150" ngf-thumbnail="file">
+					</div>
+					<div>
+						{{file.name}}
+					</div>
+				</div>
+			</div>
+		</div>
+	  <md-button class="button-ex-pad button-med md-raised md-accent" type="submit" ng-click="submit()">submit</md-button>
     </div>
 	
 	
