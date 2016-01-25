@@ -2784,7 +2784,7 @@ angular.module('BlogApp').controller('adminAddPost', [
       toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
     };
     $scope.submit = function() {
-      console.log($scope);
+      console.log('scopey scope', $scope.files);
       return Upload.upload({
         url: '/api/media',
         data: {

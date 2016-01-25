@@ -16,7 +16,8 @@ mongoose = require('mongoose')
 session = require('express-session')
 cookieParser = require('cookie-parser')
 passport = require('passport')
-
+multipart = require('connect-multiparty')
+multiMiddle = multipart()
 # Connect to the database and read model files
 mongoose.connect(global.process.env.DB_URI+'?slaveOk=true&connectTimeoutMS=10000', (err) ->
   console.log(err)

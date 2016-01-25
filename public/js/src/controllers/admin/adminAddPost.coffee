@@ -29,7 +29,7 @@ angular.module 'BlogApp'
 			# toolbar3 : 'emoticons textcolor'
 		}
 		$scope.submit = () ->
-			 console.log $scope
+			 console.log 'scopey scope', $scope.files
 			 Upload.upload {
 				 url : '/api/media'
 				 data : {

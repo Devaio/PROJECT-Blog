@@ -1,5 +1,6 @@
 
 # Routes
+multipart = require('connect-multiparty')
 
 middleware = {
 
@@ -14,6 +15,8 @@ middleware = {
 		res.locals.user = req.user
 		res.locals.ENV = global.process.env.NODE_ENV
 		next()
+	
+	multi : multipart()
 			
 }
 
@@ -44,7 +47,7 @@ module.exports = (app, passport, redis) ->
 	app.get '/api/tags', tags.get
 	app.get '/api/tags/:id', tags.get
 	
-	app.post '/api/media', (req, res) ->
+	app.post '/api/media', middleware.multi, (req, res) ->
 		console.log 'Uploading...'
 		console.log req.files
 		console.log '----'
