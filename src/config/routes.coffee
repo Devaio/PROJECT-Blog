@@ -25,6 +25,8 @@ module.exports = (app, passport, redis) ->
 	accounts = require '../controllers/accounts'
 	posts = require '../controllers/posts'
 	tags = require '../controllers/tags'
+	media = require '../controllers/media'
+	
 	
 	
 	auth = require '../controllers/auth'
@@ -47,11 +49,7 @@ module.exports = (app, passport, redis) ->
 	app.get '/api/tags', tags.get
 	app.get '/api/tags/:id', tags.get
 	
-	app.post '/api/media', middleware.multi, (req, res) ->
-		console.log 'Uploading...'
-		console.log req.files
-		console.log '----'
-		console.log req.body
+	app.post '/api/media', middleware.multi, media.uploadFiles
 
 	# Login
 	app.post '/admin/login', auth.login
