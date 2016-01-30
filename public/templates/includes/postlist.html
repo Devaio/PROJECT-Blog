@@ -1,8 +1,59 @@
+ <md-card class="post-card white-bg" ng-repeat="post in posts">
+
+	<!--<img ng-src="{{post.coverImg}}" class="md-card-image post-card-img">-->
+	
+	<div class="post-card-img"
+		style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"
+	></div>
+	
+	<md-card-title>
+		<md-card-title-text class="text-center">
+			<p class="home-post-title md-display-1">{{post.title}}</p>
+			<p class="date-text">{{post.createdAt}}</p>
+		</md-card-title-text>
+	</md-card-title>
+	<md-card-content>
+		<p>
+		The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+		two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+		</p>
+		<p>
+		The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+		two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+		</p>
+		<p>
+		The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+		two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+		</p>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+		<a ng-href="/posts/{{post._id}}" target="_blank">
+			<md-button class="md-raised">
+				Read More
+			</md-button>
+		</a>
+	</md-card-actions>
+</md-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <md-content class="md-padding" layout="column">
 	
 	<div flex="100" ng-repeat="post in posts">
 		
-		<!--Title and Preview -->
 			<h3 class="home-post-title md-display-2">
 				<a class="gray-link" ng-href="/posts/{{post._id}}" target="_blank">
 					{{post.title}}
@@ -13,7 +64,6 @@
 			<div class="md-subhead o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
 		</p>
 		
-		<!--Tag List-->
 		<md-chips ng-model="post.tags" readonly="true">
 			<md-chip-template>
 				<a class="black-link" ng-href="/tags/{{$chip.name}}">
@@ -24,6 +74,5 @@
 				</a>
 			</md-chip-template>
 		</md-chips>
-		<!--<md-divider ng-if="!$last"></md-divider>-->
 	</div>
-</md-content>
+</md-content>-->

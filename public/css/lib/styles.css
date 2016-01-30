@@ -23,6 +23,9 @@
 .loader-space {
   margin: 0px 15px;
 }
+.full-width {
+  width: 100%;
+}
 .text-center {
   text-align: center;
 }
@@ -70,6 +73,33 @@
 .o-h {
   overflow: hidden;
 }
+.total-content {
+  background-color: #efefef;
+}
+.white-bg {
+  background-color: #fff;
+}
+.gains-bg {
+  background-color: #dcdcdc;
+}
+md-toolbar.gains-bg {
+  background-color: #dcdcdc;
+  color: #000;
+}
+@media (min-width: 960px) {
+  .content-side-left {
+    padding: 0px 15px 0px 0px;
+  }
+}
+.content-side-right {
+  padding: 0px 0px 0px 15px;
+  display: none;
+}
+@media (min-width: 960px) {
+  .content-side-right {
+    display: block;
+  }
+}
 .warning-text {
   color: #f00;
 }
@@ -98,7 +128,7 @@
 }
 .container {
   padding: 0;
-  max-width: 1024px;
+  max-width: 1200px;
 }
 .hex-row {
   clear: left;
@@ -339,6 +369,12 @@
 }
 .nav-link-text {
   font-weight: 600;
+}
+.post-card {
+  margin: 50px 0px;
+}
+.post-card-img {
+  height: 450px;
 }
 .ql-container {
   border: thin solid #000;

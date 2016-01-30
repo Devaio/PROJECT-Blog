@@ -15,7 +15,8 @@
 	margin:0
 .loader-space
 	margin 0px 15px
-	
+.full-width
+	width 100%
 .text-center
 	text-align center
 	
@@ -47,6 +48,7 @@
 	color rgb(96,125,139)
 .date-text
 	font-style italic
+
 @media (min-width: 600px){
 	.container {
 		width:100%
@@ -54,3 +56,24 @@
 }
 .o-h
 	overflow hidden
+
+.total-content
+	background-color #eFeFeF
+.white-bg
+	background-color white
+.gains-bg
+	background-color gainsboro
+
+md-toolbar.gains-bg
+	background-color gainsboro
+	color black	
+	
+.content-side-left
+	@media $screen-md
+		padding 0px 15px 0px 0px
+.content-side-right
+	padding 0px 0px 0px 15px
+	display none
+	@media $screen-md
+		display block
+	

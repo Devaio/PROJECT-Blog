@@ -1,8 +1,55 @@
 <nav navheight="navheight"></nav>
-<md-content class="md-padding" layout="column">
-		<div flex="100">
+<div layout="row">
+		
+		<div flex class="content-side-left">
+			<md-card class="post-card white-bg">
+
+				<div class="post-card-img"
+					style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"
+				></div>
+				
+				<md-card-title>
+					<md-card-title-text class="text-center">
+						<p class="home-post-title md-display-1">{{post.title}}</p>
+						<p class="date-text">{{post.createdAt}}</p>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<div class="md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>				
+				</md-card-content>
+				<md-card-actions layout="row" layout-align="end center">
+					
+
+					<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{tag.name}}">
+						<md-button class="md-raised">
+							<span>{{tag.name}}</span>
+						</md-button>
+						<md-tooltip>
+							See {{tag.name | uppercase}} Posts
+						</md-tooltip>
+					</a>
+
+					
+					
+					
+					
+					
+					
+					<!--<a ng-href="/posts/{{post._id}}" target="_blank">
+						<md-button class="md-raised">
+						
+						</md-button>
+					</a>-->
+				</md-card-actions>
+			</div>
+		
+		
+		
+		
+		
+		<!--
 			
-			<!--Title and Preview -->
+			
 			<h3 class="post-title md-display-2 gray-text">{{post.title}}</h3>
 			<p class="date-text">{{post.createdAt}}</p>
 
@@ -10,7 +57,7 @@
 				<div class="md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
 			</p>
 			
-			<!--Tag List-->
+			
 			<md-chips ng-model="post.tags" readonly="true">
 				<md-chip-template>
 					<a class="black-link" ng-href="/tags/{{$chip.name}}">
@@ -18,5 +65,9 @@
 					</a>
 				</md-chip-template>
 			</md-chips>
-		</div>
-</md-content>
+		-->
+		
+		
+		<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
+
+</div>

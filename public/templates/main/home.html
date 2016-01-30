@@ -4,6 +4,21 @@
 <nav navheight="navheight"></nav>
 
 
-	<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
-	<a class="pull-left" ng-if="showNextPage" ng-href="/page/{{nextPage}}">Older Posts</a>
-	<a class="pull-right" ng-if="(nextPage - 2) > 0" ng-href="/page/{{nextPage - 2}}">Newer Posts</a>
+<div layout="row" flex="100">
+	<div class="content-side-left" flex>
+		<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
+			<a class="pull-left" ng-if="showNextPage" ng-href="/page/{{nextPage}}">
+				<md-button class="md-raised">
+					Older Posts
+				</md-button>
+			</a>
+			<a class="pull-right" ng-if="(nextPage - 2) > 0" ng-href="/page/{{nextPage - 2}}">
+				<md-button class="md-raised">
+					Newer Posts
+				</md-button>
+			</a>
+	</div>
+	
+	<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
+</div>
+

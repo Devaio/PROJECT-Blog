@@ -7,7 +7,8 @@ moment = require 'moment'
 
 # Post Collection
 posts = new Schema
-	title : String,
+	title : String
+	coverImg : String
 	content : String
 	tags : [{type : Schema.ObjectId, ref : "Tag"}]
 	createdAt : String
