@@ -37,11 +37,11 @@ html(lang="en", ng-app="BlogApp")
 			//- CSS Build File
 			link(rel="stylesheet", href="/public/css/dist/styles.min.css")
 			//- JS Build File
-			script(src="/public/js/dist/build.min.js")
+			script(src="/public/js/dist/build.min.js?#{timeStamp}")
 
 		- } else {
 			link(rel="stylesheet", href="/public/css/lib/styles.css")
-			script(src="/public/js/lib/scripts.js")
+			script(src="/public/js/lib/scripts.js?#{timeStamp}")
 		- }
 
 
