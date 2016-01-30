@@ -45,8 +45,10 @@ angular.module 'BlogApp'
 			console.log '!', stuff
 			
 			$scope.submitPost = () ->	
-				console.log $scope.newPost
-				if $scope.newPost?.content?.length
+				$scope.postError = ''
+				
+				if $scope.newPost?.content?.length and $scope.newPost?.preview and $scope.newPost?.coverImg and $scope.newPost?.tags?.length
+				
 					$scope.loading = true
 					console.log $scope.newPost
 					$scope.newPost.createdAt = $scope.newPost.createdAt.getTime()
@@ -57,5 +59,6 @@ angular.module 'BlogApp'
 							$timeout () ->
 								$location.url('/posts/' + returnData.data._id)
 							
-					
+				else
+					$scope.postError = 'Make sure everything is filled out!'
 	]

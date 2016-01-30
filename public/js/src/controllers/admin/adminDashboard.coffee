@@ -6,4 +6,7 @@ angular.module 'BlogApp'
 			
 			$scope.addPost = () ->
 				$location.url '/admin/addpost'
+				
+			$scope.updatePost = () ->
+				$location.url '/admin/updatepost'
 	]

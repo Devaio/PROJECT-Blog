@@ -1,28 +1,78 @@
 <nav navheight="navheight"></nav>
 <h1 class="md-title text-center"> Update Post </h1>
 
-
-<div layout="row" layout-wrap class="container">
+<select  ng-options="post as post.title for post in posts track by post._id" ng-model="selectedPost" ng-change="transformDate()"></select>
+<br>
+<br>
+<div layout="row" ng-if="selectedPost" layout-wrap class="container">
 	
 	<div flex="100">
 		<md-input-container class="display-block" flex="100">
 
 			<label class="md-headline">Title</label>
-			<input ng-model="post.title">
+			<input ng-model="selectedPost.title">
 			
 		</md-input-container>
 	</div>
-	<div flex="100">
+	<div flex="33">
 		<h1 class="md-title"> Date </h1>
 		
-		<md-datepicker ng-model="post.createdAt"></md-datepicker>
+		<md-datepicker ng-model="selectedPost.createdAt"></md-datepicker>
 		
+	</div>
+    <div flex="67">
+		<h1 class="md-title"> Upload Photos </h1>
+		
+ 		 <md-button class="button-ex-pad button-med md-raised md-primary" 
+		  	ngf-pattern="'image/*'"
+    		ngf-accept="'image/*'" 
+			ngf-select 
+			ng-model="$parent.files"
+			ngf-multiple="true" 
+			ngf-resize="{width: 1600, quality:0.8}"
+			ngf-fix-orientation="true"
+			ngf-resize-if="resizeCheck($file, $width, $height)">
+			
+			Select
+		</md-button>
+  		
+		<div layout="row" layout-wrap>
+			<div ng-repeat="file in files">
+				<div layout="row">
+					<div>
+						<img width="150" ngf-thumbnail="file">
+					</div>
+					<div>
+						{{file.url}}
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	  <md-button class="button-ex-pad button-med md-raised md-accent" type="submit" ng-click="submit()">submit</md-button>
+    </div>
+	
+	<div flex="100">
+		<md-input-container class="display-block" flex="100">
+
+			<label class="md-headline">Cover Image URL</label>
+			<input ng-model="selectedPost.coverImg">
+			
+		</md-input-container>
+	</div>
+	<div flex="100">		
+		<md-input-container class="display-block" flex="100">
+
+			<label class="md-headline">Post Preview</label>
+			<textarea ng-model="selectedPost.preview"></textarea>
+			
+		</md-input-container>
 	</div>
 	
 	
 	<div flex="100">
-		<!--<text-angular ng-model="post.content"></text-angular>-->
-		 <textarea ui-tinymce="tinymceOptions" ng-model="post.content"></textarea>
+		<!--<text-angular ng-model="selectedPost.content"></text-angular>-->
+		 <textarea ui-tinymce="tinymceOptions" ng-model="selectedPost.content"></textarea>
 		<!--<ng-quill-editor 
 			ng-model="message" 
 			toolbar="true" 
@@ -57,32 +107,31 @@
 		</md-chips>
 		-->
 		<h1 class="md-title"> Tags </h1>
+		<md-chips ng-model="selectedPost.tags">
+			 <input placeholder="Tag">	
+		</md-chips>
 	
-        <md-chips ng-model="post.tags">
-            <md-chip-template>
-                <p ng-if="$chip">{{$chip.name || $chip}}</p>
-            </md-chip-template>
-        </md-chips>
-    
 		
 		
 		
 	</div> 
 	 
-	<div flex="100" class="margin-top-med">
-		<div layout="row" layout-sm="column" layout-align="end">
-			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
-			
-			<md-button ng-click="updatePost()" class="button-ex-pad button-med md-raised md-accent">Create Post!</md-button>
-			
-		</div>
-	</div>
-	
-	<div flex="100">
+	 <div flex="100">
 		<div layout="row" layout-sm="row" layout-align="center">
 			<p class="md-body-2 warning-text">{{postError}}</p>
 		</div>
 	</div>
+	 
+	<div flex="100" class="margin-top-med">
+		<div layout="row" layout-sm="column" layout-align="end">
+			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
+			
+			<md-button ng-click="updatePost()" class="button-ex-pad button-med md-raised md-accent">Update Post!</md-button>
+			
+		</div>
+	</div>
+	
+	
 	
 
 </div>

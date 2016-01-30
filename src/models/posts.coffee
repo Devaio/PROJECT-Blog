@@ -9,6 +9,7 @@ moment = require 'moment'
 posts = new Schema
 	title : String
 	coverImg : String
+	preview : String
 	content : String
 	tags : [{type : Schema.ObjectId, ref : "Tag"}]
 	createdAt : String

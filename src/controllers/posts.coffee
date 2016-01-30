@@ -122,11 +122,22 @@ class Posts extends Main
 			
 			# super(body, req, res)
 	updatePost : (req, res) ->
-        console.log req.body.createdAt
-		# Post.update {_id : req.params.id}, req.body, (err, post) ->
+		body = req.body
 			
-		# 	Post.findOne {_id : req.params.id}, (err, post) ->
-		# 		res.send post
+		body.tags = body.tags.map (tag) ->
+			if tag.name?
+				return tag.name
+			else
+				return tag.toLowerCase()
+				
+		createTagList body.tags, (tagList) ->
+			body.tags = tagList
+			
+			body.createdAt = moment.unix(body.createdAt / 1000).format('X')
+			Post.update {_id : req.params.id}, body, (err, post) ->
+				
+				Post.findOne {_id : req.params.id}, (err, post) ->
+					res.send post
 	delete : (req, res) ->
 		super(req, res)
 module.exports = new Posts()

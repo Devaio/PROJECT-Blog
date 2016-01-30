@@ -27,7 +27,8 @@
  		 <md-button class="button-ex-pad button-med md-raised md-primary" 
 		  	ngf-pattern="'image/*'"
     		ngf-accept="'image/*'" 
-			ngf-select ng-model="files" 
+			ngf-select 
+			ng-model="files" 
 			ngf-multiple="true" 
 			ngf-resize="{width: 1600, quality:0.8}"
 			ngf-fix-orientation="true"
@@ -60,6 +61,15 @@
 			
 		</md-input-container>
 	</div>
+	<div flex="100">		
+		<md-input-container class="display-block" flex="100">
+
+			<label class="md-headline">Post Preview</label>
+			<textarea ng-model="newPost.preview"></textarea>
+			
+		</md-input-container>
+	</div>
+	
 	
 	<div flex="100">
 		<!--<text-angular ng-model="newPost.content"></text-angular>-->
@@ -107,6 +117,12 @@
 		
 	</div> 
 	 
+	 <div flex="100">
+		<div layout="row" layout-sm="row" layout-align="center">
+			<p class="md-body-2 warning-text">{{postError}}</p>
+		</div>
+	</div>
+	 
 	<div flex="100" class="margin-top-med">
 		<div layout="row" layout-sm="column" layout-align="end">
 			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
@@ -116,11 +132,7 @@
 		</div>
 	</div>
 	
-	<div flex="100">
-		<div layout="row" layout-sm="row" layout-align="center">
-			<p class="md-body-2 warning-text">{{postError}}</p>
-		</div>
-	</div>
+	
 	
 
 </div>

@@ -56,7 +56,7 @@ angular.module 'BlogApp'
 				templateUrl:'/public/templates/admin/addpost.html'
 			}
             .state 'adminUpdatePost', {
-				url: '/admin/updatepost/:id',
+				url: '/admin/updatepost',
 				controller: 'adminUpdatePost',
 				templateUrl:'/public/templates/admin/updatepost.html'
 			}

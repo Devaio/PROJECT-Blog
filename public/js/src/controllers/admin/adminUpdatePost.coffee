@@ -1,11 +1,32 @@
-
+moment = require 'moment'
 
 angular.module 'BlogApp'
-	.controller 'adminUpdatePost', ['$scope','$location', '$http','$timeout', 'authService', '$stateParams', 'postTagFactory', ($scope, $location, $http, $timeout, authService, $stateParams, postTagFactory) ->
+	.controller 'adminUpdatePost', ['$scope','$location', '$http','$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', ($scope, $location, $http, $timeout, authService, $stateParams, postTagFactory, Upload) ->
 		$scope.navheight = 'small'
 		$scope.loading = false
-		$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
-        			
+		$scope.posts = postTagFactory.posts()
+		# $scope.files = []		
+		
+		$scope.transformDate = () ->
+			console.log $scope
+			$scope.selectedPost.createdAt = new Date($scope.selectedPost.createdAt)
+		
+		$scope.resizeCheck = (file, width, height) ->
+			# console.log 'resize!', width > 1600 or height > 1200
+			return width > 1600 or height > 1200
+		
+		$scope.submit = () ->
+			 console.log 'scopey scope', $scope
+			 uploader = Upload.upload {
+				 url : '/api/media'
+				 data : {
+					 files : $scope.files
+				 }
+			 }
+			 uploader.then (returnData) ->
+			 	returnData.data.data.forEach (file, index) ->
+				 	$scope.files[index].url = file.url
+		
 		$scope.tinymceOptions = {
 			onChange: (e) ->
 				# put logic here for keypress and cut/paste changes
@@ -27,12 +48,14 @@ angular.module 'BlogApp'
 			console.log '!', stuff
 			console.log '--', $scope.post
 			$scope.updatePost = () ->	
-				console.log $scope.post
-				if $scope.post?.content?.length
+				console.log $scope.selectedPost
+				if $scope.selectedPost?.content?.length
 					$scope.loading = true
-					$scope.post.createdAt = $scope.post.createdAt.getTime()
+					$scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime()
 					
-                    # $http.post('/api/posts', $scope.post)
+					$scope.selectedPost.$save()
+					
+                    # $http.post('/api/posts/' + $scope.selectedPost._id, $scope.post)
 					# 	.then (returnData) ->
 					# 		console.log returnData
 					# 		$scope.loading = false
