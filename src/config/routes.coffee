@@ -11,9 +11,9 @@ middleware = {
 			next()
 
 	setLocals : (req, res, next) ->
-		#Always pass user object and environment variable to views
+		#Always pass user object and environment variable to views		
 		res.locals.user = req.user
-		res.locals.ENV = global.process.env.NODE_ENV
+		res.locals.ENV = if global.process.env.NODE_ENV is 'live' then global.process.env.NODE_ENV else undefined
 		next()
 	
 	multi : multipart()
@@ -55,7 +55,7 @@ module.exports = (app, passport, redis) ->
 	app.post '/admin/login', auth.login
 
 	# Wildcard route
-	app.get('/*', (req, res) ->
+	app.get('/*', middleware.setLocals, (req, res) ->
 		res.render 'index'
 	)
 
