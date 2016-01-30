@@ -380,3 +380,6 @@ md-toolbar.gains-bg {
   border: thin solid #000;
   min-height: 400px;
 }
+.sidenav-about-pic {
+  height: 350px;
+}
