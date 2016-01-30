@@ -26,6 +26,7 @@ angular.module 'BlogApp'
 			default_link_target : "_blank"
 			toolbar1 : 'core'
 			toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
+			width : 740
 			# toolbar3 : 'emoticons textcolor'
 		}
 		$scope.submit = () ->

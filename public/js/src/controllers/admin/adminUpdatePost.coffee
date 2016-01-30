@@ -42,6 +42,8 @@ angular.module 'BlogApp'
 			toolbar1 : 'core'
 			toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
 			# toolbar3 : 'emoticons textcolor'
+			width : 740
+
 		}
 		
 		authService (stuff) ->

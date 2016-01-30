@@ -5197,7 +5197,8 @@ angular.module('BlogApp').controller('adminAddPost', [
       fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt",
       default_link_target: "_blank",
       toolbar1: 'core',
-      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
+      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
+      width: 740
     };
     $scope.submit = function() {
       var uploader;
@@ -5323,7 +5324,8 @@ angular.module('BlogApp').controller('adminUpdatePost', [
       fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt",
       default_link_target: "_blank",
       toolbar1: 'core',
-      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image "
+      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
+      width: 740
     };
     return authService(function(stuff) {
       console.log('!', stuff);

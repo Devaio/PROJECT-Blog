@@ -140,7 +140,7 @@ md-toolbar.gains-bg {
 }
 .container {
   padding: 0;
-  max-width: 1200px;
+  max-width: 1024px;
 }
 .hex-row {
   clear: left;
@@ -412,6 +412,12 @@ md-toolbar.gains-bg {
 }
 .post-card-img {
   height: 450px;
+}
+.content-edit-container {
+  width: 720px;
+}
+.mce-container {
+  margin: auto !important;
 }
 .ql-container {
   border: thin solid #000;
