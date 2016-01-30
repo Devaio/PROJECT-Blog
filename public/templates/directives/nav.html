@@ -2,15 +2,66 @@
 	<i class="fa fa-bars"></i>
 </div>	
 
-<md-sidenav md-component-id="right" class="md-sidenav-right" layout-align="start center">
+<md-sidenav md-component-id="right" class="text-center md-sidenav-right" layout-align="start center">
     <div layout="column">
-		<!--<div class="text-center" flex="100"><a href="/">Home</a></div>
-		<div class="text-center" flex="100">Other</div>
-		<div class="text-center" flex="100">Another</div>
-		<div class="text-center" flex="100">Last One</div>-->
+			<md-button class="md-raised mobile-nav-button" flex> 
+					About 
+			</md-button>
+			<md-button class="md-raised mobile-nav-button" flex> 
+					DIY 
+			</md-button>
+			<md-button class="md-raised mobile-nav-button" flex> 
+					Colorado 
+			</md-button>
+			<md-button class="md-raised mobile-nav-button" flex> 
+					Cooking 
+			</md-button>
+			<md-button class="md-raised mobile-nav-button" flex> 
+					Art 
+			</md-button>
+			<md-button class="md-raised mobile-nav-button" flex> 
+					Reading 
+			</md-button>
+			<md-button class="md-raised mobile-nav-button" flex> 
+					Top 5 
+			</md-button>
+			<!--<div flex> 
+				<md-button>
+					DIY 
+				</md-button>
+			</div>
+			<div flex> 
+				<md-button>
+					Colorado 
+				</md-button>
+			</div>
+			<div flex> 
+				<md-button>
+					Cooking 
+				</md-button>
+			</div>
+			<div flex> 
+				<md-button>
+					Art 
+				</md-button>
+			</div>
+			<div flex> 
+				<md-button>
+					Reading 
+				</md-button>
+			</div>
+			<div flex> 
+				<md-button>
+					Top 5 
+				</md-button>
+			</div>
+			-->
+			
+			
+			
+			
 	</div>
 	
-	<ng-include src="'public/templates/includes/mobilehex.html'"></ng-include>
 	
 </md-sidenav>
 
@@ -18,13 +69,56 @@
 
 
 <div class="whiteframe-hex-container">
-	<md-whiteframe   layout="column" class="md-whiteframe-z1 main-header" layout-align="center center">
+	<div   layout="column" class=" main-header" layout-align="center center">
 		
-		<h1 class="main-header-text text-center md-display-1"><a class="black-link" href="/">The View From Here</a></h1>
+		<h1 class="main-header-text text-center md-display-1"><a class="black-link" href="/">the view from here</a></h1>
 		
-	</md-whiteframe>
+	</div>
 	
-	<ng-include hide-sm hide-md show-gt-md src="'public/templates/includes/hex.html'"></ng-include>
+	<div class="desktop-nav" flex="70" flex-offset="15" layout="row" class="text-center">
+			<div flex> 
+				<md-button>
+					About 
+				</md-button>
+				</div>
+			<div flex> 
+				<md-button>
+					DIY 
+				</md-button>
+				</div>
+			<div flex> 
+				<md-button>
+					Colorado 
+				</md-button>
+				</div>
+			<div flex> 
+				<md-button>
+					Cooking 
+				</md-button>
+				</div>
+			<div flex> 
+				<md-button>
+					Art 
+				</md-button>
+				</div>
+			<div flex> 
+				<md-button>
+					Reading 
+				</md-button>
+				</div>
+			<div flex> 
+				<md-button>
+					Top 5 
+				</md-button>
+				</div>
+			
+			
+			
+			
+			
+		</div>
+	
+	
 </div>
 
 <md-toolbar class="md-primary tool-large" layout="row" layout-align="center center" layout-md="column">

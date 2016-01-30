@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Modesty';
+  src: url("../../fonts/ModestyFreshStyle.ttf");
+}
 .display-block {
   display: block;
 }
@@ -111,11 +115,16 @@ md-toolbar.gains-bg {
 }
 @media (min-width: 600px) {
   .main-header {
-    height: 50vh;
+    height: 20vh;
   }
 }
 .main-header.header-small {
   height: 200px;
+}
+.main-header-text {
+  font-family: 'Modesty';
+  font-size: 76px;
+  line-height: 80px;
 }
 .tool-large {
   min-height: 0px;
@@ -369,6 +378,27 @@ md-toolbar.gains-bg {
 }
 .nav-link-text {
   font-weight: 600;
+}
+.mobile-nav-button {
+  font-family: 'Modesty';
+  font-size: 40px;
+  margin: 10px 0px;
+  padding: 10px 0px;
+  text-transform: lowercase;
+  font-weight: 600;
+}
+.desktop-nav {
+  display: none;
+}
+@media (min-width: 960px) {
+  .desktop-nav {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+  }
 }
 .post-card {
   margin: 50px 0px;
