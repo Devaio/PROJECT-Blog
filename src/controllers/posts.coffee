@@ -56,6 +56,7 @@ class Posts extends Main
 		q = {deleted : false}
 		# Page Skipper
 		pageSkip = 0
+		postLimit = req.query.all or 10
 		if req.query.page
 			pageSkip = (req.query.page - 1) * 10
 		
@@ -65,7 +66,7 @@ class Posts extends Main
 				
 				if tag
 					q.tags = {$elemMatch : {$eq : tag._id} }
-					Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
+					Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags').exec (err, posts) ->
 						if posts?
 							for post in posts
 								if post
@@ -78,12 +79,12 @@ class Posts extends Main
 		else
 			
 			if req.params.id
-				Post.findOne({_id : req.params.id, deleted : false}).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, post) ->
+				Post.findOne({_id : req.params.id, deleted : false}).sort('-createdAt').skip(pageSkip).populate('tags').exec (err, post) ->
 					if post
 						toReadableDate(post)
 					res.send post
 			else
-				Post.find(q).sort('-createdAt').limit(10).skip(pageSkip).populate('tags').exec (err, posts) ->
+				Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags').exec (err, posts) ->
 					if posts?
 						for post in posts
 							if post

@@ -4,11 +4,11 @@ angular.module 'BlogApp'
 	.controller 'adminUpdatePost', ['$scope','$location', '$http','$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', ($scope, $location, $http, $timeout, authService, $stateParams, postTagFactory, Upload) ->
 		$scope.navheight = 'small'
 		$scope.loading = false
-		$scope.posts = postTagFactory.posts()
+		$scope.posts = postTagFactory.postModel.query({all : 10000})
 		# $scope.files = []		
 		
 		$scope.transformDate = () ->
-			console.log $scope
+			# console.log $scope
 			$scope.selectedPost.createdAt = new Date($scope.selectedPost.createdAt)
 		
 		$scope.resizeCheck = (file, width, height) ->
@@ -16,7 +16,7 @@ angular.module 'BlogApp'
 			return width > 1600 or height > 1200
 		
 		$scope.submit = () ->
-			 console.log 'scopey scope', $scope
+			#  console.log 'scopey scope', $scope
 			 uploader = Upload.upload {
 				 url : '/api/media'
 				 data : {
@@ -47,10 +47,10 @@ angular.module 'BlogApp'
 		}
 		
 		authService (stuff) ->
-			console.log '!', stuff
-			console.log '--', $scope.post
+			# console.log '!', stuff
+			# console.log '--', $scope.post
 			$scope.updatePost = () ->	
-				console.log $scope.selectedPost
+				# console.log $scope.selectedPost
 				if $scope.selectedPost?.content?.length
 					$scope.loading = true
 					$scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime()

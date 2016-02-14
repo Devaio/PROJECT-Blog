@@ -5141,7 +5141,7 @@ module.exports = 'ngFileUpload';
 },{"./dist/ng-file-upload-all":2}],4:[function(require,module,exports){
 require('ng-file-upload');
 
-angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload']);
+angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
   return $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('deep-purple').warnPalette('light-green');
@@ -5289,9 +5289,10 @@ angular.module('BlogApp').controller('adminUpdatePost', [
   '$scope', '$location', '$http', '$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', function($scope, $location, $http, $timeout, authService, $stateParams, postTagFactory, Upload) {
     $scope.navheight = 'small';
     $scope.loading = false;
-    $scope.posts = postTagFactory.posts();
+    $scope.posts = postTagFactory.postModel.query({
+      all: 10000
+    });
     $scope.transformDate = function() {
-      console.log($scope);
       return $scope.selectedPost.createdAt = new Date($scope.selectedPost.createdAt);
     };
     $scope.resizeCheck = function(file, width, height) {
@@ -5299,7 +5300,6 @@ angular.module('BlogApp').controller('adminUpdatePost', [
     };
     $scope.submit = function() {
       var uploader;
-      console.log('scopey scope', $scope);
       uploader = Upload.upload({
         url: '/api/media',
         data: {
@@ -5328,11 +5328,8 @@ angular.module('BlogApp').controller('adminUpdatePost', [
       width: 740
     };
     return authService(function(stuff) {
-      console.log('!', stuff);
-      console.log('--', $scope.post);
       return $scope.updatePost = function() {
         var _ref, _ref1;
-        console.log($scope.selectedPost);
         if ((_ref = $scope.selectedPost) != null ? (_ref1 = _ref.content) != null ? _ref1.length : void 0 : void 0) {
           $scope.loading = true;
           $scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime();
@@ -5379,9 +5376,9 @@ angular.module('BlogApp').controller('homeCont', [
 
 },{}],11:[function(require,module,exports){
 angular.module('BlogApp').controller('postCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', function($scope, $sce, $stateParams, postTagFactory) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', function($scope, $sce, $stateParams, postTagFactory, $location) {
     $scope.navheight = 'small';
-    console.log($stateParams);
+    $scope.url = $location.$$absUrl;
     $scope.post = postTagFactory.postModel.get({
       id: $stateParams.id
     });

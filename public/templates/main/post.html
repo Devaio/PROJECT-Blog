@@ -1,3 +1,11 @@
+<update-meta property="og:title" content="{{post.title}}"></update-meta>
+<update-meta property="og:description" content="{{post.preview}}"></update-meta>
+<update-meta property="og:image" content="{{post.coverImg}}"></update-meta>
+<update-meta property="og:url" content="{{url}}"></update-meta>
+<update-meta property="og:type" content="article"></update-meta>
+<update-meta property="description" content="{{post.preview}}"></update-meta>
+<update-title title="{{post.title}}"></update-title>
+
 <nav navheight="navheight"></nav>
 <div layout="row">
 		
@@ -5,7 +13,7 @@
 			<md-card class="post-card white-bg">
 
 				<div class="post-card-img"
-					style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"
+					alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"
 				></div>
 				
 				<md-card-title>

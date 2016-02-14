@@ -1,5 +1,13 @@
 require 'ng-file-upload'
-angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload'])
+angular.module('BlogApp', [
+	'ngMaterial', 
+	'ui.tinymce', 
+	'ui.router', 
+	'ngResource', 
+	'ngSanitize', 
+	'ngFileUpload',
+	'updateMeta'
+])
 
 #  'ngQuill'
 angular.module('BlogApp')
