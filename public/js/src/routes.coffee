@@ -60,35 +60,5 @@ angular.module 'BlogApp'
 				controller: 'adminUpdatePost',
 				templateUrl:'/public/templates/admin/updatepost.html'
 			}
-			# .state 'adminCMS', {
-			# 	url: '/admin/login',
-			# 	controller: 'adminLogin',
-			# 	templateUrl:'/public/templates/admin/login.html'
-			# }
-			# .state('about', {
-			# 	url: '/about',
-			# 	controller: 'mainCtrl',
-			# 	templateUrl: '/client/main/views/about.html'
-			# })
-			# .state('phones', {
-			# 	url: '/phones',
-			# 	abstract: true,
-			# 	controller: 'phoneCtrl',
-			# 	templateUrl: '/client/phones/views/phone.html'
-			# })
-			# .state('phones.phones-list', {
-			# 	url: '/phones-list',
-			# 	parent: 'phones',
-			# 	controller: 'phoneListCtrl',
-			# 	templateUrl: '/client/phones/views/phones-list.html'
-			# })
-			# .state('phones.phones-details', {
-			# 	url: '/phones-details',
-			# 	parent: 'phones',
-			# 	controller: 'phoneDetailCtrl',
-			# 	templateUrl: '/client/phones/views/phones-details.html'
-			# });
-
-
-
+			
 	]

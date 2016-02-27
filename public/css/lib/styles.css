@@ -414,7 +414,8 @@ md-toolbar.gains-bg {
   height: 450px;
 }
 .content-edit-container {
-  width: 720px;
+  width: 100%;
+  max-width: 720px;
 }
 .mce-container {
   margin: auto !important;
