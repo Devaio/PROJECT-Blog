@@ -5,12 +5,14 @@ html(lang="en", ng-app="BlogApp")
 		meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
 		meta(name="description", content="The View From Here Blog - my personal exploration into creativity, DIY projects, recipes, and incredible places.")
 		meta(http-equiv="content-type", content="text/html;charset=UTF-8")
-		meta(property="og:image", content="")
+		meta(property="og:image", content="https://s3.amazonaws.com/theviewfromhere/vfh-logo.png")
 		meta(property="og:title", content="The View From Here Blog")
 		meta(property="og:url", content="http://theviewfromhere.is")
 		meta(property="og:description", content="The View From Here Blog - my personal exploration into creativity, DIY projects, recipes, and incredible places.")
 		meta(property="og:type", content="article")
 		meta(property="og:site_name", content="The View From Here")
+		meta(property="fb:app_id", content="516708835157103")
+		
 		
 		meta(name="fragment", content="")
 		meta(name="p:domain_verify", content="b67cdc89aac85b36068addbcb011f5f6")
@@ -78,3 +80,19 @@ html(lang="en", ng-app="BlogApp")
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 			ga('create', 'UA-73781876-1', 'auto');
 			ga('send', 'pageview');
+		
+		script.
+			window.fbAsyncInit = function() {
+				FB.init({
+				appId      : '516708835157103',
+				xfbml      : true,
+				version    : 'v2.5'
+				});
+				};
+				(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
