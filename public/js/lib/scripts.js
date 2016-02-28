@@ -5384,6 +5384,7 @@ angular.module('BlogApp').controller('postCont', [
     });
     $scope.$sce = $sce;
     return $scope.pinIt = function() {
+      console.log('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + ($scope.post.pinImg || $scope.post.coverImg) + '&description=' + $scope.post.title);
       return $window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + ($scope.post.pinImg || $scope.post.coverImg) + '&description=' + $scope.post.title, 'MyWindow', 'width=600,height=400');
     };
   }
