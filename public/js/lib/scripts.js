@@ -5335,7 +5335,8 @@ angular.module('BlogApp').controller('adminUpdatePost', [
           $scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime();
           return $scope.selectedPost.$save(function() {
             $scope.loading = false;
-            return $window.alert('Done!');
+            window.alert('Done!');
+            return true;
           });
         }
       };

@@ -57,8 +57,8 @@ angular.module 'BlogApp'
 					
 					$scope.selectedPost.$save () ->
 						$scope.loading = false
-						$window.alert('Done!')
-					
+						window.alert('Done!')
+						return true
                     # $http.post('/api/posts/' + $scope.selectedPost._id, $scope.post)
 					# 	.then (returnData) ->
 					# 		console.log returnData
