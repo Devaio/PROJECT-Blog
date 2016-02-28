@@ -55,7 +55,9 @@ angular.module 'BlogApp'
 					$scope.loading = true
 					$scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime()
 					
-					$scope.selectedPost.$save()
+					$scope.selectedPost.$save () ->
+						$scope.loading = false
+						$window.alert('Done!')
 					
                     # $http.post('/api/posts/' + $scope.selectedPost._id, $scope.post)
 					# 	.then (returnData) ->

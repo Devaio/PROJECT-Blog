@@ -5333,7 +5333,10 @@ angular.module('BlogApp').controller('adminUpdatePost', [
         if ((_ref = $scope.selectedPost) != null ? (_ref1 = _ref.content) != null ? _ref1.length : void 0 : void 0) {
           $scope.loading = true;
           $scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime();
-          return $scope.selectedPost.$save();
+          return $scope.selectedPost.$save(function() {
+            $scope.loading = false;
+            return $window.alert('Done!');
+          });
         }
       };
     });
