@@ -4,7 +4,11 @@
 	
 	<div class="post-card-img"
 		alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"
-	></div>
+	>
+		<!--For Pin-it Button -->
+		<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
+		
+	</div>
 	
 	<md-card-title>
 		<md-card-title-text class="text-center">
@@ -16,6 +20,11 @@
 		{{post.preview}}
 	</md-card-content>
 	<md-card-actions layout="row" layout-align="end center">
+		
+		<!--<a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-round="true" href="https://www.pinterest.com/pin/create/button/">
+			<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" />
+		</a>-->
+		
 		<a ng-href="/posts/{{post._id}}" target="_blank">
 			<md-button class="md-raised">
 				Read More

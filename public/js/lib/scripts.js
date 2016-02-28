@@ -5382,7 +5382,10 @@ angular.module('BlogApp').controller('postCont', [
     $scope.post = postTagFactory.postModel.get({
       id: $stateParams.id
     });
-    return $scope.$sce = $sce;
+    $scope.$sce = $sce;
+    return $scope.pinIt = function() {
+      return window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + ($scope.post.pinImg || $scope.post.coverImg) + '&description=' + $scope.post.title, 'MyWindow', 'width=600,height=400');
+    };
   }
 ]);
 

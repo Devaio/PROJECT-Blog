@@ -1,7 +1,7 @@
 <update-meta property="og:title" content="{{post.title}}"></update-meta>
 <update-meta property="og:description" content="{{post.preview}}"></update-meta>
-<update-meta property="og:image" content="{{post.coverImg}}"></update-meta>
-<update-meta property="og:image:url" content="{{post.coverImg}}"></update-meta>
+<update-meta property="og:image" content="{{post.pinImg || post.coverImg}}"></update-meta>
+<update-meta property="og:image:url" content="{{post.pinImg || post.coverImg}}"></update-meta>
 <update-meta property="og:url" content="{{url}}"></update-meta>
 <update-meta property="og:type" content="article"></update-meta>
 <update-meta property="description" content="{{post.preview}}"></update-meta>
@@ -11,42 +11,54 @@
 
 <nav navheight="navheight"></nav>
 <div layout="row">
-		
-		<div flex class="content-side-left">
-			<md-card class="post-card white-bg">
 
-				<div class="post-card-img"
-					alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"
-				></div>
+	<div flex class="content-side-left">
+		<md-card class="post-card white-bg">
+
+			<div class="post-card-img" alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"></div>
+			<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
+			<md-card-title>
+				<md-card-title-text class="text-center">
+					<p class="home-post-title md-display-1">{{post.title}}</p>
+					<p class="date-text">{{post.createdAt}}</p>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content>
+				<div class="post-content-container md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
+			</md-card-content>
+			<md-card-actions layout="row" layout-align="end center">
 				
-				<md-card-title>
-					<md-card-title-text class="text-center">
-						<p class="home-post-title md-display-1">{{post.title}}</p>
-						<p class="date-text">{{post.createdAt}}</p>
-					</md-card-title-text>
-				</md-card-title>
-				<md-card-content>
-					<div class="post-content-container md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>				
-				</md-card-content>
-				<md-card-actions layout="row" layout-align="end center">
-					
-					<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{tag.name}}">
-						<md-button class="md-raised">
-							<span>{{tag.name}}</span>
-						</md-button>
-						<md-tooltip>
-							See {{tag.name | uppercase}} Posts
-						</md-tooltip>
-					</a>
-					
-				</md-card-actions>
-			</div>
-		
-		
-		
-		
-		
-		<!--
+				<a
+					ng-click="pinIt()"
+				
+				>PIN</a>
+
+<!--
+				<a data-pin-do="buttonPin" data-pin-color="white" data-pin-tall="true" href="https://www.pinterest.com/pin/create/button/?url={{url}}&media={{post.pinImg || post.coverImg}}&description={{post.title}}">
+					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_28.png" />
+				</a>
+				-->
+				
+				
+				
+
+				<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{tag.name}}">
+					<md-button class="md-raised">
+						<span>{{tag.name}}</span>
+					</md-button>
+					<md-tooltip>
+						See {{tag.name | uppercase}} Posts
+					</md-tooltip>
+				</a>
+
+			</md-card-actions>
+	</div>
+
+
+
+
+
+	<!--
 			
 			
 			<h3 class="post-title md-display-2 gray-text">{{post.title}}</h3>
@@ -65,8 +77,8 @@
 				</md-chip-template>
 			</md-chips>
 		-->
-		
-		
-		<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
+
+
+	<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
 
 </div>

@@ -8,6 +8,9 @@ angular.module 'BlogApp'
 		$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
 
 		$scope.$sce = $sce
-
+		
+		$scope.pinIt = () ->
+			window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + ($scope.post.pinImg || $scope.post.coverImg) + '&description=' + $scope.post.title,'MyWindow','width=600,height=400')
 		
 	]
+	
