@@ -10,8 +10,9 @@ angular.module 'BlogApp'
 		$scope.$sce = $sce
 		
 		$scope.pinIt = () ->
-			img = ($scope.post.pinImg || $scope.post.coverImg)
-			$window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + img + '&description=' + $scope.post.title,'MyWindow','width=600,height=400')
+			img = ($scope.post.pinImg)
+			console.log(img)
+			$window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=' +  encodeURIComponent($scope.post.title),'MyWindow','width=600,height=400')
 			return true
 	]
 	
