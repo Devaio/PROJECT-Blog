@@ -82,6 +82,7 @@ a.full-width {
 }
 .total-content {
   background-color: #efefef;
+  padding-bottom: 20px;
 }
 .white-bg {
   background-color: #fff;
@@ -106,6 +107,14 @@ md-toolbar.gains-bg {
   .content-side-right {
     display: block;
   }
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 18px;
+  background-color: #efefef;
+  padding: 0px 10px;
 }
 .warning-text {
   color: #f00;
