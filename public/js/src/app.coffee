@@ -6,7 +6,8 @@ angular.module('BlogApp', [
 	'ngResource', 
 	'ngSanitize', 
 	'ngFileUpload',
-	'updateMeta'
+	'updateMeta',
+	'angular-pinterest'
 ])
 
 #  'ngQuill'
