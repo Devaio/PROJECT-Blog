@@ -62,10 +62,11 @@
 							<md-divider></md-divider>
 						</md-list-item>
 					</div>
-					
+
 					<!--ADMIN APPROVAL-->
 					<div ng-if="user">
-						<md-list-item style="margin:10px" ng-class="{'approved-comment' : comment.approved, 'unapproved-comment' : !comment.approved}" ng-repeat="comment in post.comments">
+						<md-list-item style="margin:10px" ng-class="{'approved-comment' : comment.approved, 'unapproved-comment' : !comment.approved}"
+						ng-repeat="comment in post.comments">
 							<div class="md-list-item-text" layout="column">
 								<h4>{{ comment.name }}</h4>
 								<p>{{ comment.content }}</p>
@@ -73,7 +74,7 @@
 							<md-divider></md-divider>
 						</md-list-item>
 					</div>
-				
+
 				</md-list>
 
 				<!--COMMENT FORM-->
@@ -108,7 +109,10 @@
 							</md-input-container>
 						</div>
 						<div flex="50">
-							<md-button ng-click="submitComment()" class="button-ex-pad button-med md-raised md-accent">Comment!</md-button>
+
+							<md-button style="text-transform:none" ng-click="submitComment()" class="button-ex-pad button-med md-raised">
+								<span>Comment!</span>
+							</md-button>
 						</div>
 						<p class="warning-text">{{errorMsg}}</p>
 						<p class="warning-text">{{successMsg}}</p>
