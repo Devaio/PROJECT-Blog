@@ -5227,9 +5227,13 @@ angular.module('BlogApp').controller('adminAddPost', [
           return $http.post('/api/posts', $scope.newPost).then(function(returnData) {
             console.log(returnData);
             $scope.loading = false;
-            return $timeout(function() {
-              return $location.url('/posts/' + returnData.data._id);
-            });
+            if (returnData.data._id) {
+              return $timeout(function() {
+                return $location.url('/posts/' + returnData.data._id);
+              });
+            } else {
+              return $scope.postError = returnData.data;
+            }
           });
         } else {
           return $scope.postError = 'Make sure everything is filled out!';

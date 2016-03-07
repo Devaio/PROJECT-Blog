@@ -27,20 +27,8 @@
 				<div class="post-content-container md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
 			</md-card-content>
 			<md-card-actions layout="row" layout-align="end center">
-				
-				<a  style="margin-top:4px:"
-					ng-click="pinIt()"
-				
-				><img src="http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png"></a>
 
-<!--
-				<a data-pin-do="buttonPin" data-pin-color="white" data-pin-tall="true" href="https://www.pinterest.com/pin/create/button/?url={{url}}&media={{post.pinImg || post.coverImg}}&description={{post.title}}">
-					<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_28.png" />
-				</a>
-				-->
-				
-				
-				
+				<a style="margin-top:4px:" ng-click="pinIt()"><img src="http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png"></a>
 
 				<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{tag.name}}">
 					<md-button class="md-raised">
@@ -52,33 +40,7 @@
 				</a>
 
 			</md-card-actions>
+		</md-card>
 	</div>
 
-
-
-
-
-	<!--
-			
-			
-			<h3 class="post-title md-display-2 gray-text">{{post.title}}</h3>
-			<p class="date-text">{{post.createdAt}}</p>
-
-			<p class="post-content"> 
-				<div class="md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
-			</p>
-			
-			
-			<md-chips ng-model="post.tags" readonly="true">
-				<md-chip-template>
-					<a class="black-link" ng-href="/tags/{{$chip.name}}">
-						<p>{{$chip.name}}</p>
-					</a>
-				</md-chip-template>
-			</md-chips>
-		-->
-
-
 	<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
-	<script data-pin-hover="true" data-pin-tall="true" data-pin-round="true" src="//assets.pinterest.com/js/pinit.js"></script>
-</div>

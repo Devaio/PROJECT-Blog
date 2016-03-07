@@ -57,8 +57,11 @@ angular.module 'BlogApp'
 						.then (returnData) ->
 							console.log returnData
 							$scope.loading = false
-							$timeout () ->
-								$location.url('/posts/' + returnData.data._id)
+							if returnData.data._id
+								$timeout () ->
+									$location.url('/posts/' + returnData.data._id)
+							else
+								$scope.postError = returnData.data
 							
 				else
 					$scope.postError = 'Make sure everything is filled out!'

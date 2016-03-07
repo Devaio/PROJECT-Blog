@@ -119,7 +119,10 @@ class Posts extends Main
 			newPost = new Post(body)
 			newPost.save (err, doc) ->
 				console.log err, doc
-				res.send doc
+				if err
+					res.send err
+				else
+					res.send doc
 			
 			# super(body, req, res)
 	updatePost : (req, res) ->
