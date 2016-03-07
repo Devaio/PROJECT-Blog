@@ -1,5 +1,6 @@
 angular.module 'BlogApp'
 	.controller 'adminAddPost', ['$scope','$location', '$http','$timeout', 'authService', 'Upload', ($scope, $location, $http, $timeout, authService, Upload) ->
+		
 		$scope.navheight = 'small'
 		$scope.loading = false
 		console.log 'up', Upload

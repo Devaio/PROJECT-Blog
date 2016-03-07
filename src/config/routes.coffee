@@ -28,6 +28,8 @@ module.exports = (app, passport, redis) ->
 	posts = require '../controllers/posts'
 	tags = require '../controllers/tags'
 	media = require '../controllers/media'
+	comments = require '../controllers/comments'
+	
 	
 	
 	
@@ -52,6 +54,9 @@ module.exports = (app, passport, redis) ->
 	app.get '/api/tags/:id', tags.get
 	
 	app.post '/api/media', middleware.multi, media.uploadFiles
+
+	# Comment
+	app.post '/api/comments/:postID', comments.createComment
 
 	# Login
 	app.post '/admin/login', auth.login

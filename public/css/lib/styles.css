@@ -119,6 +119,12 @@ footer {
 .warning-text {
   color: #f00;
 }
+.approved-comment {
+  background-color: #4bbf6b;
+}
+.unapproved-comment {
+  background-color: #bf6b4b;
+}
 .dash-main-button {
   height: 50px;
 }

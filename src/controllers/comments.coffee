@@ -34,14 +34,18 @@ class Comments extends Main
 		# 	not body.title 
 		# 		res.send {error : 'Please complete the form'}
 		# 		return
-				
+		body.post = req.params.postID
 		newComment = new Comment(body)
 		newComment.save (err, doc) ->
 			console.log err, doc
 			if err
 				res.send err
 			else
-				res.send doc
+				Post.findOne {_id : req.params.postID}, (err, foundPost) ->
+					foundPost.comments = foundPost.comments || []
+					foundPost.comments.push(doc._id)
+					foundPost.save()
+					res.send doc
 			
 			# super(body, req, res)
 	

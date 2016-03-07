@@ -5384,20 +5384,39 @@ angular.module('BlogApp').controller('homeCont', [
 
 },{}],11:[function(require,module,exports){
 angular.module('BlogApp').controller('postCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', function($scope, $sce, $stateParams, postTagFactory, $location, $window) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http) {
     $scope.navheight = 'small';
+    $scope.newComment = {};
     $scope.url = $location.$$absUrl;
     $scope.post = postTagFactory.postModel.get({
       id: $stateParams.id
     });
     $scope.$sce = $sce;
-    return $scope.pinIt = function() {
+    $scope.pinIt = function() {
       var img;
       img = $scope.post.pinImg;
       console.log(img);
       $window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=' + encodeURIComponent($scope.post.title), 'MyWindow', 'width=600,height=400');
       return true;
     };
+    $scope.submitComment = function() {
+      console.log($scope.newComment);
+      if (!$scope.newComment.name || !$scope.newComment.content || !$scope.newComment.content.length) {
+        return $scope.errorMsg = 'Please fill out the form!';
+      } else {
+        return $http.post('/api/comments/' + $stateParams.id, $scope.newComment).then(function(returnData) {
+          console.log('COMMENTNRETURN', returnData);
+          $scope.newComment = {};
+          $scope.errorMsg = '';
+          return $scope.successMsg = 'Thanks!  Your comment is awaiting moderation.';
+        });
+      }
+    };
+    return $http.get('/api/me').then(function(returnData) {
+      if (returnData.data.user) {
+        return $scope.user = returnData.data.user;
+      }
+    });
   }
 ]);
 

@@ -13,6 +13,7 @@ comments = new Schema
 	approved : {type : Boolean, default : false}
 	createdAt : String
 	deleted : {type : Boolean, default : false}
+	post : {type : mongoose.Schema.ObjectId, ref : 'Post'}
 	
 
 comments.path('createdAt').default () ->
