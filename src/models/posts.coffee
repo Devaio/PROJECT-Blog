@@ -15,6 +15,7 @@ posts = new Schema
 	tags : [{type : Schema.ObjectId, ref : "Tag"}]
 	createdAt : String
 	deleted : {type : Boolean, default : false}
+	comments : [{type : Schema.ObjectId, ref : "Comment"}]
 	
 
 posts.path('createdAt').default () ->

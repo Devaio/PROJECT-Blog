@@ -433,6 +433,9 @@ footer {
   max-width: 100%;
   height: auto;
 }
+.home-post-title {
+  padding: 10px 0 0 0;
+}
 .ql-container {
   border: thin solid #000;
   min-height: 400px;
