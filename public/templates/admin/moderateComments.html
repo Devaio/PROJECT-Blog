@@ -16,7 +16,7 @@
 			<h4 ng-if="comment.website"><a href="{{urlCheck(comment.website)}}" class="black-link comment-link" target="_blank">{{ comment.name }}</a></h4>
 
 			<h5>Email : {{ comment.email }} | Website : <a href="{{urlCheck(comment.website)}}" target="_blank">{{ comment.website }}</a></h5>
-			<p style="padding-left:20px;" ng-bind-html="$sce.trustAsHtml(comment.content)"></p>
+			<p style="padding-left:20px;" ng-bind-html="linker(comment.content)"></p>
 		</div>
 
 		<div flex="40" flex-offset="60">

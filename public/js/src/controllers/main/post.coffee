@@ -7,17 +7,26 @@ angular.module 'BlogApp'
 		'postTagFactory', 
 		'$location', 
 		'$window',
-		'$http', 
-		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http) ->
+		'$http',
+		'$filter',
+		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter) ->
 			$scope.navheight = 'small'
 			$scope.moment = moment
 			# console.log $stateParams, $location.$$absUrl
 			$scope.newComment = {}
 			$scope.url = $location.$$absUrl
+			$scope.linky = $filter('linky')
+
 			
 			$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
 
 			$scope.$sce = $sce
+			$scope.linker = (content) ->
+				if content.match(/<[^>]+>/gm)
+					return $sce.trustAsHtml(content)
+				else
+					return $scope.linky(content)
+				
 			$scope.urlCheck = (url) ->
 				if !url.match('http://') or !url.match('https://')
 					return 'http://' + url

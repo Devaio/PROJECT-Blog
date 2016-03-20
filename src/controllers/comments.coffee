@@ -40,7 +40,7 @@ class Comments extends Main
 		# 	not body.title 
 		# 		res.send {error : 'Please complete the form'}
 		# 		return
-		body.post = req.params.postID
+		body.post = req.params.postID		
 		newComment = new Comment(body)
 		newComment.save (err, doc) ->
 			console.log err, doc

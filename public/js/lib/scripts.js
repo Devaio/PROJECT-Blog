@@ -5295,10 +5295,11 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('adminModerateComments', [
-  '$scope', '$location', '$http', '$timeout', 'authService', '$sce', function($scope, $location, $http, $timeout, authService, $sce) {
+  '$scope', '$location', '$http', '$timeout', 'authService', '$sce', '$filter', function($scope, $location, $http, $timeout, authService, $sce, $filter) {
     $scope.navheight = 'small';
     $scope.$sce = $sce;
     $scope.moment = moment;
+    $scope.linky = $filter('linky');
     return authService(function(stuff) {
       $http.get('/api/comments').then(function(returnData) {
         return $scope.commentList = returnData.data;
@@ -5308,6 +5309,13 @@ angular.module('BlogApp').controller('adminModerateComments', [
           return 'http://' + url;
         } else {
           return url;
+        }
+      };
+      $scope.linker = function(content) {
+        if (content.match(/<[^>]+>/gm)) {
+          return $sce.trustAsHtml(content);
+        } else {
+          return $scope.linky(content);
         }
       };
       $scope.approveComment = function(comment) {
@@ -5427,15 +5435,23 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('postCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter) {
     $scope.navheight = 'small';
     $scope.moment = moment;
     $scope.newComment = {};
     $scope.url = $location.$$absUrl;
+    $scope.linky = $filter('linky');
     $scope.post = postTagFactory.postModel.get({
       id: $stateParams.id
     });
     $scope.$sce = $sce;
+    $scope.linker = function(content) {
+      if (content.match(/<[^>]+>/gm)) {
+        return $sce.trustAsHtml(content);
+      } else {
+        return $scope.linky(content);
+      }
+    };
     $scope.urlCheck = function(url) {
       if (!url.match('http://') || !url.match('https://')) {
         return 'http://' + url;

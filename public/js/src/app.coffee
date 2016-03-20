@@ -18,7 +18,12 @@ angular.module('BlogApp')
 			.accentPalette('deep-purple')
 			.warnPalette('light-green')
 
-
+# angular.module('BlogApp').filter 'htmlToPlaintext', () ->
+# 	return (text) -> 
+# 		return  if text then String(text).replace(/<[^>]+>/gm, '') else ''
+		
+    
+	
 # Include Services
 require './services/authService'
 	
