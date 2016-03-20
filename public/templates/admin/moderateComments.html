@@ -11,9 +11,12 @@
 		<div flex="100" class="md-list-item-text" layout="column">
 			<span class="date-text comment-date"> {{moment.unix(comment.createdAt).format('MM/DD/YYYY')}} </span>
 
-			<h4>{{ comment.name }}</h4>
-			<h5>{{ comment.email }} | <a href="{{comment.website}}">{{ comment.website }}</a></h5>
-			<p style="padding-left:20px;">{{ comment.content }}</p>
+			<h4 ng-if="!comment.website">{{ comment.name }}</h4>
+
+			<h4 ng-if="comment.website"><a href="{{urlCheck(comment.website)}}" class="black-link comment-link" target="_blank">{{ comment.name }}</a></h4>
+
+			<h5>Email : {{ comment.email }} | Website : <a href="{{urlCheck(comment.website)}}" target="_blank">{{ comment.website }}</a></h5>
+			<p style="padding-left:20px;" ng-bind-html="$sce.trustAsHtml(comment.content)"></p>
 		</div>
 
 		<div flex="40" flex-offset="60">

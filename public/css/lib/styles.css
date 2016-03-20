@@ -59,6 +59,9 @@ a.full-width {
   color: #000;
   text-decoration: none;
 }
+.black-link.comment-link:hover {
+  text-decoration: underline;
+}
 .gray-link {
   color: #607d8b;
 }

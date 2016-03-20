@@ -5295,13 +5295,21 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('adminModerateComments', [
-  '$scope', '$location', '$http', '$timeout', 'authService', function($scope, $location, $http, $timeout, authService) {
+  '$scope', '$location', '$http', '$timeout', 'authService', '$sce', function($scope, $location, $http, $timeout, authService, $sce) {
     $scope.navheight = 'small';
+    $scope.$sce = $sce;
     $scope.moment = moment;
     return authService(function(stuff) {
       $http.get('/api/comments').then(function(returnData) {
         return $scope.commentList = returnData.data;
       });
+      $scope.urlCheck = function(url) {
+        if (!url.match('http://') || !url.match('https://')) {
+          return 'http://' + url;
+        } else {
+          return url;
+        }
+      };
       $scope.approveComment = function(comment) {
         comment.approved = true;
         return $http.post('/api/comments/' + comment._id, comment);
@@ -5428,6 +5436,13 @@ angular.module('BlogApp').controller('postCont', [
       id: $stateParams.id
     });
     $scope.$sce = $sce;
+    $scope.urlCheck = function(url) {
+      if (!url.match('http://') || !url.match('https://')) {
+        return 'http://' + url;
+      } else {
+        return url;
+      }
+    };
     $scope.pinIt = function() {
       var img;
       img = $scope.post.pinImg;

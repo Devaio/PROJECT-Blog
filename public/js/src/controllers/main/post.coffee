@@ -18,7 +18,11 @@ angular.module 'BlogApp'
 			$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
 
 			$scope.$sce = $sce
-			
+			$scope.urlCheck = (url) ->
+				if !url.match('http://') or !url.match('https://')
+					return 'http://' + url
+				else
+					return url
 			$scope.pinIt = () ->
 				img = ($scope.post.pinImg)
 				console.log(img)
