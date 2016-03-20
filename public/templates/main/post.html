@@ -52,31 +52,25 @@
 				<!--COMMENT LIST-->
 				<md-list>
 
-					<!--CLIENT LIST-->
-					<div ng-if="!user">
-						<md-list-item ng-if="comment.approved" ng-repeat="comment in post.comments">
-							<div class="md-list-item-text" layout="column">
-								<h4>{{ comment.name }}</h4>
-								<p>{{ comment.content }}</p>
-							</div>
-							<md-divider></md-divider>
-						</md-list-item>
-					</div>
+					<!--Viewer LIST-->
 
-					<!--ADMIN APPROVAL-->
-					<div ng-if="user">
-						<md-list-item style="margin:10px" ng-class="{'approved-comment' : comment.approved, 'unapproved-comment' : !comment.approved}"
-						ng-repeat="comment in post.comments">
-							<div class="md-list-item-text" layout="column">
-								<h4>{{ comment.name }}</h4>
-								<p>{{ comment.content }}</p>
-							</div>
-							<md-divider></md-divider>
-						</md-list-item>
-					</div>
+					<md-list-item ng-if="comment.approved" ng-repeat="comment in post.comments | orderBy : 'createdAt' : true">
+						<div class="md-list-item-text" layout="column">
+							<span class="date-text comment-date"> {{moment.unix(comment.createdAt).format('MM/DD/YYYY')}} </span>
+							<h4>{{ comment.name }}</h4>
+							<p style="padding-left:20px;">{{ comment.content }}</p>
+						</div>
+						<md-divider></md-divider>
+					</md-list-item>
+
+
+
 
 				</md-list>
-
+			</md-card-content>
+		</md-card>
+		<md-card-content>
+			<md-card class="post-card white-bg">
 				<!--COMMENT FORM-->
 				<div id="comment-form" flex="100">
 					<form name="commentForm">
@@ -119,7 +113,7 @@
 
 					</form>
 				</div>
-			</md-card-content>
+		</md-card-content>
 		</md-card>
 	</div>
 

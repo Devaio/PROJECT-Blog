@@ -3,6 +3,7 @@ mongoose = require 'mongoose'
 async = require 'async'
 Post = mongoose.model('Post')
 Comment = mongoose.model('Comment')
+_ = require 'lodash'
 Main = require './main'
 moment = require 'moment'
 
@@ -23,7 +24,12 @@ class Comments extends Main
 		super(Comment)
 
 	get : (req, res) ->		
-		super(req, res)
+		# super(req, res)
+		Comment.find({approved : false}).sort('post').populate('post').exec (err, docs) ->
+			console.log(err, docs)
+			groupedComments = _.groupBy docs, (doc) ->
+				doc.post.title
+			res.send groupedComments
 
 	createComment : (req, res) ->
 		self = @
@@ -48,7 +54,12 @@ class Comments extends Main
 					res.send doc
 			
 			# super(body, req, res)
+	updateComment : (req, res) ->
+		Comment.update {_id : req.params.id}, req.body, (err, doc) ->
+			res.send doc
+		
 	
 	delete : (req, res) ->
-		super(req, res)
+		Comment.remove {_id : req.params.id}, (err, rmv) ->
+			res.send rmv
 module.exports = new Comments()

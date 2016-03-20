@@ -37,6 +37,8 @@ require './controllers/admin/adminLogin'
 require './controllers/admin/adminDashboard'
 require './controllers/admin/adminAddPost'
 require './controllers/admin/adminUpdatePost'
+require './controllers/admin/adminModerateComments'
+
 
 
 

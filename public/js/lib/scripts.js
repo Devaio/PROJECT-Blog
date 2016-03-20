@@ -5169,10 +5169,12 @@ require('./controllers/admin/adminAddPost');
 
 require('./controllers/admin/adminUpdatePost');
 
+require('./controllers/admin/adminModerateComments');
+
 require('./routes');
 
 
-},{"./controllers/admin/adminAddPost":5,"./controllers/admin/adminDashboard":6,"./controllers/admin/adminLogin":7,"./controllers/admin/adminUpdatePost":8,"./controllers/main/about":9,"./controllers/main/home":10,"./controllers/main/post":11,"./controllers/main/tag":12,"./directives/nav":13,"./factories/post-tag":14,"./routes":15,"./services/authService":16,"ng-file-upload":3}],5:[function(require,module,exports){
+},{"./controllers/admin/adminAddPost":5,"./controllers/admin/adminDashboard":6,"./controllers/admin/adminLogin":7,"./controllers/admin/adminModerateComments":8,"./controllers/admin/adminUpdatePost":9,"./controllers/main/about":10,"./controllers/main/home":11,"./controllers/main/post":12,"./controllers/main/tag":13,"./directives/nav":14,"./factories/post-tag":15,"./routes":16,"./services/authService":17,"ng-file-upload":3}],5:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
   '$scope', '$location', '$http', '$timeout', 'authService', 'Upload', function($scope, $location, $http, $timeout, authService, Upload) {
     $scope.navheight = 'small';
@@ -5253,8 +5255,11 @@ angular.module('BlogApp').controller('adminDashboard', [
       $scope.addPost = function() {
         return $location.url('/admin/addpost');
       };
-      return $scope.updatePost = function() {
+      $scope.updatePost = function() {
         return $location.url('/admin/updatepost');
+      };
+      return $scope.moderateComments = function() {
+        return $location.url('/admin/moderatecomments');
       };
     });
   }
@@ -5285,6 +5290,32 @@ angular.module('BlogApp').controller('adminLogin', [
 
 
 },{}],8:[function(require,module,exports){
+var moment;
+
+moment = require('moment');
+
+angular.module('BlogApp').controller('adminModerateComments', [
+  '$scope', '$location', '$http', '$timeout', 'authService', function($scope, $location, $http, $timeout, authService) {
+    $scope.navheight = 'small';
+    $scope.moment = moment;
+    return authService(function(stuff) {
+      $http.get('/api/comments').then(function(returnData) {
+        return $scope.commentList = returnData.data;
+      });
+      $scope.approveComment = function(comment) {
+        comment.approved = true;
+        return $http.post('/api/comments/' + comment._id, comment);
+      };
+      return $scope.deleteComment = function(comment, index, post) {
+        $http["delete"]('/api/comments/' + comment._id);
+        return $scope.commentList[post].splice(index, 1);
+      };
+    });
+  }
+]);
+
+
+},{"moment":1}],9:[function(require,module,exports){
 var moment;
 
 moment = require('moment');
@@ -5349,7 +5380,7 @@ angular.module('BlogApp').controller('adminUpdatePost', [
 ]);
 
 
-},{"moment":1}],9:[function(require,module,exports){
+},{"moment":1}],10:[function(require,module,exports){
 angular.module('BlogApp').controller('aboutCont', [
   '$scope', function($scope) {
     return $scope.navheight = 'small';
@@ -5357,7 +5388,7 @@ angular.module('BlogApp').controller('aboutCont', [
 ]);
 
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
   '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', function($scope, $sce, postTagFactory, $stateParams, $location) {
     $scope.navheight = 'large';
@@ -5382,10 +5413,15 @@ angular.module('BlogApp').controller('homeCont', [
 ]);
 
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
+var moment;
+
+moment = require('moment');
+
 angular.module('BlogApp').controller('postCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http) {
     $scope.navheight = 'small';
+    $scope.moment = moment;
     $scope.newComment = {};
     $scope.url = $location.$$absUrl;
     $scope.post = postTagFactory.postModel.get({
@@ -5404,7 +5440,7 @@ angular.module('BlogApp').controller('postCont', [
       if (!$scope.newComment.name || !$scope.newComment.content || !$scope.newComment.content.length) {
         return $scope.errorMsg = 'Please fill out the form!';
       } else {
-        return $http.post('/api/comments/' + $stateParams.id, $scope.newComment).then(function(returnData) {
+        return $http.post('/api/comments/create/' + $stateParams.id, $scope.newComment).then(function(returnData) {
           console.log('COMMENTNRETURN', returnData);
           $scope.newComment = {};
           $scope.errorMsg = '';
@@ -5421,7 +5457,7 @@ angular.module('BlogApp').controller('postCont', [
 ]);
 
 
-},{}],12:[function(require,module,exports){
+},{"moment":1}],13:[function(require,module,exports){
 angular.module('BlogApp').controller('tagCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', function($scope, $sce, $stateParams, postTagFactory, $location) {
     $scope.navheight = 'small';
@@ -5452,7 +5488,7 @@ angular.module('BlogApp').controller('tagCont', [
 ]);
 
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 angular.module('BlogApp').directive('nav', function() {
   return {
     restrict: 'E',
@@ -5469,7 +5505,7 @@ angular.module('BlogApp').directive('nav', function() {
 });
 
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 angular.module('BlogApp').factory('postTagFactory', [
   '$resource', '$stateParams', function($resource, $stateParams) {
     var postModel, tagModel;
@@ -5492,7 +5528,7 @@ angular.module('BlogApp').factory('postTagFactory', [
 ]);
 
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 angular.module('BlogApp').config([
   '$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -5537,12 +5573,16 @@ angular.module('BlogApp').config([
       url: '/admin/updatepost',
       controller: 'adminUpdatePost',
       templateUrl: '/public/templates/admin/updatepost.html'
+    }).state('adminModerateComments', {
+      url: '/admin/moderatecomments',
+      controller: 'adminModerateComments',
+      templateUrl: '/public/templates/admin/moderateComments.html'
     });
   }
 ]);
 
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 angular.module('BlogApp').service('authService', [
   '$http', '$location', function($http, $location) {
     return this.authCheck = function(cb) {

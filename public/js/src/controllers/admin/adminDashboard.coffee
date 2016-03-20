@@ -9,4 +9,7 @@ angular.module 'BlogApp'
 				
 			$scope.updatePost = () ->
 				$location.url '/admin/updatepost'
+				
+			$scope.moderateComments = () ->
+				$location.url '/admin/moderatecomments'
 	]

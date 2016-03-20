@@ -1,3 +1,4 @@
+moment = require 'moment'
 angular.module 'BlogApp'
 	.controller 'postCont', [
 		'$scope',
@@ -9,6 +10,7 @@ angular.module 'BlogApp'
 		'$http', 
 		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http) ->
 			$scope.navheight = 'small'
+			$scope.moment = moment
 			# console.log $stateParams, $location.$$absUrl
 			$scope.newComment = {}
 			$scope.url = $location.$$absUrl
@@ -31,7 +33,7 @@ angular.module 'BlogApp'
 						$scope.errorMsg = 'Please fill out the form!'
 						
 				else
-					$http.post '/api/comments/' + $stateParams.id, $scope.newComment
+					$http.post '/api/comments/create/' + $stateParams.id, $scope.newComment
 						.then (returnData) ->
 							console.log 'COMMENTNRETURN', returnData
 							$scope.newComment = {}

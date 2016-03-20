@@ -60,5 +60,9 @@ angular.module 'BlogApp'
 				controller: 'adminUpdatePost',
 				templateUrl:'/public/templates/admin/updatepost.html'
 			}
-			
+			.state 'adminModerateComments', {
+				url : '/admin/moderatecomments',
+				controller : 'adminModerateComments',
+				templateUrl : '/public/templates/admin/moderateComments.html'
+			}
 	]

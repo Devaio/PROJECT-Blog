@@ -50,13 +50,18 @@ module.exports = (app, passport, redis) ->
 	
 	app.delete '/api/posts/:id', middleware.authorize, posts.delete
 	
+	
 	app.get '/api/tags', tags.get
 	app.get '/api/tags/:id', tags.get
 	
 	app.post '/api/media', middleware.multi, media.uploadFiles
 
 	# Comment
-	app.post '/api/comments/:postID', comments.createComment
+	app.get '/api/comments', middleware.authorize, comments.get
+	app.post '/api/comments/create/:postID', comments.createComment	
+	app.post '/api/comments/:id', middleware.authorize, comments.updateComment
+	app.delete '/api/comments/:id', middleware.authorize, comments.delete
+	
 
 	# Login
 	app.post '/admin/login', auth.login
