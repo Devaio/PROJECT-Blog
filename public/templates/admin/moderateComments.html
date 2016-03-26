@@ -20,8 +20,12 @@
 		</div>
 
 		<div flex="40" flex-offset="60">
-			<md-button ng-click="approveComment(comment)" class="dash-main-button md-raised md-accent">Approve Comment</md-button>
-			<md-button ng-click="deleteComment(comment, $index, post)" class="dash-main-button md-raised md-primary">Delete Comment</md-button>
+			<md-button ng-if="!comment.isSubComment" ng-click="approveComment(comment)" class="dash-main-button md-raised md-accent">Approve Comment</md-button>
+			<md-button ng-if="comment.isSubComment" ng-click="approveComment(comment)" class="dash-main-button md-raised md-accent">Approve Reply</md-button>
+			
+			<md-button ng-if="!comment.isSubComment" ng-click="deleteComment(comment, $index, post)" class="dash-main-button md-raised md-primary">Delete Comment</md-button>
+			<md-button ng-if="comment.isSubComment" ng-click="deleteComment(comment, $index, post)" class="dash-main-button md-raised md-primary">Delete Reply</md-button>
+			
 		</div>
 
 		<md-divider></md-divider>

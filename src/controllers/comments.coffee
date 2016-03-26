@@ -47,11 +47,14 @@ class Comments extends Main
 			if err
 				res.send err
 			else
-				Post.findOne {_id : req.params.postID}, (err, foundPost) ->
-					foundPost.comments = foundPost.comments || []
-					foundPost.comments.push(doc._id)
-					foundPost.save()
+				if doc.isSubComment
 					res.send doc
+				else
+					Post.findOne {_id : req.params.postID}, (err, foundPost) ->
+						foundPost.comments = foundPost.comments || []
+						foundPost.comments.push(doc._id)
+						foundPost.save()
+						res.send doc
 			
 			# super(body, req, res)
 	updateComment : (req, res) ->

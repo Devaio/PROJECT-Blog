@@ -9,7 +9,8 @@ angular.module 'BlogApp'
 		'$window',
 		'$http',
 		'$filter',
-		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter) ->
+		'$timeout',
+		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout) ->
 			$scope.navheight = 'small'
 			$scope.moment = moment
 			# console.log $stateParams, $location.$$absUrl
@@ -34,12 +35,10 @@ angular.module 'BlogApp'
 					return url
 			$scope.pinIt = () ->
 				img = ($scope.post.pinImg)
-				console.log(img)
 				$window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=' +  encodeURIComponent($scope.post.title),'MyWindow','width=600,height=400')
 				return true
 				
 			$scope.submitComment = () ->
-				console.log $scope.newComment
 				if not $scope.newComment.name or
 					not $scope.newComment.content or
 					not $scope.newComment.content.length
@@ -48,7 +47,6 @@ angular.module 'BlogApp'
 				else
 					$http.post '/api/comments/create/' + $stateParams.id, $scope.newComment
 						.then (returnData) ->
-							console.log 'COMMENTNRETURN', returnData
 							$scope.newComment = {}
 							$scope.errorMsg = ''
 							$scope.successMsg = 'Thanks!  Your comment is awaiting moderation.'
@@ -58,20 +56,30 @@ angular.module 'BlogApp'
 				
 			$scope.submitSubComment = (parentComment, subComment) ->
 			
-				console.log(parentComment, subComment)
-				
-				subComment.isSubComment = true
-				
-				$http.post '/api/comments/create/' + $stateParams.id, subComment
-						.then (returnData) ->
-				
-				
-				
-							parentComment.subComments = parentComment.subComments || []
-							parentComment.subComments.push(returnData.data._id)
-							$http.post('/api/comments/' + parentComment._id, parentComment)
-								.then (returnData) ->
-									console.log returnData
+				if not subComment.name or
+					not subComment.content or
+					not subComment.content.length
+						subComment.errorMsg = 'Please fill out the form!'
+				else
+					subComment.isSubComment = true
+					
+					$http.post '/api/comments/create/' + $stateParams.id, subComment
+							.then (returnData) ->
+								subComment.errorMsg = ''
+								subComment.successMsg = 'Thanks!  Your comment is awaiting moderation.'
+								subComment.name = ''
+								subComment.email = ''
+								subComment.website = ''
+								subComment.content = ''
+								
+								$timeout () ->
+									parentComment.showSubCommentForm = false
+								, 2200
+								
+								parentCommentCopy = angular.copy parentComment
+								parentCommentCopy.subComments = parentCommentCopy.subComments || []
+								parentCommentCopy.subComments.push(returnData.data)
+								$http.post('/api/comments/' + parentCommentCopy._id, parentCommentCopy)
 				
 		]
 	

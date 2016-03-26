@@ -148,7 +148,7 @@ footer {
 }
 .collapsible-comment-form {
   overflow: hidden;
-  height: 350px;
+  height: 360px;
   -webkit-transition: height 0.4s ease;
   -moz-transition: height 0.4s ease;
   -o-transition: height 0.4s ease;

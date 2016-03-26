@@ -15,12 +15,12 @@
 	<div flex class="content-side-left">
 		<md-card class="post-card white-bg">
 
-			<div class="post-card-img" alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"></div>
-			<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
+			<div class="post-card-img" alt="{{::post.title}}" style="background-image:url('{{::post.coverImg}}'); background-size:cover; background-position:center"></div>
+			<img style="width:0px;height:0px;" src="{{::post.coverImg}}" alt="{{::post.title}}">
 			<md-card-title>
 				<md-card-title-text class="text-center">
-					<p class="home-post-title md-display-1">{{post.title}}</p>
-					<p class="date-text">{{post.createdAt}}</p>
+					<p class="home-post-title md-display-1">{{::post.title}}</p>
+					<p class="date-text">{{::post.createdAt}}</p>
 				</md-card-title-text>
 			</md-card-title>
 			<md-card-content>
@@ -30,12 +30,12 @@
 
 				<a style="margin-top:4px:" ng-click="pinIt()"><img src="http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png"></a>
 
-				<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{tag.name}}">
+				<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{::tag.name}}">
 					<md-button class="md-raised">
-						<span>{{tag.name}}</span>
+						<span>{{::tag.name}}</span>
 					</md-button>
 					<md-tooltip>
-						See {{tag.name | uppercase}} Posts
+						See {{::tag.name | uppercase}} Posts
 					</md-tooltip>
 				</a>
 
@@ -56,11 +56,11 @@
 					<div class="comment-list-item" ng-repeat="comment in post.comments | orderBy : 'createdAt' : true">
 						<md-list-item ng-if="comment.approved">
 							<div class="md-list-item-text comment-info">
-								<span class="date-text comment-date minor-text-pad"> {{moment.unix(comment.createdAt).format('MM/DD/YYYY')}} </span>
+								<span class="date-text comment-date minor-text-pad"> {{::moment.unix(comment.createdAt).format('MM/DD/YYYY')}} </span>
 
-								<h4 class="minor-text-pad" ng-if="!comment.website">{{ comment.name }}</h4>
+								<h4 class="minor-text-pad" ng-if="!comment.website">{{ ::comment.name }}</h4>
 
-								<h4 class="minor-text-pad" ng-if="comment.website"><a href="{{urlCheck(comment.website)}}" class="black-link comment-link" target="_blank">{{ comment.name }}</a></h4>
+								<h4 class="minor-text-pad" ng-if="comment.website"><a href="{{::urlCheck(comment.website)}}" class="black-link comment-link" target="_blank">{{ comment.name }}</a></h4>
 
 								<p style="padding-left:20px;" ng-bind-html="linker(comment.content)"></p>
 
@@ -115,14 +115,14 @@
 										<span>Reply!</span>
 									</md-button>
 								</div>
-								<p class="warning-text">{{errorMsg}}</p>
-								<p class="warning-text">{{successMsg}}</p>
+								<p class="warning-text">{{subComment.errorMsg}}</p>
+								<p class="warning-text">{{subComment.successMsg}}</p>
 
 							</form>
 						</div>
 
 						<md-list flex="90" flex-offset="10" ng-if="comment.subComments.length" class="subcomment-list">
-							<div class="subcomment-list-item" ng-repeat="subcomment in comment.subComments">
+							<div ng-if="subcomment.approved" class="subcomment-list-item" ng-repeat="subcomment in comment.subComments">
 								<!--<md-divider ng-if="$first"></md-divider>-->
 								<md-list-item>
 									<div class="md-list-item-text comment-info">

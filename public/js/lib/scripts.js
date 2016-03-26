@@ -5435,7 +5435,7 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('postCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', '$timeout', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout) {
     $scope.navheight = 'small';
     $scope.moment = moment;
     $scope.newComment = {};
@@ -5462,17 +5462,14 @@ angular.module('BlogApp').controller('postCont', [
     $scope.pinIt = function() {
       var img;
       img = $scope.post.pinImg;
-      console.log(img);
       $window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=' + encodeURIComponent($scope.post.title), 'MyWindow', 'width=600,height=400');
       return true;
     };
     $scope.submitComment = function() {
-      console.log($scope.newComment);
       if (!$scope.newComment.name || !$scope.newComment.content || !$scope.newComment.content.length) {
         return $scope.errorMsg = 'Please fill out the form!';
       } else {
         return $http.post('/api/comments/create/' + $stateParams.id, $scope.newComment).then(function(returnData) {
-          console.log('COMMENTNRETURN', returnData);
           $scope.newComment = {};
           $scope.errorMsg = '';
           return $scope.successMsg = 'Thanks!  Your comment is awaiting moderation.';
@@ -5483,15 +5480,27 @@ angular.module('BlogApp').controller('postCont', [
       return comment.showSubCommentForm = !comment.showSubCommentForm;
     };
     return $scope.submitSubComment = function(parentComment, subComment) {
-      console.log(parentComment, subComment);
-      subComment.isSubComment = true;
-      return $http.post('/api/comments/create/' + $stateParams.id, subComment).then(function(returnData) {
-        parentComment.subComments = parentComment.subComments || [];
-        parentComment.subComments.push(returnData.data._id);
-        return $http.post('/api/comments/' + parentComment._id, parentComment).then(function(returnData) {
-          return console.log(returnData);
+      if (!subComment.name || !subComment.content || !subComment.content.length) {
+        return subComment.errorMsg = 'Please fill out the form!';
+      } else {
+        subComment.isSubComment = true;
+        return $http.post('/api/comments/create/' + $stateParams.id, subComment).then(function(returnData) {
+          var parentCommentCopy;
+          subComment.errorMsg = '';
+          subComment.successMsg = 'Thanks!  Your comment is awaiting moderation.';
+          subComment.name = '';
+          subComment.email = '';
+          subComment.website = '';
+          subComment.content = '';
+          $timeout(function() {
+            return parentComment.showSubCommentForm = false;
+          }, 2200);
+          parentCommentCopy = angular.copy(parentComment);
+          parentCommentCopy.subComments = parentCommentCopy.subComments || [];
+          parentCommentCopy.subComments.push(returnData.data);
+          return $http.post('/api/comments/' + parentCommentCopy._id, parentCommentCopy);
         });
-      });
+      }
     };
   }
 ]);
