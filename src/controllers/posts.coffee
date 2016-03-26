@@ -81,10 +81,16 @@ class Posts extends Main
 		else
 			
 			if req.params.id
-				Post.findOne({_id : req.params.id, deleted : false}).sort('-createdAt').skip(pageSkip).populate('tags comments').exec (err, post) ->
-					if post
-						toReadableDate(post)
-					res.send post
+				Post.findOne({_id : req.params.id, deleted : false}).sort('-createdAt').skip(pageSkip).populate('tags').populate({
+							path : 'comments'
+							populate : {
+								path : 'subComments'
+								model : 'Comment'
+							}
+						}).exec (err, post) ->
+							if post
+								toReadableDate(post)
+							res.send post
 			else
 				Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags comments').exec (err, posts) ->
 					if posts?

@@ -130,6 +130,46 @@ footer {
   -webkit-box-shadow: 0px 5px 10px #808080;
   box-shadow: 0px 5px 10px #808080;
 }
+.comment-checkbox {
+  position: relative;
+  right: 0;
+  bottom: 30px;
+}
+.comment-reply-form {
+  position: relative;
+}
+.comment-reply-button {
+  position: relative;
+  left: 86.5%;
+  width: 60px;
+}
+.comment-info {
+  width: 100%;
+}
+.collapsible-comment-form {
+  overflow: hidden;
+  height: 350px;
+  -webkit-transition: height 0.4s ease;
+  -moz-transition: height 0.4s ease;
+  -o-transition: height 0.4s ease;
+  -ms-transition: height 0.4s ease;
+  transition: height 0.4s ease;
+}
+.collapsible-comment-form.ng-hide {
+  height: 0px;
+}
+.comment-list-item {
+  border-left: 5px rgba(0,0,0,0.12) solid;
+  margin: 5px 0px;
+  border-bottom: 1px rgba(0,0,0,0.12) solid;
+}
+.subcomment-list-item {
+  background-color: rgba(200,200,200,0.12);
+  border-left: 2px rgba(0,0,0,0.12) solid;
+}
+.minor-text-pad {
+  padding: 0px 5px;
+}
 .dash-main-button {
   height: 50px;
 }
@@ -450,7 +490,7 @@ footer {
 .comment-date {
   position: absolute;
   top: 10px;
-  right: 0;
+  right: 5px;
 }
 .ql-container {
   border: thin solid #000;

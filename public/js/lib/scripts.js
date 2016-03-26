@@ -5141,7 +5141,7 @@ module.exports = 'ngFileUpload';
 },{"./dist/ng-file-upload-all":2}],4:[function(require,module,exports){
 require('ng-file-upload');
 
-angular.module('BlogApp', ['ngMaterial', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest']);
+angular.module('BlogApp', ['ngMaterial', 'ngAnimate', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
   return $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('deep-purple').warnPalette('light-green');
@@ -5479,11 +5479,20 @@ angular.module('BlogApp').controller('postCont', [
         });
       }
     };
-    return $http.get('/api/me').then(function(returnData) {
-      if (returnData.data.user) {
-        return $scope.user = returnData.data.user;
-      }
-    });
+    $scope.subCommentForm = function(comment) {
+      return comment.showSubCommentForm = !comment.showSubCommentForm;
+    };
+    return $scope.submitSubComment = function(parentComment, subComment) {
+      console.log(parentComment, subComment);
+      subComment.isSubComment = true;
+      return $http.post('/api/comments/create/' + $stateParams.id, subComment).then(function(returnData) {
+        parentComment.subComments = parentComment.subComments || [];
+        parentComment.subComments.push(returnData.data._id);
+        return $http.post('/api/comments/' + parentComment._id, parentComment).then(function(returnData) {
+          return console.log(returnData);
+        });
+      });
+    };
   }
 ]);
 

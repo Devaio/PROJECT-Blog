@@ -1,6 +1,7 @@
 require 'ng-file-upload'
 angular.module('BlogApp', [
-	'ngMaterial', 
+	'ngMaterial',
+	'ngAnimate', 
 	'ui.tinymce', 
 	'ui.router', 
 	'ngResource', 

@@ -15,6 +15,10 @@ comments = new Schema
 	deleted : {type : Boolean, default : false}
 	post : {type : mongoose.Schema.ObjectId, ref : 'Post'}
 	
+	isSubComment : {type : Boolean, default : false}
+	subComments : [{type : mongoose.Schema.ObjectId, ref : 'Comment'}]
+	sendEmail : {type : Boolean, default : false}
+	
 
 comments.path('createdAt').default () ->
 	return moment().format('X')

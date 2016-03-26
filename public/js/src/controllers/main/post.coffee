@@ -16,7 +16,7 @@ angular.module 'BlogApp'
 			$scope.newComment = {}
 			$scope.url = $location.$$absUrl
 			$scope.linky = $filter('linky')
-
+			# $scope.subComment = {}
 			
 			$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
 
@@ -53,9 +53,25 @@ angular.module 'BlogApp'
 							$scope.errorMsg = ''
 							$scope.successMsg = 'Thanks!  Your comment is awaiting moderation.'
 							
-			$http.get '/api/me'
-				.then (returnData) ->
-					if returnData.data.user
-						$scope.user = returnData.data.user
+			$scope.subCommentForm = (comment) ->
+				comment.showSubCommentForm = !comment.showSubCommentForm
+				
+			$scope.submitSubComment = (parentComment, subComment) ->
+			
+				console.log(parentComment, subComment)
+				
+				subComment.isSubComment = true
+				
+				$http.post '/api/comments/create/' + $stateParams.id, subComment
+						.then (returnData) ->
+				
+				
+				
+							parentComment.subComments = parentComment.subComments || []
+							parentComment.subComments.push(returnData.data._id)
+							$http.post('/api/comments/' + parentComment._id, parentComment)
+								.then (returnData) ->
+									console.log returnData
+				
 		]
 	

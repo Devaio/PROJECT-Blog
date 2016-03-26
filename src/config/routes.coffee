@@ -59,7 +59,7 @@ module.exports = (app, passport, redis) ->
 	# Comment
 	app.get '/api/comments', middleware.authorize, comments.get
 	app.post '/api/comments/create/:postID', comments.createComment	
-	app.post '/api/comments/:id', middleware.authorize, comments.updateComment
+	app.post '/api/comments/:id', comments.updateComment
 	app.delete '/api/comments/:id', middleware.authorize, comments.delete
 	
 
