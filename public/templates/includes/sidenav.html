@@ -1,39 +1,81 @@
-<div>
-	<md-card class="post-card white-bg">
+<div ">
+	<md-card class="post-card white-bg ">
 		<md-card-title>
-			
-			<md-toolbar class="gains-bg">
-				<div class="md-toolbar-tools">
-					<h3 class="text-center full-width">
+
+			<md-toolbar class="gains-bg ">
+				<div class="md-toolbar-tools ">
+					<h3 class="text-center full-width font-modesty font-45">
 						Welcome!
 					</h3>
 				</div>
 			</md-toolbar>
-			
+
 		</md-card-title>
 		<md-card-content>
-			
+
 			<p>I'm Clarissa, and I totally do, explain it all (thank you, thank you, I'll be here all night).
-				<a class="pull-right" ng-href="/about">READ MORE</a>
+				<a class="pull-right " ng-href="/about ">READ MORE</a>
 			</p>
 			<br>
 			<!--<div></div>-->
-			<div class="sidenav-about-pic"
-				style="background-image:url('public/img/intro-pic.png'); background-size:cover; background-position:center"
-			></div>
+			<div class="sidenav-about-pic " style="background-image:url( 'public/img/intro-pic.png'); background-size:cover; background-position:center "></div>
 			<br>
 			<p>
-				<strong>The View From Here</strong> is my personal exploration into creativity, DIY projects, recipes, and incredible places.
+				<strong>The View From Here</strong> is my personal exploration into creativity, DIY projects, recipes, and incredible
+				places.
 			</p>
 		</md-card-content>
 	</md-card>
-	
-	<!--<md-card class="post-card pin-sidebar white-bg">-->
+
+	<md-card class="post-card pin-sidebar white-bg ">
+		<md-card-title>
+
+			<md-toolbar class="gains-bg ">
+				<div class="md-toolbar-tools ">
+					<a target="_blank" class="full-width " href="https://www.pinterest.com/viewfromhereis/ ">
+						<h3 class="text-center font-modesty font-45">
+							Pinterest
+						</h3>
+					</a>
+				</div>
+			</md-toolbar>
+
+		</md-card-title>
+		<md-card-content>
+	<!--<a data-pin-do="embedBoard " data-pin-board-width="222 " data-pin-scale-height="500 " data-pin-scale-width="60
+	" href="https://www.pinterest.com/viewfromhereis/the-view-from-here-places/ "></a>-->
+	<!--<a data-pin-do="embedUser " data-pin-board-width="222 " data-pin-scale-height="300 " data-pin-scale-width="60
+	" href="https://www.pinterest.com/viewfromhereis/ "></a>-->
+		<!--<pin-profile username=" 'viewfromhereis' " image-width=" '20' " board-height=" '300' " board-width=" '172' "></pin-profile>-->
+		<div class="pinterest-pin-container " layout="row " layout-wrap>
+			<div layout="column " flex="50 " class="pinterest-pin " ng-repeat="sidebarPin in socialData.sidebarPins ">
+				<a ng-href="{{sidebarPin.url}}" target="_blank">
+				<div class="pinterest-pin-img " style="background-image:url( '{{sidebarPin.image.original.url}}'); background-size:cover;
+	background-position:center; " ></div>
+				</a>
+			</div>
+		</div>
 		
-		<!--<a data-pin-do="embedBoard" data-pin-board-width="222" data-pin-scale-height="500" data-pin-scale-width="60" href="https://www.pinterest.com/viewfromhereis/the-view-from-here-places/"></a>-->
-		<!--<a data-pin-do="embedUser" data-pin-board-width="222" data-pin-scale-height="300" data-pin-scale-width="60" href="https://www.pinterest.com/viewfromhereis/"></a>-->
-		<pin-profile username="'viewfromhereis'" image-width="'60'" board-height="'300'" board-width="'222'"></pin-profile>
-	<!--</md-card>-->
-		
-		
+		</md-card-content>
+	</md-card>
+	<md-card class="post-card white-bg ">
+		<md-card-title>
+
+			<md-toolbar class="gains-bg ">
+				<div class="md-toolbar-tools ">
+					<a target="_blank" class="full-width " href="https://www.instagram.com/clarissa_chappell/?ref=badge ">
+						<h3 class="text-center font-modesty font-45">
+							Instagram
+						</h3>
+					</a>
+				</div>
+			</md-toolbar>
+
+		</md-card-title>
+		<md-card-content>			
+			<iframe style="width:100%; height:210px " src="//lightwidget.com/widgets/fc2ad108a062f3e4ca2cc0fc31a0dd7c24619ca7.html
+	" id="lightwidget_fc2ad108a0 " name="lightwidget_fc2ad108a0 "  scrolling="no " allowtransparency="true " class="lightwidget-widget
+	" style="width: 100%; border: 0; overflow: hidden; "></iframe>
+		</md-card-content>
+	</md-card>
 </div>

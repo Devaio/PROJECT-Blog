@@ -33,6 +33,8 @@ require './directives/nav'
 
 # Include Factories
 require './factories/post-tag'
+require './factories/social'
+
 
 # Include Controllers
 require './controllers/main/home'

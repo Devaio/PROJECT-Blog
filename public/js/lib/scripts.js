@@ -5153,6 +5153,8 @@ require('./directives/nav');
 
 require('./factories/post-tag');
 
+require('./factories/social');
+
 require('./controllers/main/home');
 
 require('./controllers/main/about');
@@ -5174,7 +5176,7 @@ require('./controllers/admin/adminModerateComments');
 require('./routes');
 
 
-},{"./controllers/admin/adminAddPost":5,"./controllers/admin/adminDashboard":6,"./controllers/admin/adminLogin":7,"./controllers/admin/adminModerateComments":8,"./controllers/admin/adminUpdatePost":9,"./controllers/main/about":10,"./controllers/main/home":11,"./controllers/main/post":12,"./controllers/main/tag":13,"./directives/nav":14,"./factories/post-tag":15,"./routes":16,"./services/authService":17,"ng-file-upload":3}],5:[function(require,module,exports){
+},{"./controllers/admin/adminAddPost":5,"./controllers/admin/adminDashboard":6,"./controllers/admin/adminLogin":7,"./controllers/admin/adminModerateComments":8,"./controllers/admin/adminUpdatePost":9,"./controllers/main/about":10,"./controllers/main/home":11,"./controllers/main/post":12,"./controllers/main/tag":13,"./directives/nav":14,"./factories/post-tag":15,"./factories/social":16,"./routes":17,"./services/authService":18,"ng-file-upload":3}],5:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
   '$scope', '$location', '$http', '$timeout', 'authService', 'Upload', function($scope, $location, $http, $timeout, authService, Upload) {
     $scope.navheight = 'small';
@@ -5400,8 +5402,10 @@ angular.module('BlogApp').controller('aboutCont', [
 
 },{}],11:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
-  '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', function($scope, $sce, postTagFactory, $stateParams, $location) {
+  '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', 'socialFactory', function($scope, $sce, postTagFactory, $stateParams, $location, socialFactory) {
     $scope.navheight = 'large';
+    console.log($scope, socialFactory);
+    $scope.socialData = socialFactory.socialData;
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
     $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
     $scope.showNextPage = true;
@@ -5436,7 +5440,7 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('postCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', '$timeout', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', '$timeout', 'socialFactory', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout, socialFactory) {
     $scope.navheight = 'small';
     $scope.moment = moment;
     $scope.newComment = {};
@@ -5513,7 +5517,7 @@ angular.module('BlogApp').controller('postCont', [
 
 },{"moment":1}],13:[function(require,module,exports){
 angular.module('BlogApp').controller('tagCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', function($scope, $sce, $stateParams, postTagFactory, $location) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', 'socialFactory', function($scope, $sce, $stateParams, postTagFactory, $location, socialFactory) {
     $scope.navheight = 'small';
     $scope.tag = postTagFactory.tagModel.get({
       name: $stateParams.name
@@ -5581,6 +5585,21 @@ angular.module('BlogApp').factory('postTagFactory', [
 
 
 },{}],16:[function(require,module,exports){
+angular.module('BlogApp').factory('socialFactory', [
+  '$resource', '$stateParams', '$http', function($resource, $stateParams, $http) {
+    var socialData;
+    socialData = {};
+    $http.get('https://api.pinterest.com/v1/me/pins/?access_token=AaMv-yr8NsypzC7J-M4ljuoP0F4TFEY4A4PaXCxDBkAMyiAp6QAAAAA&fields=id%2Cnote%2Curl%2Cimage').then(function(returnData) {
+      return socialData.sidebarPins = returnData.data.data.slice(0, 12);
+    });
+    return {
+      socialData: socialData
+    };
+  }
+]);
+
+
+},{}],17:[function(require,module,exports){
 angular.module('BlogApp').config([
   '$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
@@ -5634,7 +5653,7 @@ angular.module('BlogApp').config([
 ]);
 
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 angular.module('BlogApp').service('authService', [
   '$http', '$location', function($http, $location) {
     return this.authCheck = function(cb) {

@@ -10,7 +10,8 @@ angular.module 'BlogApp'
 		'$http',
 		'$filter',
 		'$timeout',
-		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout) ->
+		'socialFactory',
+		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout, socialFactory) ->
 			$scope.navheight = 'small'
 			$scope.moment = moment
 			$scope.newComment = {}
