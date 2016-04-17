@@ -13,11 +13,13 @@ angular.module 'BlogApp'
 		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout) ->
 			$scope.navheight = 'small'
 			$scope.moment = moment
-			# console.log $stateParams, $location.$$absUrl
 			$scope.newComment = {}
 			$scope.url = $location.$$absUrl
 			$scope.linky = $filter('linky')
-			# $scope.subComment = {}
+			
+			if $location.$$hash is 'comments'
+				$scope.commentBox = angular.element('#comments')
+				window.scrollTo(0, $scope.commentBox.offsetTop)
 			
 			$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
 

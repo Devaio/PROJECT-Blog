@@ -7,7 +7,6 @@ angular.module 'BlogApp'
 					if returnData.data.user
 						cb(returnData.data.user)
 					else
-						console.log 'no user'
 						$location.url '/'
 						
 	]

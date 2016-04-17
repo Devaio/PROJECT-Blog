@@ -140,8 +140,13 @@ footer {
 }
 .comment-reply-button {
   position: relative;
-  left: 86.5%;
+  left: 75.5%;
   width: 60px;
+}
+@media (min-width: 600px) {
+  .comment-reply-button {
+    left: 86.5%;
+  }
 }
 .comment-info {
   width: 100%;

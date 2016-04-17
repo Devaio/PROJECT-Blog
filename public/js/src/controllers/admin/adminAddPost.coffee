@@ -3,7 +3,6 @@ angular.module 'BlogApp'
 		
 		$scope.navheight = 'small'
 		$scope.loading = false
-		console.log 'up', Upload
 		$scope.newPost = {
 			tags : []
 			createdAt : new Date()
@@ -31,7 +30,6 @@ angular.module 'BlogApp'
 			# toolbar3 : 'emoticons textcolor'
 		}
 		$scope.submit = () ->
-			 console.log 'scopey scope', $scope.files
 			 uploader = Upload.upload {
 				 url : '/api/media'
 				 data : {
@@ -44,7 +42,6 @@ angular.module 'BlogApp'
 			 
 			 
 		authService (stuff) ->
-			console.log '!', stuff
 			
 			$scope.submitPost = () ->	
 				$scope.postError = ''

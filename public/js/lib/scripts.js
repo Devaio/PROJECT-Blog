@@ -5179,7 +5179,6 @@ angular.module('BlogApp').controller('adminAddPost', [
   '$scope', '$location', '$http', '$timeout', 'authService', 'Upload', function($scope, $location, $http, $timeout, authService, Upload) {
     $scope.navheight = 'small';
     $scope.loading = false;
-    console.log('up', Upload);
     $scope.newPost = {
       tags: [],
       createdAt: new Date()
@@ -5204,7 +5203,6 @@ angular.module('BlogApp').controller('adminAddPost', [
     };
     $scope.submit = function() {
       var uploader;
-      console.log('scopey scope', $scope.files);
       uploader = Upload.upload({
         url: '/api/media',
         data: {
@@ -5218,7 +5216,6 @@ angular.module('BlogApp').controller('adminAddPost', [
       });
     };
     return authService(function(stuff) {
-      console.log('!', stuff);
       return $scope.submitPost = function() {
         var _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
         $scope.postError = '';
@@ -5251,7 +5248,6 @@ angular.module('BlogApp').controller('adminDashboard', [
   '$scope', '$location', 'authService', function($scope, $location, authService) {
     $scope.navheight = 'small';
     return authService(function(stuff) {
-      console.log('!', stuff);
       $scope.addPost = function() {
         return $location.url('/admin/addpost');
       };
@@ -5269,11 +5265,9 @@ angular.module('BlogApp').controller('adminDashboard', [
 },{}],7:[function(require,module,exports){
 angular.module('BlogApp').controller('adminLogin', [
   '$scope', '$http', '$location', function($scope, $http, $location) {
-    console.log('adminLogin!');
     $scope.navheight = 'small';
     $scope.loading = false;
     return $scope.loginFire = function() {
-      console.log('yes!');
       $scope.loading = true;
       $scope.loginError = '';
       return $http.post('/admin/login', $scope.adminUser).then(function(returnData) {
@@ -5416,15 +5410,22 @@ angular.module('BlogApp').controller('homeCont', [
     }
     $scope.$watch('posts.length', function() {
       if ($scope.posts.length < 10) {
-        $scope.showNextPage = null;
+        return $scope.showNextPage = null;
       } else {
         $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
-        $scope.showNextPage = true;
+        return $scope.showNextPage = true;
       }
-      return console.log($scope);
     });
     $scope.$sce = $sce;
-    return $scope.something = function() {};
+    return $scope.commentLengthChecker = function(post) {
+      var totalComments;
+      totalComments = post.comments.reduce(function(rt, cn) {
+        var countCurrent;
+        countCurrent = cn.approved ? 1 : 0;
+        return rt + countCurrent;
+      }, 0);
+      return totalComments;
+    };
   }
 ]);
 
@@ -5441,6 +5442,10 @@ angular.module('BlogApp').controller('postCont', [
     $scope.newComment = {};
     $scope.url = $location.$$absUrl;
     $scope.linky = $filter('linky');
+    if ($location.$$hash === 'comments') {
+      $scope.commentBox = angular.element('#comments');
+      window.scrollTo(0, $scope.commentBox.offsetTop);
+    }
     $scope.post = postTagFactory.postModel.get({
       id: $stateParams.id
     });
@@ -5510,7 +5515,6 @@ angular.module('BlogApp').controller('postCont', [
 angular.module('BlogApp').controller('tagCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', function($scope, $sce, $stateParams, postTagFactory, $location) {
     $scope.navheight = 'small';
-    console.log('State', $stateParams);
     $scope.tag = postTagFactory.tagModel.get({
       name: $stateParams.name
     });
@@ -5524,7 +5528,7 @@ angular.module('BlogApp').controller('tagCont', [
     if (parseInt($stateParams.pageNum) <= 1) {
       $location.url("/tags/" + $stateParams.name);
     }
-    $scope.$watch('posts.length', function() {
+    return $scope.$watch('posts.length', function() {
       if ($scope.posts.length < 10) {
         return $scope.showNextPage = null;
       } else {
@@ -5532,7 +5536,6 @@ angular.module('BlogApp').controller('tagCont', [
         return $scope.showNextPage = true;
       }
     });
-    return console.log('LENGTH', $scope.posts.length);
   }
 ]);
 
@@ -5639,7 +5642,6 @@ angular.module('BlogApp').service('authService', [
         if (returnData.data.user) {
           return cb(returnData.data.user);
         } else {
-          console.log('no user');
           return $location.url('/');
         }
       });

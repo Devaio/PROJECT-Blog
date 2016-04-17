@@ -1,12 +1,10 @@
 angular.module 'BlogApp'
 	.controller 'adminLogin', ['$scope', '$http', '$location', ($scope, $http, $location) ->
-		console.log 'adminLogin!'
 		$scope.navheight = 'small'
 
 		$scope.loading = false
 		
 		$scope.loginFire = () ->
-			console.log 'yes!'
 			$scope.loading = true
 			$scope.loginError = ''
 			

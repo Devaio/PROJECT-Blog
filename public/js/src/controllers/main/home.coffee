@@ -18,9 +18,13 @@ angular.module 'BlogApp'
 			
 			# if $scope.posts.length is 0
 			# 	$location.url('/pages/' + (parseInt($stateParams.pageNum or 1) - 1))
-			console.log $scope
 		$scope.$sce = $sce
-		
-		$scope.something = () ->
-			# alert 'DONT TOUCH ME!'
+		$scope.commentLengthChecker = (post) ->
+			totalComments = post.comments.reduce (rt, cn) ->
+				countCurrent = if cn.approved then 1 else 0
+				# countSubs = if cn.approved then cn.subComments.length else 0
+				return rt + countCurrent
+			, 0
+			return totalComments
 	]
+	
