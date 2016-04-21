@@ -17,7 +17,8 @@ angular.module 'BlogApp'
 			$scope.newComment = {}
 			$scope.url = $location.$$absUrl
 			$scope.linky = $filter('linky')
-			
+			$scope.socialData = socialFactory.socialData
+			$scope.posts = postTagFactory.posts($stateParams.pageNum)
 			if $location.$$hash is 'comments'
 				$scope.commentBox = angular.element('#comments')
 				window.scrollTo(0, $scope.commentBox.offsetTop)
