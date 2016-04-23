@@ -104,7 +104,20 @@ class Posts extends Main
 	getTags : (req, res) ->
 		Tag.find {}, (err, tags) ->
 			res.send tags
-
+	random : (req, res) ->
+		
+		Post
+			.count()
+			.exec (err, count) ->
+				random = Math.floor(Math.random() * count)
+				Post
+					.find()
+					.skip random		
+					.limit +req.query.num or 1
+					.exec (err, posts) ->
+						res.send posts
+		
+		
 	delete : (req, res) ->
 		super(req, res)
 

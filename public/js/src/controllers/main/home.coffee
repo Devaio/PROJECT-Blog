@@ -14,6 +14,11 @@ angular.module 'BlogApp'
 			$scope.posts = postTagFactory.posts($stateParams.pageNum)
 			$scope.nextPage = parseInt($stateParams.pageNum or 1) + 1 		
 			$scope.showNextPage = true
+			
+			postTagFactory.random (data) ->
+				
+				$scope.morePosts = data
+			
 			if parseInt($stateParams.pageNum or 1) <= 1
 				$location.url('/')
 			

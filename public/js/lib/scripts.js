@@ -5409,6 +5409,9 @@ angular.module('BlogApp').controller('homeCont', [
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
     $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
     $scope.showNextPage = true;
+    postTagFactory.random(function(data) {
+      return $scope.morePosts = data;
+    });
     if (parseInt($stateParams.pageNum || 1) <= 1) {
       $location.url('/');
     }
@@ -5448,6 +5451,9 @@ angular.module('BlogApp').controller('postCont', [
     $scope.linky = $filter('linky');
     $scope.socialData = socialFactory.socialData;
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
+    postTagFactory.random(function(data) {
+      return $scope.morePosts = data;
+    });
     if ($location.$$hash === 'comments') {
       $scope.commentBox = angular.element('#comments');
       window.scrollTo(0, $scope.commentBox.offsetTop);
@@ -5565,7 +5571,7 @@ angular.module('BlogApp').directive('nav', function() {
 
 },{}],15:[function(require,module,exports){
 angular.module('BlogApp').factory('postTagFactory', [
-  '$resource', '$stateParams', function($resource, $stateParams) {
+  '$resource', '$stateParams', '$http', function($resource, $stateParams, $http) {
     var postModel, tagModel;
     postModel = $resource('/api/posts/:id', {
       id: '@_id'
@@ -5579,6 +5585,11 @@ angular.module('BlogApp').factory('postTagFactory', [
       posts: function(page) {
         return postModel.query({
           page: page
+        });
+      },
+      random: function(cb) {
+        return $http.get('/api/posts/random?num=5').then(function(returnData) {
+          return cb(returnData.data);
         });
       }
     };

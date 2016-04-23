@@ -4,7 +4,7 @@
 
 			<md-toolbar class="gains-bg ">
 				<div class="md-toolbar-tools ">
-					<h3 class="text-center full-width font-modesty font-45">
+					<h3 class="text-center full-width font-modesty font-45 ">
 						Welcome!
 					</h3>
 				</div>
@@ -32,8 +32,8 @@
 
 			<md-toolbar class="gains-bg ">
 				<div class="md-toolbar-tools ">
-					<a target="_blank" class="full-width " href="https://www.pinterest.com/viewfromhereis/ ">
-						<h3 class="text-center font-modesty font-45">
+					<a target="_blank " class="full-width " href="https://www.pinterest.com/viewfromhereis/ ">
+						<h3 class="text-center font-modesty font-45 ">
 							Pinterest
 						</h3>
 					</a>
@@ -49,7 +49,7 @@
 		<!--<pin-profile username=" 'viewfromhereis' " image-width=" '20' " board-height=" '300' " board-width=" '172' "></pin-profile>-->
 		<div class="pinterest-pin-container " layout="row " layout-wrap>
 			<div layout="column " flex="50 " class="pinterest-pin " ng-repeat="sidebarPin in socialData.sidebarPins ">
-				<a ng-href="{{sidebarPin.url}}" target="_blank">
+				<a ng-href="{{sidebarPin.url}} " target="_blank ">
 				<div class="pinterest-pin-img " style="background-image:url( '{{sidebarPin.image.original.url}}'); background-size:cover;
 	background-position:center; " ></div>
 				</a>
@@ -63,8 +63,8 @@
 
 			<md-toolbar class="gains-bg ">
 				<div class="md-toolbar-tools ">
-					<a target="_blank" class="full-width " href="https://www.instagram.com/clarissa_chappell/?ref=badge ">
-						<h3 class="text-center font-modesty font-45">
+					<a target="_blank " class="full-width " href="https://www.instagram.com/clarissa_chappell/?ref=badge ">
+						<h3 class="text-center font-modesty font-45 ">
 							Instagram
 						</h3>
 					</a>
@@ -77,5 +77,31 @@
 	" id="lightwidget_fc2ad108a0 " name="lightwidget_fc2ad108a0 "  scrolling="no " allowtransparency="true " class="lightwidget-widget
 	" style="width: 100%; border: 0; overflow: hidden; "></iframe>
 		</md-card-content>
+	</md-card>
+	
+	<md-card class="post-card white-bg ">
+		<md-card-title>
+
+			<md-toolbar class="gains-bg ">
+				<div class="md-toolbar-tools ">
+					<h3 class="full-width text-center font-modesty font-45 ">
+						Moar
+					</h3>
+				</div>
+			</md-toolbar>
+
+		</md-card-title>
+		
+		<md-card-content>
+			<div class="more-post" ng-repeat="post in morePosts">
+				<a class="black-link" target="_blank" href="/posts/{{post._id}}">
+					<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
+					<div class="more-post-title text-center md-subhead">{{post.title}}</div>				
+					<div class="more-post-img" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"></div>
+				</a>
+				
+			</div>	
+		</md-card-content>
+		
 	</md-card>
 </div>

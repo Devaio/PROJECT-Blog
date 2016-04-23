@@ -19,6 +19,11 @@ angular.module 'BlogApp'
 			$scope.linky = $filter('linky')
 			$scope.socialData = socialFactory.socialData
 			$scope.posts = postTagFactory.posts($stateParams.pageNum)
+			
+			postTagFactory.random (data) ->
+				
+				$scope.morePosts = data
+			
 			if $location.$$hash is 'comments'
 				$scope.commentBox = angular.element('#comments')
 				window.scrollTo(0, $scope.commentBox.offsetTop)
