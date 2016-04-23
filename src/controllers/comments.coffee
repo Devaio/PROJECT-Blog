@@ -6,6 +6,7 @@ Comment = mongoose.model('Comment')
 _ = require 'lodash'
 Main = require './main'
 moment = require 'moment'
+# sendgrid = require('sendgrid')(global.process.ENV.SENDGRID_KEY)
 
 # Date Conversion helper methods
 toReadableDate = (doc) ->
@@ -49,6 +50,10 @@ class Comments extends Main
 			else
 				if doc.isSubComment
 					res.send doc
+					
+					# if doc.sendEmail
+					# 	sendgrid.send
+					
 				else
 					Post.findOne {_id : req.params.postID}, (err, foundPost) ->
 						foundPost.comments = foundPost.comments || []

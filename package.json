@@ -28,6 +28,7 @@
     "prerender-node": "^2.2.0",
     "request": "^2.21.0",
     "s3": "^4.4.0",
+    "sendgrid": "^2.0.0",
     "tinymce": "^4.2.8",
     "underscore": "~1.5.2",
     "x-frame-options": "0.0.0"
