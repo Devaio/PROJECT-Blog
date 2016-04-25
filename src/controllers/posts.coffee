@@ -109,7 +109,7 @@ class Posts extends Main
 		Post
 			.count()
 			.exec (err, count) ->
-				random = Math.floor(Math.random() * count)
+				random = Math.floor(Math.random() * count) - 5
 				Post
 					.find()
 					.skip random		
