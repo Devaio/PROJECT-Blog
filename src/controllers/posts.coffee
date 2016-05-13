@@ -5,6 +5,7 @@ Post = mongoose.model('Post')
 Tag = mongoose.model('Tag')
 Main = require './main'
 moment = require 'moment'
+_ = require 'underscore'
 
 
 
@@ -109,13 +110,12 @@ class Posts extends Main
 		Post
 			.count()
 			.exec (err, count) ->
-				random = Math.floor(Math.random() * count) - 5
+				# random = Math.floor(Math.random() * count) - 5
 				Post
 					.find()
-					.skip random		
-					.limit +req.query.num or 1
 					.exec (err, posts) ->
-						res.send posts
+						shufflePosts = _.shuffle(posts)
+						res.send shufflePosts.slice(0,5)
 		
 		
 	delete : (req, res) ->
