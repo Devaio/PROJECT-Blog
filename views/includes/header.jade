@@ -30,7 +30,7 @@ html(lang="en", ng-app="BlogApp")
 		script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-sanitize.min.js")
 		script(src='/public/js/dist/updateMeta.min.js')
 		script(src='/public/js/dist/angular-pin.js')
-		script(src="//lightwidget.com/widgets/lightwidget.js)
+		script(src="//lightwidget.com/widgets/lightwidget.js")
 		
 		
 		// Tiny MCE
@@ -40,8 +40,6 @@ html(lang="en", ng-app="BlogApp")
         
 		link(rel="stylesheet", href="/public/css/dist/bootstrap.min.css")
 		link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css")
-	
-			
 		link(rel="stylesheet", href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc4/angular-material.min.css")
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic")
 
@@ -101,4 +99,15 @@ html(lang="en", ng-app="BlogApp")
 				fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 		// script(async, data-pin-hover="true", data-pin-tall="true", data-pin-round="true", src="//assets.pinterest.com/js/pinit.js")
+		
+		script#mNCC(language='javascript').
+			medianet_width = "160";
+				medianet_height = "600";
+				medianet_crid = "803252635";
+				medianet_versionId = "111299";
+				(function() {
+				var isSSL = 'https:' == document.location.protocol;
+				var mnSrc = (isSSL ? 'https:' : 'http:') + '//contextual.media.net/nmedianet.js?cid=8CUKDU01E' + (isSSL ? '&https=1' : '');
+				document.write('<scr' + 'ipt type="text/javascript" id="mNSC" src="' + mnSrc + '"></scr' + 'ipt>');
+				})();
 
