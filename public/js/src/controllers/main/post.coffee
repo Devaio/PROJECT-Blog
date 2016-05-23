@@ -19,7 +19,7 @@ angular.module 'BlogApp'
 			$scope.linky = $filter('linky')
 			$scope.socialData = socialFactory.socialData
 			$scope.posts = postTagFactory.posts($stateParams.pageNum)
-			
+			$scope.socialFactory = socialFactory
 			postTagFactory.random (data) ->
 				
 				$scope.morePosts = data

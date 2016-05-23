@@ -5409,6 +5409,7 @@ angular.module('BlogApp').controller('homeCont', [
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
     $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
     $scope.showNextPage = true;
+    $scope.socialFactory = socialFactory;
     postTagFactory.random(function(data) {
       return $scope.morePosts = data;
     });
@@ -5451,6 +5452,7 @@ angular.module('BlogApp').controller('postCont', [
     $scope.linky = $filter('linky');
     $scope.socialData = socialFactory.socialData;
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
+    $scope.socialFactory = socialFactory;
     postTagFactory.random(function(data) {
       return $scope.morePosts = data;
     });
@@ -5531,6 +5533,7 @@ angular.module('BlogApp').controller('tagCont', [
       name: $stateParams.name
     });
     $scope.$sce = $sce;
+    $scope.socialFactory = socialFactory;
     $scope.posts = postTagFactory.postModel.query({
       tag: $stateParams.name,
       page: $stateParams.pageNum
@@ -5618,7 +5621,20 @@ angular.module('BlogApp').factory('socialFactory', [
       return socialData.sidebarPins = returnData.data.data.slice(0, 12);
     });
     return {
-      socialData: socialData
+      socialData: socialData,
+      adInit: function() {
+        var medianet_crid, medianet_height, medianet_versionId, medianet_width;
+        medianet_width = '160';
+        medianet_height = '600';
+        medianet_crid = '803252635';
+        medianet_versionId = '111299';
+        return (function() {
+          var isSSL, mnSrc;
+          isSSL = 'https:' === document.location.protocol;
+          mnSrc = (isSSL ? 'https:' : 'http:') + '//contextual.media.net/nmedianet.js?cid=8CUKDU01E' + (isSSL ? '&https=1' : '');
+          document.write('<scr' + 'ipt type="text/javascript" id="mNSC" src="' + mnSrc + '"></scr' + 'ipt>');
+        })();
+      }
     };
   }
 ]);

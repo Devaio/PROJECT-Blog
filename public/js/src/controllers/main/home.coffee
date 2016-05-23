@@ -15,6 +15,8 @@ angular.module 'BlogApp'
 			$scope.nextPage = parseInt($stateParams.pageNum or 1) + 1 		
 			$scope.showNextPage = true
 			
+			$scope.socialFactory = socialFactory
+			
 			postTagFactory.random (data) ->
 				
 				$scope.morePosts = data

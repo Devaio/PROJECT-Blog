@@ -11,7 +11,7 @@ angular.module 'BlogApp'
 			
 			$scope.tag = postTagFactory.tagModel.get({name : $stateParams.name})
 			$scope.$sce = $sce
-			
+			$scope.socialFactory = socialFactory
 			$scope.posts = postTagFactory.postModel.query({tag : $stateParams.name, page : $stateParams.pageNum})
 			$scope.nextPage = parseInt($stateParams.pageNum or 1) + 1 		
 			$scope.showNextPage = true
