@@ -15,7 +15,9 @@ angular.module 'BlogApp'
 			$scope.posts = postTagFactory.postModel.query({tag : $stateParams.name, page : $stateParams.pageNum})
 			$scope.nextPage = parseInt($stateParams.pageNum or 1) + 1 		
 			$scope.showNextPage = true
-			
+			postTagFactory.random (data) ->
+				$scope.morePosts = data
+				
 			if parseInt($stateParams.pageNum) <= 1
 				$location.url("/tags/#{$stateParams.name}")
 
@@ -27,5 +29,12 @@ angular.module 'BlogApp'
 					$scope.nextPage = parseInt($stateParams.pageNum or 1) + 1 		
 					$scope.showNextPage = true	
 
+			$scope.commentLengthChecker = (post) ->
+				totalComments = post.comments.reduce (rt, cn) ->
+					countCurrent = if cn.approved then 1 else 0
+					# countSubs = if cn.approved then cn.subComments.length else 0
+					return rt + countCurrent
+				, 0
+				return totalComments
 			
 	]

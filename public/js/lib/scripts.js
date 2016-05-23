@@ -5537,10 +5537,13 @@ angular.module('BlogApp').controller('tagCont', [
     });
     $scope.nextPage = parseInt($stateParams.pageNum || 1) + 1;
     $scope.showNextPage = true;
+    postTagFactory.random(function(data) {
+      return $scope.morePosts = data;
+    });
     if (parseInt($stateParams.pageNum) <= 1) {
       $location.url("/tags/" + $stateParams.name);
     }
-    return $scope.$watch('posts.length', function() {
+    $scope.$watch('posts.length', function() {
       if ($scope.posts.length < 10) {
         return $scope.showNextPage = null;
       } else {
@@ -5548,6 +5551,15 @@ angular.module('BlogApp').controller('tagCont', [
         return $scope.showNextPage = true;
       }
     });
+    return $scope.commentLengthChecker = function(post) {
+      var totalComments;
+      totalComments = post.comments.reduce(function(rt, cn) {
+        var countCurrent;
+        countCurrent = cn.approved ? 1 : 0;
+        return rt + countCurrent;
+      }, 0);
+      return totalComments;
+    };
   }
 ]);
 
