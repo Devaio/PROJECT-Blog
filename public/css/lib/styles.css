@@ -2,6 +2,10 @@
   font-family: 'Modesty';
   src: url("../../fonts/ModestyFreshStyle.ttf");
 }
+body,
+html {
+  height: auto;
+}
 .display-block {
   display: block;
 }
