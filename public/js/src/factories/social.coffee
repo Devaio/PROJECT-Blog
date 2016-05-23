@@ -7,16 +7,16 @@ angular.module('BlogApp')
                socialData.sidebarPins = returnData.data.data.slice(0, 12)
         return {
             socialData : socialData
-            adInit : () ->
-                medianet_width = '160'
-                medianet_height = '600'
-                medianet_crid = '803252635'
-                medianet_versionId = '111299'
-                do ->
-                    isSSL = 'https:' == document.location.protocol
-                    mnSrc = (if isSSL then 'https:' else 'http:') + '//contextual.media.net/nmedianet.js?cid=8CUKDU01E' + (if isSSL then '&https=1' else '')
-                    document.write '<scr' + 'ipt type="text/javascript" id="mNSC" src="' + mnSrc + '"></scr' + 'ipt>'
-                    return
+            # adInit : () ->
+            #     medianet_width = '160'
+            #     medianet_height = '600'
+            #     medianet_crid = '803252635'
+            #     medianet_versionId = '111299'
+            #     do ->
+            #         isSSL = 'https:' == document.location.protocol
+            #         mnSrc = (if isSSL then 'https:' else 'http:') + '//contextual.media.net/nmedianet.js?cid=8CUKDU01E' + (if isSSL then '&https=1' else '')
+            #         document.write '<scr' + 'ipt type="text/javascript" id="mNSC" src="' + mnSrc + '"></scr' + 'ipt>'
+            #         return
         }
 ])
 	

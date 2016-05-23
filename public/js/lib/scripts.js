@@ -5621,20 +5621,7 @@ angular.module('BlogApp').factory('socialFactory', [
       return socialData.sidebarPins = returnData.data.data.slice(0, 12);
     });
     return {
-      socialData: socialData,
-      adInit: function() {
-        var medianet_crid, medianet_height, medianet_versionId, medianet_width;
-        medianet_width = '160';
-        medianet_height = '600';
-        medianet_crid = '803252635';
-        medianet_versionId = '111299';
-        return (function() {
-          var isSSL, mnSrc;
-          isSSL = 'https:' === document.location.protocol;
-          mnSrc = (isSSL ? 'https:' : 'http:') + '//contextual.media.net/nmedianet.js?cid=8CUKDU01E' + (isSSL ? '&https=1' : '');
-          document.write('<scr' + 'ipt type="text/javascript" id="mNSC" src="' + mnSrc + '"></scr' + 'ipt>');
-        })();
-      }
+      socialData: socialData
     };
   }
 ]);
