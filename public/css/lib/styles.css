@@ -12,13 +12,15 @@ html {
   background-color: #dcdcdc;
   margin-bottom: 25px;
 }
-#_mN_main_957624352_0_n {
+#_mN_main_957624352_0_n,
+#_mN_dy_957624352_1 {
   margin: auto;
   display: none;
   width: 600px;
 }
 @media (min-width: 600px) {
-  #_mN_main_957624352_0_n {
+  #_mN_main_957624352_0_n,
+  #_mN_dy_957624352_1 {
     display: block;
   }
 }
