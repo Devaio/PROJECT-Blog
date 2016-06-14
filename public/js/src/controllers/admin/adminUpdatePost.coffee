@@ -45,7 +45,9 @@ angular.module 'BlogApp'
 			width : 740
 
 		}
-		
+		$scope.copyText = (event) ->
+			event.target.select()
+			document.execCommand 'copy'
 		authService (stuff) ->
 			# console.log '!', stuff
 			# console.log '--', $scope.post

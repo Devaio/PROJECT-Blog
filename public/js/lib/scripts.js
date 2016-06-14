@@ -5217,6 +5217,10 @@ angular.module('BlogApp').controller('adminAddPost', [
         });
       });
     };
+    $scope.copyText = function(event) {
+      event.target.select();
+      return document.execCommand('copy');
+    };
     return authService(function(stuff) {
       return $scope.submitPost = function() {
         var _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
@@ -5373,6 +5377,10 @@ angular.module('BlogApp').controller('adminUpdatePost', [
       toolbar1: 'core',
       toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
       width: 740
+    };
+    $scope.copyText = function(event) {
+      event.target.select();
+      return document.execCommand('copy');
     };
     return authService(function(stuff) {
       return $scope.updatePost = function() {

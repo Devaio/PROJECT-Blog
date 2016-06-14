@@ -44,7 +44,8 @@
 						<img width="150" ngf-thumbnail="file">
 					</div>
 					<div>
-						{{file.url}}
+						<input ng-click="copyText($event)" value="{{file.url}}" readonly>
+						<div>Click to Copy!</div>
 						
 					</div>
 				</div>

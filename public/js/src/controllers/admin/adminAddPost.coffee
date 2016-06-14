@@ -47,7 +47,10 @@ angular.module 'BlogApp'
 					returnData.data.data.forEach (file, index) ->
 						$scope.files[index].url = file.url
 				
-				
+			$scope.copyText = (event) ->
+				event.target.select()
+				document.execCommand 'copy'
+
 			authService (stuff) ->
 				
 				$scope.submitPost = () ->	
