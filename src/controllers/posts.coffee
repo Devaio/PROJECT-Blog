@@ -68,7 +68,7 @@ class Posts extends Main
 			Tag.findOne {name : req.query.tag}, (err, tag) ->
 				
 				if tag
-					q.tags = {$elemMatch : {$eq : tag._id} }
+					q.tags = {$elemMatch : {$eq : tag._id} }					
 					Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags comments').exec (err, posts) ->
 						if posts?
 							for post in posts

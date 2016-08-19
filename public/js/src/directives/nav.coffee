@@ -10,4 +10,7 @@ angular.module 'BlogApp'
 				$scope.toggleNav = () ->
 					# console.log $mdSidenav
 					$mdSidenav('right').toggle()
+				
+				$scope.toggleSub = () ->
+					$scope.showSubscribe = !$scope.showSubscribe
 		}

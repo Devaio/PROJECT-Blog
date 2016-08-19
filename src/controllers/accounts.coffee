@@ -2,7 +2,6 @@
 mongoose = require 'mongoose'
 Account = mongoose.model('Account')
 Main = require './main'
-
 class Accounts extends Main
 
 	constructor : () ->

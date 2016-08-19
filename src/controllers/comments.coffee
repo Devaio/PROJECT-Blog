@@ -1,13 +1,12 @@
 # Comments controller
 mongoose = require 'mongoose'
-async = require 'async'
-Post = mongoose.model('Post')
-Comment = mongoose.model('Comment')
-_ = require 'lodash'
-Main = require './main'
-moment = require 'moment'
-# sendgrid = require('sendgrid')(global.process.ENV.SENDGRID_KEY)
-
+async    = require 'async'
+Post     = mongoose.model('Post')
+Comment  = mongoose.model('Comment')
+_        = require 'lodash'
+Main     = require './main'
+moment   = require 'moment'
+Mailer   = require '../modules/mailer'
 # Date Conversion helper methods
 toReadableDate = (doc) ->
 	doc.createdAt = moment.unix(doc.createdAt).format('MMM DD, YYYY')

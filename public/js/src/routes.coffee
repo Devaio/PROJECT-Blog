@@ -1,5 +1,6 @@
 angular.module 'BlogApp'
-	.config ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider)->
+	.config ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compileProvider', ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider)->
+		$compileProvider.debugInfoEnabled(false);
 		$locationProvider.html5Mode(true);
 
 		#For any unmatched url, redirect to /state1

@@ -5489,7 +5489,7 @@ angular.module('BlogApp').controller('postCont', [
     $scope.pinIt = function() {
       var img;
       img = $scope.post.pinImg;
-      $window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=' + encodeURIComponent($scope.post.title), 'MyWindow', 'width=600,height=400');
+      $window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=theviewfromhere.is%20%7C%7C%20' + encodeURIComponent($scope.post.title), 'MyWindow', 'width=600,height=400');
       return true;
     };
     $scope.submitComment = function() {
@@ -5584,8 +5584,11 @@ angular.module('BlogApp').directive('nav', function() {
       navheight: '='
     },
     controller: function($scope, $mdSidenav) {
-      return $scope.toggleNav = function() {
+      $scope.toggleNav = function() {
         return $mdSidenav('right').toggle();
+      };
+      return $scope.toggleSub = function() {
+        return $scope.showSubscribe = !$scope.showSubscribe;
       };
     }
   };
@@ -5637,7 +5640,8 @@ angular.module('BlogApp').factory('socialFactory', [
 
 },{}],17:[function(require,module,exports){
 angular.module('BlogApp').config([
-  '$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+  '$stateProvider', '$urlRouterProvider', '$locationProvider', '$compileProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
     return $stateProvider.state('home', {

@@ -1,129 +1,157 @@
 <div id="hamburger-nav" ng-click="toggleNav()" flex="15" hide-gt-md>
 	<i class="fa fa-bars"></i>
-</div>	
+</div>
 
 <md-sidenav md-component-id="right" class="text-center md-sidenav-right" layout-align="start center">
-    <div layout="column">
+	<div layout="column">
 		<a href="/" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					Home 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				Home
 			</md-button>
 		</a>
 		<a href="/about" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					About 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				About
 			</md-button>
 		</a>
 		<a href="/tags/diy" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					DIY 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				DIY
 			</md-button>
 		</a>
 		<a href="/tags/colorado" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					Colorado 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				Colorado
 			</md-button>
 		</a>
 		<a href="/tags/food" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					Food 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				Food
 			</md-button>
 		</a>
 		<a href="/tags/travel" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					Travel 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				Travel
 			</md-button>
 		</a>
-		<a href="/tags/reading" class="full-width" flex>
+		<!--<a href="/tags/reading" class="full-width" flex>
 			<md-button class="full-width md-raised mobile-nav-button" flex> 
 					Reading 
 			</md-button>
-		</a>
+		</a>-->
 		<a href="/tags/5things" class="full-width" flex>
-			<md-button class="full-width md-raised mobile-nav-button" flex> 
-					5 Things 
+			<md-button class="full-width md-raised mobile-nav-button" flex>
+				5 Things
 			</md-button>
 		</a>
-		
-		
-		
-		
-		
-			
-			
+
+
+
+
+
+
+
 	</div>
-	
-	
+
+
 </md-sidenav>
 
 
 
 
 <div class="whiteframe-hex-container">
-	<div   layout="column" class=" main-header" layout-align="center center">
-		
+	<div layout="column" class=" main-header" layout-align="center center">
+
 		<h1 class="main-header-text text-center md-display-1"><a class="black-link" href="/">the view from here</a></h1>
-		
+
 	</div>
-	
+
 	<div class="desktop-nav" flex="70" flex-offset="15" layout="row" class="text-center">
-			<div flex>
+		<div flex>
 			<a href="/about">
-				<md-button class="gray-link" flex> 
-						About 
+				<md-button class="gray-link" flex>
+					About
 				</md-button>
 			</a>
-			</div>
-			<div flex>
+		</div>
+		<div flex>
 			<a href="/tags/diy">
-				<md-button class="gray-link" flex> 
-						DIY 
+				<md-button class="gray-link" flex>
+					DIY
 				</md-button>
 			</a>
-			</div>
-			<div flex>
+		</div>
+		<div flex>
 			<a href="/tags/colorado">
-				<md-button class="gray-link" flex> 
-						Colorado 
+				<md-button class="gray-link" flex>
+					Colorado
 				</md-button>
 			</a>
-			</div>
-			<div flex>
+		</div>
+		<div flex>
 			<a href="/tags/food">
-				<md-button class="gray-link" flex> 
-						Food 
+				<md-button class="gray-link" flex>
+					Food
 				</md-button>
 			</a>
-			</div>
-			<div flex>
+		</div>
+		<div flex>
 			<a href="/tags/travel">
-				<md-button class="gray-link" flex> 
-						Travel 
+				<md-button class="gray-link" flex>
+					Travel
 				</md-button>
 			</a>
-			</div>
-			<div flex>
+		</div>
+		<!--<div flex>
 			<a href="/tags/reading">
 				<md-button class="gray-link" flex> 
 						Reading 
 				</md-button>
 			</a>
-			</div>
-			<div flex>
+			</div>-->
+		<div flex>
 			<a href="/tags/5things">
-				<md-button class="gray-link" flex> 
-						5 Things 
+				<md-button class="gray-link" flex>
+					5 Things
 				</md-button>
 			</a>
-			</div>
-			
 		</div>
-	
-	
+		<!--<div flex>
+			<md-button ng-click="toggleSub()" flex>
+				Subscribe
+			</md-button>
+		</div>-->
+
+	</div>
+	<!--<div ng-show="showSubscribe" class="subscribe-container">
+
+
+		<div layout="row" flex="70" flex-offset="15">
+			<div layout="row">
+				<md-input-container flex>
+					<label>Name</label>
+					<input ng-model="newPost.title">
+				</md-input-container>
+				<md-input-container flex>
+					<label>Email</label>
+					<input ng-model="newPost.title">
+				</md-input-container>
+			</div>
+		</div>
+		<div layout="row" flex="70" flex-offset="15">
+			<md-button ng-click="submitSubComment(comment, subComment)" class="button-ex-pad button-med md-raised">
+				<span>Reply!</span>
+			</md-button>
+		</div>
+
+	</div>-->
+
+
+
 </div>
 
 <md-toolbar class="md-primary tool-large" layout="row" layout-align="center center" layout-md="column">
-		
+
 </md-toolbar>
 
 <!--$mdSidenav('left').toggle()-->
