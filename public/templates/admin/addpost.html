@@ -96,7 +96,7 @@
 		</ng-quill-editor>-->
 		
 		
-	<div>
+	</div>
 	 
 	<div flex="100">
 		
@@ -140,9 +140,31 @@
 			<md-button ng-click="submitPost()" class="button-ex-pad button-med md-raised md-accent">Create Post!</md-button>
 			
 		</div>
+		<div class="margin-top-small" layout="row" layout-sm="column" layout-align="end">
+			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
+			
+			<md-button ng-click="submitDraft()" class="button-ex-pad button-med md-raised md-primary">Save Draft!</md-button>
+			
+		</div>
+		
 	</div>
+	<!--<div flex="100" class="margin-top-med">
+		<div layout="row" layout-sm="column" layout-align="end">
+			<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>
+			
+			<md-button ng-click="submidDraft()" class="button-ex-pad button-med md-raised md-primary">Save Draft!</md-button>
+			
+		</div>
+	</div>-->
 	
 	
 	
 
 </div>
+
+<h1> Preview </h1>
+<md-card class="post-card white-bg">
+<md-card-content>
+	<div class="post-content-container md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(newPost.content)"></div>
+</md-card-content>
+</md-card>

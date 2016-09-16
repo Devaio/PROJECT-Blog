@@ -59,9 +59,11 @@ class Posts extends Main
 		q = {deleted : false}
 		# Page Skipper
 		pageSkip = 0
-		postLimit = req.query.all or 10
+		postLimit = +req.query.all or 10
 		if req.query.page
 			pageSkip = (req.query.page - 1) * 10
+		if req.query.deleted
+			delete q.deleted
 		
 		# Create tag finder query
 		if req.query.tag
@@ -94,6 +96,7 @@ class Posts extends Main
 							res.send post
 			else
 				Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags comments').exec (err, posts) ->
+					console.log(err, posts)
 					if posts?
 						for post in posts
 							if post
@@ -118,11 +121,11 @@ class Posts extends Main
 						res.send shufflePosts.slice(0,5)
 		
 		
-	delete : (req, res) ->
-		super(req, res)
+	getDeleted : (req, res) ->
+		Post.find({deleted : true}).sort('-createdAt').exec (err, posts) ->
+			res.send(posts)
 
 	createPost : (req, res) ->
-		self = @
 		body = req.body
 		
 		console.log('POST BODY', body)

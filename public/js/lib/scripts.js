@@ -5178,13 +5178,14 @@ require('./routes');
 
 },{"./controllers/admin/adminAddPost":5,"./controllers/admin/adminDashboard":6,"./controllers/admin/adminLogin":7,"./controllers/admin/adminModerateComments":8,"./controllers/admin/adminUpdatePost":9,"./controllers/main/about":10,"./controllers/main/home":11,"./controllers/main/post":12,"./controllers/main/tag":13,"./directives/nav":14,"./factories/post-tag":15,"./factories/social":16,"./routes":17,"./services/authService":18,"ng-file-upload":3}],5:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
-  '$scope', '$location', '$http', '$timeout', 'authService', 'Upload', function($scope, $location, $http, $timeout, authService, Upload) {
+  '$scope', '$location', '$http', '$sce', '$timeout', 'authService', 'Upload', function($scope, $location, $http, $sce, $timeout, authService, Upload) {
     $scope.navheight = 'small';
     $scope.loading = false;
     $scope.newPost = {
       tags: [],
       createdAt: new Date()
     };
+    $scope.$sce = $sce;
     $scope.resizeCheck = function(file, width, height) {
       return width > 1600 || height > 1200;
     };
@@ -5222,7 +5223,7 @@ angular.module('BlogApp').controller('adminAddPost', [
       return document.execCommand('copy');
     };
     return authService(function(stuff) {
-      return $scope.submitPost = function() {
+      $scope.submitPost = function() {
         var _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
         $scope.postError = '';
         if (((_ref = $scope.newPost) != null ? (_ref1 = _ref.content) != null ? _ref1.length : void 0 : void 0) && ((_ref2 = $scope.newPost) != null ? _ref2.preview : void 0) && ((_ref3 = $scope.newPost) != null ? _ref3.coverImg : void 0) && ((_ref4 = $scope.newPost) != null ? (_ref5 = _ref4.tags) != null ? _ref5.length : void 0 : void 0)) {
@@ -5243,6 +5244,21 @@ angular.module('BlogApp').controller('adminAddPost', [
         } else {
           return $scope.postError = 'Make sure everything is filled out!';
         }
+      };
+      return $scope.submitDraft = function() {
+        $scope.loading = true;
+        console.log($scope.newPost);
+        $scope.newPost.deleted = true;
+        $scope.newPost.createdAt = $scope.newPost.createdAt.getTime();
+        return $http.post('/api/posts', $scope.newPost).then(function(returnData) {
+          console.log(returnData);
+          $scope.loading = false;
+          if (returnData.data._id) {
+            return alert('Draft Saved!');
+          } else {
+            return alert('Bad things happened!' + returnData.data);
+          }
+        });
       };
     });
   }
@@ -5337,12 +5353,14 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('adminUpdatePost', [
-  '$scope', '$location', '$http', '$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', function($scope, $location, $http, $timeout, authService, $stateParams, postTagFactory, Upload) {
+  '$scope', '$location', '$http', '$sce', '$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', function($scope, $location, $http, $sce, $timeout, authService, $stateParams, postTagFactory, Upload) {
     $scope.navheight = 'small';
     $scope.loading = false;
     $scope.posts = postTagFactory.postModel.query({
-      all: 10000
+      all: 10000,
+      deleted: true
     });
+    $scope.$sce = $sce;
     $scope.transformDate = function() {
       return $scope.selectedPost.createdAt = new Date($scope.selectedPost.createdAt);
     };
@@ -5391,6 +5409,7 @@ angular.module('BlogApp').controller('adminUpdatePost', [
           return $scope.selectedPost.$save(function() {
             $scope.loading = false;
             window.alert('Done!');
+            window.location.reload();
             return true;
           });
         }

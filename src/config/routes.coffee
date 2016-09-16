@@ -38,8 +38,6 @@ module.exports = (app, passport, redis) ->
 
 	# API Routes
 	app.get '/api/me', (req, res) ->
-		console.log 'API ME'
-		console.log 'REQ USER', req.user
 		res.send {user : req.user}
 		
 	app.get '/api/posts', posts.get

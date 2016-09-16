@@ -3,10 +3,11 @@ angular.module 'BlogApp'
 		'$scope',
 		'$location', 
 		'$http',
+		'$sce',
 		'$timeout', 
 		'authService', 
 		'Upload', 
-		($scope, $location, $http, $timeout, authService, Upload) ->
+		($scope, $location, $http, $sce, $timeout, authService, Upload) ->
 		
 			$scope.navheight = 'small'
 			$scope.loading = false
@@ -14,7 +15,7 @@ angular.module 'BlogApp'
 				tags : []
 				createdAt : new Date()
 			}
-			
+			$scope.$sce = $sce
 			$scope.resizeCheck = (file, width, height) ->
 				# console.log 'resize!', width > 1600 or height > 1200
 				return width > 1600 or height > 1200
@@ -73,4 +74,18 @@ angular.module 'BlogApp'
 								
 					else
 						$scope.postError = 'Make sure everything is filled out!'
+				
+				$scope.submitDraft = () ->	
+					$scope.loading = true
+					console.log $scope.newPost
+					$scope.newPost.deleted = true
+					$scope.newPost.createdAt = $scope.newPost.createdAt.getTime()
+					$http.post('/api/posts', $scope.newPost)
+						.then (returnData) ->
+							console.log returnData
+							$scope.loading = false
+							if returnData.data._id
+								alert('Draft Saved!')
+							else
+								alert('Bad things happened!' + returnData.data)
 		]
