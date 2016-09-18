@@ -53,14 +53,14 @@
 				</div>
 				<div flex="100">
 					<div layout="row" layout-sm="column" layout-align="center">
-						<!--<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>-->
 						<md-button type="submit" class="md-raised md-button md-ink-ripple full-width">Sign Me Up!</md-button>
-
+						
 					</div>
 				</div>
 			</form>
 
 			<div class="margin-top-small text-center" flex="100">
+				<md-progress-circular ng-if="subscriber.loading" class="margin-auto" md-mode="indeterminate"></md-progress-circular>
 				<p>{{socialFactory.subscribeSuccess}}</p>
 			</div>
 		</md-card-content>

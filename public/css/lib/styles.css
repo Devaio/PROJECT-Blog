@@ -517,6 +517,9 @@ footer {
 .subscribe-container.ng-hide {
   height: 0px;
 }
+.margin-auto {
+  margin: auto;
+}
 .post-card {
   margin: 50px 0px;
 }

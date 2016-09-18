@@ -5652,6 +5652,7 @@ angular.module('BlogApp').factory('socialFactory', [
       return socialFactory.socialData.sidebarPins = returnData.data.data.slice(0, 12);
     });
     socialFactory.subscribe = function(sub) {
+      sub.loading = true;
       return $http({
         url: '/api/subscribe',
         method: "POST",
@@ -5659,6 +5660,7 @@ angular.module('BlogApp').factory('socialFactory', [
           email: sub.email
         }
       }).then(function(resp) {
+        sub.loading = false;
         socialFactory.subscribeSuccess = 'Thanks for signing up!';
         sub.email = '';
         return $timeout(function() {

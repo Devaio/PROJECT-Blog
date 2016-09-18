@@ -8,6 +8,7 @@ angular.module('BlogApp')
                socialFactory.socialData.sidebarPins = returnData.data.data.slice(0, 12)
         
         socialFactory.subscribe = (sub) ->
+            sub.loading = true
             return $http({
                 url : '/api/subscribe',
                 method : "POST",
@@ -16,6 +17,7 @@ angular.module('BlogApp')
                 }
                 
             }).then (resp) ->
+                sub.loading = false
                 socialFactory.subscribeSuccess = 'Thanks for signing up!'
                 sub.email = ''
                 $timeout () ->
