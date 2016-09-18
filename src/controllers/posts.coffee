@@ -6,6 +6,7 @@ Tag = mongoose.model('Tag')
 Main = require './main'
 moment = require 'moment'
 _ = require 'underscore'
+slug = require 'slug'
 
 
 
@@ -83,17 +84,31 @@ class Posts extends Main
 				
 		else
 			
-			if req.params.id
-				Post.findOne({_id : req.params.id, deleted : false}).sort('-createdAt').skip(pageSkip).populate('tags').populate({
-							path : 'comments'
-							populate : {
-								path : 'subComments'
-								model : 'Comment'
-							}
-						}).exec (err, post) ->
-							if post
-								toReadableDate(post)
-							res.send post
+			if req.params.id				
+				Post.findOne({_id : req.params.id, deleted : false}).populate('tags').populate({
+						path : 'comments'
+						populate : {
+							path : 'subComments'
+							model : 'Comment'
+						}
+					}).exec (err, post) ->
+						if post
+							toReadableDate(post)						
+							return res.send post
+						else
+							Post.findOne({slug : req.params.id, deleted : false}).populate('tags').populate({
+								path : 'comments'
+								populate : {
+									path : 'subComments'
+									model : 'Comment'
+								}
+							}).exec (err, post) ->
+								if post
+									toReadableDate(post)						
+									return res.send post
+								else
+									res.send {title : 'No Post'}
+
 			else
 				Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags comments').exec (err, posts) ->
 					console.log(err, posts)
@@ -140,6 +155,8 @@ class Posts extends Main
 			body.tags = tagList
 			
 			body.createdAt = moment.unix(body.createdAt / 1000).format('X')
+			# slugify the title
+			body.slug = slug(body.title.toLowerCase())
 			newPost = new Post(body)
 			newPost.save (err, doc) ->
 				console.log err, doc
