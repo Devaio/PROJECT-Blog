@@ -26,6 +26,45 @@
 			</p>
 		</md-card-content>
 	</md-card>
+	<md-card class="post-card white-bg ">
+		<md-card-title>
+
+			<md-toolbar class="gains-bg ">
+				<div class="md-toolbar-tools ">
+					<h3 class="text-center full-width font-modesty font-45 ">
+						subscribe
+					</h3>
+				</div>
+			</md-toolbar>
+
+		</md-card-title>
+		<md-card-content>
+			<div flex="100">
+				<p class="text-center"><strong>Never Miss A Post!</strong></p>
+				<p class="text-center">Sign up below for the monthly newsletter - no spam or annoying emails... promise!</p>
+			</div>
+			<form ng-submit="socialFactory.subscribe(subscriber.email)">
+
+				<div flex="100">
+					<md-input-container class="display-block" flex="100">
+						<label class="md-subhead">Email</label>
+						<input ng-model="subscriber.email">
+					</md-input-container>
+				</div>
+				<div flex="100">
+					<div layout="row" layout-sm="column" layout-align="center">
+						<!--<md-progress-circular ng-if="loading" class="loader-space" md-mode="indeterminate"></md-progress-circular>-->
+						<md-button type="submit" class="md-raised md-button md-ink-ripple full-width">Sign Me Up!</md-button>
+
+					</div>
+				</div>
+			</form>
+
+			<div class="margin-top-small text-center" flex="100">
+				<p>{{socialFactory.subscribeSuccess}}</p>
+			</div>
+		</md-card-content>
+	</md-card>
 
 	<md-card class="post-card pin-sidebar white-bg ">
 		<md-card-title>
@@ -42,20 +81,20 @@
 
 		</md-card-title>
 		<md-card-content>
-	<!--<a data-pin-do="embedBoard " data-pin-board-width="222 " data-pin-scale-height="500 " data-pin-scale-width="60
+			<!--<a data-pin-do="embedBoard " data-pin-board-width="222 " data-pin-scale-height="500 " data-pin-scale-width="60
 	" href="https://www.pinterest.com/viewfromhereis/the-view-from-here-places/ "></a>-->
-	<!--<a data-pin-do="embedUser " data-pin-board-width="222 " data-pin-scale-height="300 " data-pin-scale-width="60
+			<!--<a data-pin-do="embedUser " data-pin-board-width="222 " data-pin-scale-height="300 " data-pin-scale-width="60
 	" href="https://www.pinterest.com/viewfromhereis/ "></a>-->
-		<!--<pin-profile username=" 'viewfromhereis' " image-width=" '20' " board-height=" '300' " board-width=" '172' "></pin-profile>-->
-		<div class="pinterest-pin-container " layout="row " layout-wrap>
-			<div layout="column " flex="50 " class="pinterest-pin " ng-repeat="sidebarPin in socialData.sidebarPins ">
-				<a ng-href="{{sidebarPin.url}} " target="_blank ">
-				<div class="pinterest-pin-img " style="background-image:url( '{{sidebarPin.image.original.url}}'); background-size:cover;
-	background-position:center; " ></div>
-				</a>
+			<!--<pin-profile username=" 'viewfromhereis' " image-width=" '20' " board-height=" '300' " board-width=" '172' "></pin-profile>-->
+			<div class="pinterest-pin-container " layout="row " layout-wrap>
+				<div layout="column " flex="50 " class="pinterest-pin " ng-repeat="sidebarPin in socialData.sidebarPins ">
+					<a ng-href="{{sidebarPin.url}} " target="_blank ">
+						<div class="pinterest-pin-img " style="background-image:url( '{{sidebarPin.image.original.url}}'); background-size:cover;
+	background-position:center; "></div>
+					</a>
+				</div>
 			</div>
-		</div>
-		
+
 		</md-card-content>
 	</md-card>
 	<md-card class="post-card white-bg ">
@@ -72,13 +111,13 @@
 			</md-toolbar>
 
 		</md-card-title>
-		<md-card-content>			
+		<md-card-content>
 			<iframe style="width:100%; height:210px " src="//lightwidget.com/widgets/fc2ad108a062f3e4ca2cc0fc31a0dd7c24619ca7.html
-	" id="lightwidget_fc2ad108a0 " name="lightwidget_fc2ad108a0 "  scrolling="no " allowtransparency="true " class="lightwidget-widget
+	" id="lightwidget_fc2ad108a0 " name="lightwidget_fc2ad108a0 " scrolling="no " allowtransparency="true " class="lightwidget-widget
 	" style="width: 100%; border: 0; overflow: hidden; "></iframe>
 		</md-card-content>
 	</md-card>
-	
+
 	<md-card class="post-card white-bg ">
 		<md-card-title>
 
@@ -91,20 +130,20 @@
 			</md-toolbar>
 
 		</md-card-title>
-		
+
 		<md-card-content>
 			<div class="more-post" ng-repeat="post in morePosts">
 				<a class="black-link" target="_blank" href="/posts/{{post.slug}}">
 					<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
-					<div class="more-post-title text-center md-subhead">{{post.title}}</div>				
+					<div class="more-post-title text-center md-subhead">{{post.title}}</div>
 					<div class="more-post-img" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"></div>
 				</a>
-				
-			</div>	
+
+			</div>
 		</md-card-content>
-		
+
 	</md-card>
-	
+
 	<!--<md-card>
 		<div id="mNCC" ng-init="socialFactory.adInit()">
 			

@@ -5644,15 +5644,28 @@ angular.module('BlogApp').factory('postTagFactory', [
 
 },{}],16:[function(require,module,exports){
 angular.module('BlogApp').factory('socialFactory', [
-  '$resource', '$stateParams', '$http', function($resource, $stateParams, $http) {
-    var socialData;
-    socialData = {};
+  '$resource', '$stateParams', '$http', '$timeout', function($resource, $stateParams, $http, $timeout) {
+    var socialFactory;
+    socialFactory = {};
+    socialFactory.socialData = {};
     $http.get('https://api.pinterest.com/v1/me/pins/?access_token=AaMv-yr8NsypzC7J-M4ljuoP0F4TFEY4A4PaXCxDBkAMyiAp6QAAAAA&fields=id%2Cnote%2Curl%2Cimage').then(function(returnData) {
-      return socialData.sidebarPins = returnData.data.data.slice(0, 12);
+      return socialFactory.socialData.sidebarPins = returnData.data.data.slice(0, 12);
     });
-    return {
-      socialData: socialData
+    socialFactory.subscribe = function(email) {
+      return $http({
+        url: '/api/subscribe',
+        method: "POST",
+        data: {
+          email: email
+        }
+      }).then(function(resp) {
+        socialFactory.subscribeSuccess = 'Thanks for signing up!';
+        return $timeout(function() {
+          return socialFactory.subscribeSuccess = '';
+        }, 3000);
+      });
     };
+    return socialFactory;
   }
 ]);
 

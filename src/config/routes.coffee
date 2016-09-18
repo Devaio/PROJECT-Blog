@@ -1,6 +1,7 @@
 moment = require 'moment'
 # Routes
 multipart = require('connect-multiparty')
+request = require('request')
 
 middleware = {
 
@@ -61,9 +62,27 @@ module.exports = (app, passport, redis) ->
 	app.post '/api/comments/:id', comments.updateComment
 	app.delete '/api/comments/:id', middleware.authorize, comments.delete
 	
-
+	
 	# Login
 	app.post '/admin/login', auth.login
+
+	# Subscribe
+	app.post '/api/subscribe', (req, res) ->
+		request {
+			url : 'https://api.sendgrid.com/v3/contactdb/recipients',
+			method : "POST",
+			headers : {
+				"Authorization" : "Bearer " + process.env.SENDGRID_KEY
+			},
+			json : true,
+			body : [
+				{
+					email : req.body.email
+				}
+			]
+		}, (err, resp, body) ->
+			console.log err, body
+			res.send(body)
 
 	# Wildcard route
 	app.get('/*', middleware.setLocals, (req, res) ->
