@@ -94,7 +94,7 @@
 		
 		<md-card-content>
 			<div class="more-post" ng-repeat="post in morePosts">
-				<a class="black-link" target="_blank" href="/posts/{{post._id}}">
+				<a class="black-link" target="_blank" href="/posts/{{post.slug}}">
 					<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
 					<div class="more-post-title text-center md-subhead">{{post.title}}</div>				
 					<div class="more-post-img" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center"></div>

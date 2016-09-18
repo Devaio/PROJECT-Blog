@@ -8,6 +8,7 @@ moment = require 'moment'
 # Post Collection
 posts = new Schema
 	title : String
+	slug : String	
 	coverImg : String
 	pinImg : String
 	preview : String
@@ -20,5 +21,7 @@ posts = new Schema
 
 posts.path('createdAt').default () ->
 	return moment().format('X')
+
+posts.index {slug : 1}
 
 mongoose.model 'Post', posts

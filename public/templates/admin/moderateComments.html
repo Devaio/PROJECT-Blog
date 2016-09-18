@@ -3,7 +3,7 @@
 <h1 class="md-title text-center"> Comment Moderation </h1>
 
 <md-list ng-repeat="(post, comments) in commentList">
-	<h1><a href="/posts/{{comments[0].post._id}}" target="_blank">{{post}}</a></h1>
+	<h1><a href="/posts/{{comments[0].post.slug}}" target="_blank">{{post}}</a></h1>
 
 	<md-list-item layout-wrap layout="row" style="margin:10px" ng-class="{'approved-comment' : comment.approved, 'unapproved-comment' : !comment.approved}"
 	ng-repeat="comment in comments">
