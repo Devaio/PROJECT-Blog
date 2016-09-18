@@ -7,16 +7,17 @@ angular.module('BlogApp')
             .then (returnData) ->
                socialFactory.socialData.sidebarPins = returnData.data.data.slice(0, 12)
         
-        socialFactory.subscribe = (email) ->
+        socialFactory.subscribe = (sub) ->
             return $http({
                 url : '/api/subscribe',
                 method : "POST",
                 data : {
-                    email : email
+                    email : sub.email
                 }
                 
             }).then (resp) ->
                 socialFactory.subscribeSuccess = 'Thanks for signing up!'
+                sub.email = ''
                 $timeout () ->
                     socialFactory.subscribeSuccess = ''
                 , 3000

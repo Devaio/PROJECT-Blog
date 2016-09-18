@@ -5651,15 +5651,16 @@ angular.module('BlogApp').factory('socialFactory', [
     $http.get('https://api.pinterest.com/v1/me/pins/?access_token=AaMv-yr8NsypzC7J-M4ljuoP0F4TFEY4A4PaXCxDBkAMyiAp6QAAAAA&fields=id%2Cnote%2Curl%2Cimage').then(function(returnData) {
       return socialFactory.socialData.sidebarPins = returnData.data.data.slice(0, 12);
     });
-    socialFactory.subscribe = function(email) {
+    socialFactory.subscribe = function(sub) {
       return $http({
         url: '/api/subscribe',
         method: "POST",
         data: {
-          email: email
+          email: sub.email
         }
       }).then(function(resp) {
         socialFactory.subscribeSuccess = 'Thanks for signing up!';
+        sub.email = '';
         return $timeout(function() {
           return socialFactory.subscribeSuccess = '';
         }, 3000);
