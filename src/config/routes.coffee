@@ -20,7 +20,11 @@ middleware = {
 		next()
 	
 	multi : multipart()
-			
+	nocache : (req, res, next) ->
+		res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
+		res.header('Expires', '-1')
+		res.header('Pragma', 'no-cache')
+		next()
 }
 
 module.exports = (app, passport, redis) ->
@@ -35,7 +39,7 @@ module.exports = (app, passport, redis) ->
 	
 	
 	auth = require '../controllers/auth'
-	
+	app.use(middleware.nocache)
 
 	# API Routes
 	app.get '/api/me', (req, res) ->
