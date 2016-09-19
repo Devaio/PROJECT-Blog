@@ -156,7 +156,9 @@ class Posts extends Main
 			
 			body.createdAt = moment.unix(body.createdAt / 1000).format('X')
 			# slugify the title
-			body.slug = slug(body.title.toLowerCase())
+			if body.title?
+				body.slug = slug(body.title.toLowerCase())
+
 			newPost = new Post(body)
 			newPost.save (err, doc) ->
 				console.log err, doc
