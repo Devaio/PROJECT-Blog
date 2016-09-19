@@ -5511,14 +5511,19 @@ angular.module('BlogApp').controller('postCont', [
       $window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=theviewfromhere.is%20%7C%7C%20' + encodeURIComponent($scope.post.title), 'MyWindow', 'width=600,height=400');
       return true;
     };
-    $scope.submitComment = function() {
+    $scope.submitComment = function(form) {
+      console.log(form);
       if (!$scope.newComment.name || !$scope.newComment.content || !$scope.newComment.content.length) {
         return $scope.errorMsg = 'Please fill out the form!';
       } else {
         return $http.post('/api/comments/create/' + $scope.post._id, $scope.newComment).then(function(returnData) {
-          $scope.newComment = {};
+          $scope.newComment = {
+            name: ''
+          };
           $scope.errorMsg = '';
-          return $scope.successMsg = 'Thanks!  Your comment is awaiting moderation.';
+          $scope.successMsg = 'Thanks!  Your comment is awaiting moderation.';
+          form.$setPristine();
+          return form.$setUntouched();
         });
       }
     };
