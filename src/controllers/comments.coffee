@@ -7,6 +7,7 @@ _        = require 'lodash'
 Main     = require './main'
 moment   = require 'moment'
 Mailer   = require '../modules/mailer'
+fs       = require 'fs'
 # Date Conversion helper methods
 toReadableDate = (doc) ->
 	doc.createdAt = moment.unix(doc.createdAt).format('MMM DD, YYYY')
@@ -46,6 +47,9 @@ class Comments extends Main
 			console.log err, doc
 			if err
 				res.send err
+				commentText = fs.readFileSync __dirname + '../../comments.txt', 'utf-8'
+				fs.writeFileSync __dirname + '../../comments.txt', commentText + '\n ' + JSON.stringify(body)
+				
 			else
 				if doc.isSubComment
 					res.send doc
