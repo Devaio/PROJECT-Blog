@@ -55,7 +55,7 @@ angular.module 'BlogApp'
 						$scope.errorMsg = 'Please fill out the form!'
 						
 				else
-					$http.post '/api/comments/create/' + $stateParams.id, $scope.newComment
+					$http.post '/api/comments/create/' + $scope.post._id, $scope.newComment
 						.then (returnData) ->
 							$scope.newComment = {}
 							$scope.errorMsg = ''
@@ -73,7 +73,7 @@ angular.module 'BlogApp'
 				else
 					subComment.isSubComment = true
 					
-					$http.post '/api/comments/create/' + $stateParams.id, subComment
+					$http.post '/api/comments/create/' + $scope.post._id, subComment
 							.then (returnData) ->
 								subComment.errorMsg = ''
 								subComment.successMsg = 'Thanks!  Your comment is awaiting moderation.'

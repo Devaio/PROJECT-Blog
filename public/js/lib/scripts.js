@@ -5515,7 +5515,7 @@ angular.module('BlogApp').controller('postCont', [
       if (!$scope.newComment.name || !$scope.newComment.content || !$scope.newComment.content.length) {
         return $scope.errorMsg = 'Please fill out the form!';
       } else {
-        return $http.post('/api/comments/create/' + $stateParams.id, $scope.newComment).then(function(returnData) {
+        return $http.post('/api/comments/create/' + $scope.post._id, $scope.newComment).then(function(returnData) {
           $scope.newComment = {};
           $scope.errorMsg = '';
           return $scope.successMsg = 'Thanks!  Your comment is awaiting moderation.';
@@ -5530,7 +5530,7 @@ angular.module('BlogApp').controller('postCont', [
         return subComment.errorMsg = 'Please fill out the form!';
       } else {
         subComment.isSubComment = true;
-        return $http.post('/api/comments/create/' + $stateParams.id, subComment).then(function(returnData) {
+        return $http.post('/api/comments/create/' + $scope.post._id, subComment).then(function(returnData) {
           var parentCommentCopy;
           subComment.errorMsg = '';
           subComment.successMsg = 'Thanks!  Your comment is awaiting moderation.';
