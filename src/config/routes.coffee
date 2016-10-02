@@ -39,7 +39,7 @@ module.exports = (app, passport, redis) ->
 	
 	
 	auth = require '../controllers/auth'
-	app.use(middleware.nocache)
+	# app.use(middleware.nocache)
 
 	# API Routes
 	app.get '/api/me', (req, res) ->

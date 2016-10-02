@@ -5512,7 +5512,6 @@ angular.module('BlogApp').controller('postCont', [
       return true;
     };
     $scope.submitComment = function(form) {
-      console.log(form);
       if (!$scope.newComment.name || !$scope.newComment.content || !$scope.newComment.content.length) {
         return $scope.errorMsg = 'Please fill out the form!';
       } else {
@@ -5530,7 +5529,7 @@ angular.module('BlogApp').controller('postCont', [
     $scope.subCommentForm = function(comment) {
       return comment.showSubCommentForm = !comment.showSubCommentForm;
     };
-    return $scope.submitSubComment = function(parentComment, subComment) {
+    return $scope.submitSubComment = function(parentComment, subComment, form) {
       if (!subComment.name || !subComment.content || !subComment.content.length) {
         return subComment.errorMsg = 'Please fill out the form!';
       } else {
@@ -5543,6 +5542,8 @@ angular.module('BlogApp').controller('postCont', [
           subComment.email = '';
           subComment.website = '';
           subComment.content = '';
+          form.$setPristine();
+          form.$setUntouched();
           $timeout(function() {
             return parentComment.showSubCommentForm = false;
           }, 2200);

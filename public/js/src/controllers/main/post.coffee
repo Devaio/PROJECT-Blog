@@ -50,7 +50,7 @@ angular.module 'BlogApp'
 				
 			$scope.submitComment = (form) ->
 				# $scope.newComment = {}
-				console.log(form)
+				# console.log(form)
 				
 				
 				if not $scope.newComment.name or
@@ -72,7 +72,7 @@ angular.module 'BlogApp'
 			$scope.subCommentForm = (comment) ->
 				comment.showSubCommentForm = !comment.showSubCommentForm
 				
-			$scope.submitSubComment = (parentComment, subComment) ->
+			$scope.submitSubComment = (parentComment, subComment, form) ->
 			
 				if not subComment.name or
 					not subComment.content or
@@ -89,6 +89,8 @@ angular.module 'BlogApp'
 								subComment.email = ''
 								subComment.website = ''
 								subComment.content = ''
+								form.$setPristine()
+								form.$setUntouched()
 								
 								$timeout () ->
 									parentComment.showSubCommentForm = false
