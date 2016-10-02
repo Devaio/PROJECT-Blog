@@ -1,13 +1,14 @@
 # Comments controller
 mongoose = require 'mongoose'
 async    = require 'async'
-Post     = mongoose.model('Post')
-Comment  = mongoose.model('Comment')
+Post     = mongoose.model 'Post'
+Comment  = mongoose.model 'Comment'
 _        = require 'lodash'
 Main     = require './main'
 moment   = require 'moment'
-Mailer   = require '../modules/mailer'
 fs       = require 'fs'
+Mailer   = require '../modules/mailer'
+
 # Date Conversion helper methods
 toReadableDate = (doc) ->
 	doc.createdAt = moment.unix(doc.createdAt).format('MMM DD, YYYY')
@@ -53,9 +54,24 @@ class Comments extends Main
 			else
 				if doc.isSubComment
 					res.send doc
-					
-					# if doc.sendEmail
-					# 	sendgrid.send
+					if doc.sendEmail is true and body.parentComment.email?
+						Mailer.send '651f0a1f-81a9-49ab-9b78-9e801d23c914', [ 
+							{
+								name: '%name%'
+								content: "<h2>" + doc.name + "</h2>"
+							},
+							{
+								name: '%comment%'
+								content: "<h4>" + doc.content + "</h4>"
+							}
+						], {
+							to: body.parentComment.email
+							from: 'services@theviewfromhere.is'
+						}, (err, response) ->
+							if err
+								console.log 'BAD EMAIL', err
+							else
+								console.log('GOOD EMAIL', response)
 					
 				else
 					Post.findOne {_id : req.params.postID}, (err, foundPost) ->

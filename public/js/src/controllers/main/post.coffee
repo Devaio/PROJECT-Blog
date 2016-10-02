@@ -73,14 +73,14 @@ angular.module 'BlogApp'
 				comment.showSubCommentForm = !comment.showSubCommentForm
 				
 			$scope.submitSubComment = (parentComment, subComment, form) ->
-			
+				parentCommentCopy = angular.copy parentComment
 				if not subComment.name or
 					not subComment.content or
 					not subComment.content.length
 						subComment.errorMsg = 'Please fill out the form!'
 				else
 					subComment.isSubComment = true
-					
+					subComment.parentComment = parentCommentCopy
 					$http.post '/api/comments/create/' + $scope.post._id, subComment
 							.then (returnData) ->
 								subComment.errorMsg = ''
@@ -96,7 +96,6 @@ angular.module 'BlogApp'
 									parentComment.showSubCommentForm = false
 								, 2200
 								
-								parentCommentCopy = angular.copy parentComment
 								parentCommentCopy.subComments = parentCommentCopy.subComments || []
 								parentCommentCopy.subComments.push(returnData.data)
 								$http.post('/api/comments/' + parentCommentCopy._id, parentCommentCopy)

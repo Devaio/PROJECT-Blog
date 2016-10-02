@@ -5530,12 +5530,14 @@ angular.module('BlogApp').controller('postCont', [
       return comment.showSubCommentForm = !comment.showSubCommentForm;
     };
     return $scope.submitSubComment = function(parentComment, subComment, form) {
+      var parentCommentCopy;
+      parentCommentCopy = angular.copy(parentComment);
       if (!subComment.name || !subComment.content || !subComment.content.length) {
         return subComment.errorMsg = 'Please fill out the form!';
       } else {
         subComment.isSubComment = true;
+        subComment.parentComment = parentCommentCopy;
         return $http.post('/api/comments/create/' + $scope.post._id, subComment).then(function(returnData) {
-          var parentCommentCopy;
           subComment.errorMsg = '';
           subComment.successMsg = 'Thanks!  Your comment is awaiting moderation.';
           subComment.name = '';
@@ -5547,7 +5549,6 @@ angular.module('BlogApp').controller('postCont', [
           $timeout(function() {
             return parentComment.showSubCommentForm = false;
           }, 2200);
-          parentCommentCopy = angular.copy(parentComment);
           parentCommentCopy.subComments = parentCommentCopy.subComments || [];
           parentCommentCopy.subComments.push(returnData.data);
           return $http.post('/api/comments/' + parentCommentCopy._id, parentCommentCopy);
