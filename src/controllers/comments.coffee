@@ -52,9 +52,47 @@ class Comments extends Main
 				fs.writeFileSync __dirname + '../../comments.txt', commentText + '\n ' + JSON.stringify(body)
 				
 			else
-				if doc.isSubComment
+				# if doc.isSubComment
+				# 	res.send doc
+				# 	if doc.sendEmail is true and body.parentComment.email?
+				# 		Mailer.send '651f0a1f-81a9-49ab-9b78-9e801d23c914', [ 
+				# 			{
+				# 				name: '%name%'
+				# 				content: "<h2>" + doc.name + "</h2>"
+				# 			},
+				# 			{
+				# 				name: '%comment%'
+				# 				content: "<h4>" + doc.content + "</h4>"
+				# 			}
+				# 		], {
+				# 			to: body.parentComment.email
+				# 			from: 'services@theviewfromhere.is'
+				# 		}, (err, response) ->
+				# 			if err
+				# 				console.log 'BAD EMAIL', err
+				# 			else
+				# 				console.log('GOOD EMAIL', response)
+					
+				# else
+				Post.findOne {_id : req.params.postID}, (err, foundPost) ->
+					foundPost.comments = foundPost.comments || []
+					foundPost.comments.push(doc._id)
+					foundPost.save()
 					res.send doc
-					if doc.sendEmail is true and body.parentComment.email?
+			
+			# super(body, req, res)
+	updateComment : (req, res) ->
+		body = req.body
+		Comment.findOneAndUpdate {_id : req.params.id}, body, {new : true}, (err, doc) ->
+			res.send doc
+		
+			if doc.isSubComment
+				console.log(doc._id)
+				Comment.findOne {subComments : doc._id }, (err, parentComment) ->
+				
+					console.log(err, parentComment)
+					
+					if parentComment? and parentComment.sendEmail is true and parentComment.email?
 						Mailer.send '651f0a1f-81a9-49ab-9b78-9e801d23c914', [ 
 							{
 								name: '%name%'
@@ -65,26 +103,13 @@ class Comments extends Main
 								content: "<h4>" + doc.content + "</h4>"
 							}
 						], {
-							to: body.parentComment.email
+							to: parentComment.email
 							from: 'services@theviewfromhere.is'
 						}, (err, response) ->
 							if err
 								console.log 'BAD EMAIL', err
 							else
 								console.log('GOOD EMAIL', response)
-					
-				else
-					Post.findOne {_id : req.params.postID}, (err, foundPost) ->
-						foundPost.comments = foundPost.comments || []
-						foundPost.comments.push(doc._id)
-						foundPost.save()
-						res.send doc
-			
-			# super(body, req, res)
-	updateComment : (req, res) ->
-		Comment.update {_id : req.params.id}, req.body, (err, doc) ->
-			res.send doc
-		
 	
 	delete : (req, res) ->
 		Comment.remove {_id : req.params.id}, (err, rmv) ->
