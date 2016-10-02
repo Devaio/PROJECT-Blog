@@ -29,6 +29,7 @@
     "request": "^2.21.0",
     "s3": "^4.4.0",
     "sendgrid": "^3.0.11",
+    "sendgrid-rest": "^2.2.2",
     "slug": "^0.9.1",
     "tinymce": "^4.2.8",
     "underscore": "~1.5.2",
