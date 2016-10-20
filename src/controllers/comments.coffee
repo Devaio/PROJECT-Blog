@@ -54,24 +54,24 @@ class Comments extends Main
 			else
 				if doc.isSubComment
 					res.send doc
-				# 	if doc.sendEmail is true and body.parentComment.email?
-				# 		Mailer.send '651f0a1f-81a9-49ab-9b78-9e801d23c914', [ 
-				# 			{
-				# 				name: '%name%'
-				# 				content: "<h2>" + doc.name + "</h2>"
-				# 			},
-				# 			{
-				# 				name: '%comment%'
-				# 				content: "<h4>" + doc.content + "</h4>"
-				# 			}
-				# 		], {
-				# 			to: body.parentComment.email
-				# 			from: 'services@theviewfromhere.is'
-				# 		}, (err, response) ->
-				# 			if err
-				# 				console.log 'BAD EMAIL', err
-				# 			else
-				# 				console.log('GOOD EMAIL', response)
+					if doc.sendEmail is true and body.parentComment.email?
+						Mailer.send '651f0a1f-81a9-49ab-9b78-9e801d23c914', [ 
+							{
+								name: '%name%'
+								content: "<h2>" + doc.name + "</h2>"
+							},
+							{
+								name: '%comment%'
+								content: "<h4>" + doc.content + "</h4>"
+							}
+						], {
+							to: body.parentComment.email
+							from: 'services@theviewfromhere.is'
+						}, (err, response) ->
+							if err
+								console.log 'BAD EMAIL', err
+							else
+								console.log('GOOD EMAIL', response)
 					
 				else
 					Post.findOne {_id : req.params.postID}, (err, foundPost) ->
