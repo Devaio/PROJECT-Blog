@@ -12,199 +12,199 @@
 <nav navheight="navheight"></nav>
 <div layout="row">
 
-	<div flex class="content-side-left">
-		<md-card class="post-card white-bg">
+    <div flex class="content-side-left">
+        <md-card class="post-card white-bg">
 
-			<div class="post-card-img" alt="{{::post.title}}" style="background-image:url('{{::post.coverImg}}'); background-size:cover; background-position:center"></div>
-			<img style="width:0px;height:0px;" src="{{::post.coverImg}}" alt="{{::post.title}}">
-			<md-card-title>
-				<md-card-title-text class="text-center">
-					<p class="home-post-title md-display-1">{{::post.title}}</p>
-					<p class="date-text">{{::post.createdAt}}</p>
-				</md-card-title-text>
-			</md-card-title>
-			<md-card-content>
-				<div class="post-content-container md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
-			</md-card-content>
-			<md-card-actions layout="row" layout-align="end center">
+            <div class="post-card-img" alt="{{::post.title}}" style="background-image:url('{{::post.coverImg}}'); background-size:cover; background-position:center"></div>
+            <img style="width:0px;height:0px;" src="{{::post.coverImg}}" alt="{{::post.title}}">
+            <md-card-title>
+                <md-card-title-text class="text-center">
+                    <p class="home-post-title md-display-1">{{::post.title}}</p>
+                    <p class="date-text">{{::post.createdAt}}</p>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div class="post-content-container md-body-1 o-h" ng-bind-html="$sce.trustAsHtml(post.content)"></div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
 
-				<a style="margin-top:4px:" ng-click="pinIt()"><img src="http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png"></a>
+                <a style="margin-top:4px:" ng-click="pinIt()"><img src="http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png"></a>
 
-				<a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{::tag.name}}">
-					<md-button class="md-raised">
-						<span>{{::tag.name}}</span>
-					</md-button>
-					<md-tooltip>
-						See {{::tag.name | uppercase}} Posts
-					</md-tooltip>
-				</a>
+                <a ng-repeat="tag in post.tags" class="black-link" ng-href="/tags/{{::tag.name}}">
+                    <md-button class="md-raised">
+                        <span>{{::tag.name}}</span>
+                    </md-button>
+                    <md-tooltip>
+                        See {{::tag.name | uppercase}} Posts
+                    </md-tooltip>
+                </a>
 
-			</md-card-actions>
-		</md-card>
-		<md-card id="comments" class="post-card white-bg comment-card">
-			<md-card-title>
-				<md-card-title-text class="text-center">
-					<p class="home-post-title md-title">Comments</p>
-				</md-card-title-text>
-			</md-card-title>
-			<md-card-content>
+            </md-card-actions>
+        </md-card>
+        <md-card id="comments" class="post-card white-bg comment-card">
+            <md-card-title>
+                <md-card-title-text class="text-center">
+                    <p class="home-post-title md-title">Comments</p>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
 
-				<!--COMMENT LIST-->
-				<md-list>
+                <!--COMMENT LIST-->
+                <md-list>
 
-					<!--Viewer LIST-->
-					<div class="comment-list-item" ng-repeat="comment in post.comments | orderBy : 'createdAt' : true">
-						<md-list-item ng-if="comment.approved">
-							<div class="md-list-item-text comment-info">
-								<span class="date-text comment-date minor-text-pad"> {{::moment.unix(comment.createdAt).format('MM/DD/YYYY')}} </span>
+                    <!--Viewer LIST-->
+                    <div class="comment-list-item" ng-repeat="comment in post.comments | orderBy : 'createdAt' : true" ng-if="comment.approved && !comment.isSubComment">
+                        <md-list-item>
+                            <div class="md-list-item-text comment-info">
+                                <span class="date-text comment-date minor-text-pad"> {{::moment.unix(comment.createdAt).format('MM/DD/YYYY')}} </span>
 
-								<h4 class="minor-text-pad" ng-if="!comment.website">{{ ::comment.name }}</h4>
+                                <h4 class="minor-text-pad" ng-if="!comment.website">{{ ::comment.name }}</h4>
 
-								<h4 class="minor-text-pad" ng-if="comment.website"><a href="{{::urlCheck(comment.website)}}" class="black-link comment-link" target="_blank">{{ comment.name }}</a></h4>
+                                <h4 class="minor-text-pad" ng-if="comment.website"><a href="{{::urlCheck(comment.website)}}" class="black-link comment-link" target="_blank">{{ comment.name }}</a></h4>
 
-								<p style="padding-left:20px;" ng-bind-html="linker(comment.content)"></p>
+                                <p style="padding-left:20px;" ng-bind-html="linker(comment.content)"></p>
 
-								<md-button ng-click="subCommentForm(comment)" class="comment-reply-button">
-									<span ng-show="!comment.showSubCommentForm">REPLY</span>
-									<span ng-show="comment.showSubCommentForm">CLOSE</span>
-								</md-button>
+                                <md-button ng-click="subCommentForm(comment)" class="comment-reply-button">
+                                    <span ng-show="!comment.showSubCommentForm">REPLY</span>
+                                    <span ng-show="comment.showSubCommentForm">CLOSE</span>
+                                </md-button>
 
-							</div>
+                            </div>
 
 
 
-						</md-list-item>
+                        </md-list-item>
 
-						<div class="collapsible-comment-form" ng-show="comment.showSubCommentForm" id="comment-reply-form">
-							<form name="commentForm">
-								<p class="text-center md-title home-post-title">Reply</p>
-								<div flex="100" layout="row" layout-align="center">
-									<md-input-container class="display-block" flex="50">
-										<label>Name</label>
-										<input required name="commentName" ng-model="subComment.name">
+                        <div class="collapsible-comment-form" ng-show="comment.showSubCommentForm" id="comment-reply-form">
+                            <form name="commentForm">
+                                <p class="text-center md-title home-post-title">Reply</p>
+                                <div flex="100" layout="row" layout-align="center">
+                                    <md-input-container class="display-block" flex="50">
+                                        <label>Name</label>
+                                        <input required name="commentName" ng-model="subComment.name">
 
-										<div ng-messages="commentForm.commentName.$error" role="alert" multiple>
-											<div ng-message="required" class="warning-text">You need a name!</div>
-										</div>
+                                        <div ng-messages="commentForm.commentName.$error" role="alert" multiple>
+                                            <div ng-message="required" class="warning-text">You need a name!</div>
+                                        </div>
 
-									</md-input-container>
-									<md-input-container class="display-block" flex="50">
-										<label>Email (opt)</label>
-										<input ng-model="subComment.email">
-									</md-input-container>
-								</div>
-								<!--<md-checkbox class="pull-right comment-checkbox" ng-model="subComment.sendEmail" aria-label="Send Email">
+                                    </md-input-container>
+                                    <md-input-container class="display-block" flex="50">
+                                        <label>Email (opt)</label>
+                                        <input ng-model="subComment.email">
+                                    </md-input-container>
+                                </div>
+                                <!--<md-checkbox class="pull-right comment-checkbox" ng-model="subComment.sendEmail" aria-label="Send Email">
 									Email Me Responses
 								</md-checkbox>-->
-								<div flex="50" layout="row" layout-align="center">
-									<md-input-container class="display-block" flex="100">
-										<label>Website (opt)</label>
-										<input ng-model="subComment.website">
-									</md-input-container>
-								</div>
+                                <div flex="50" layout="row" layout-align="center">
+                                    <md-input-container class="display-block" flex="100">
+                                        <label>Website (opt)</label>
+                                        <input ng-model="subComment.website">
+                                    </md-input-container>
+                                </div>
 
-								<div flex="100" layout="row" layout-align="center">
-									<md-input-container class="md-block" flex="100">
-										<label>Comment</label>
-										<textarea md-maxlength="500" rows="5" ng-model="subComment.content"></textarea>
-									</md-input-container>
-								</div>
-								<div flex="50" flex-offset="50" layout="row" layout-align="center">
+                                <div flex="100" layout="row" layout-align="center">
+                                    <md-input-container class="md-block" flex="100">
+                                        <label>Comment</label>
+                                        <textarea md-maxlength="500" rows="5" ng-model="subComment.content"></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div flex="50" flex-offset="50" layout="row" layout-align="center">
 
-									<md-button ng-click="submitSubComment(comment, subComment, commentForm)" class="button-ex-pad button-med md-raised">
-										<span>Reply!</span>
-									</md-button>
-								</div>
-								<p class="warning-text">{{subComment.errorMsg}}</p>
-								<p class="warning-text">{{subComment.successMsg}}</p>
+                                    <md-button ng-click="submitSubComment(comment, subComment, commentForm)" class="button-ex-pad button-med md-raised">
+                                        <span>Reply!</span>
+                                    </md-button>
+                                </div>
+                                <p class="warning-text">{{subComment.errorMsg}}</p>
+                                <p class="warning-text">{{subComment.successMsg}}</p>
 
-							</form>
-						</div>
+                            </form>
+                        </div>
 
-						<md-list flex="90" flex-offset="10" ng-if="comment.subComments.length" class="subcomment-list">
-							<div ng-if="subcomment.approved" class="subcomment-list-item" ng-repeat="subcomment in comment.subComments">
-								<!--<md-divider ng-if="$first"></md-divider>-->
-								<md-list-item>
-									<div class="md-list-item-text comment-info">
-										<span class="date-text comment-date"> {{moment.unix(subcomment.createdAt).format('MM/DD/YYYY')}} </span>
+                        <md-list flex="90" flex-offset="10" ng-if="comment.subComments.length" class="subcomment-list">
+                            <div ng-if="subcomment.approved" class="subcomment-list-item" ng-repeat="subcomment in comment.subComments">
+                                <!--<md-divider ng-if="$first"></md-divider>-->
+                                <md-list-item>
+                                    <div class="md-list-item-text comment-info">
+                                        <span class="date-text comment-date"> {{moment.unix(subcomment.createdAt).format('MM/DD/YYYY')}} </span>
 
-										<h4 ng-if="!subcomment.website">{{ subcomment.name }}</h4>
+                                        <h4 ng-if="!subcomment.website">{{ subcomment.name }}</h4>
 
-										<h4 ng-if="subcomment.website"><a href="{{urlCheck(subcomment.website)}}" class="black-link comment-link" target="_blank">{{ subcomment.name }}</a></h4>
+                                        <h4 ng-if="subcomment.website"><a href="{{urlCheck(subcomment.website)}}" class="black-link comment-link" target="_blank">{{ subcomment.name }}</a></h4>
 
-										<p style="padding-left:20px;" ng-bind-html="linker(subcomment.content)"></p>
+                                        <p style="padding-left:20px;" ng-bind-html="linker(subcomment.content)"></p>
 
-									</div>
-								</md-list-item>
-								
-								<md-divider></md-divider>
+                                    </div>
+                                </md-list-item>
 
-							</div>
-						</md-list>
-						
-					</div>
+                                <md-divider></md-divider>
 
+                            </div>
+                        </md-list>
 
+                    </div>
 
 
-				</md-list>
-			</md-card-content>
-		</md-card>
-		<md-card-content>
-			<md-card class="post-card white-bg">
-				<!--COMMENT FORM-->
-				<div id="comment-form" flex="100">
-					<form name="commentForm">
-						<p class="text-center md-title home-post-title">Leave a comment</p>
-						<div flex="100" layout="row" layout-align="center">
-							<md-input-container class="display-block" flex="50">
-								<label>Name</label>
-								<input required name="commentName" ng-model="newComment.name">
-
-								<div ng-messages="commentForm.commentName.$error" role="alert" multiple>
-									<div ng-message="required" class="warning-text">You need a name!</div>
-								</div>
-
-							</md-input-container>
-							<md-input-container class="display-block" flex="50">
-								<label>Email (opt)</label>
-								<input ng-model="newComment.email">
-							</md-input-container>
 
 
-						</div>
-						<md-checkbox class="pull-right comment-checkbox" ng-model="newComment.sendEmail" aria-label="Send Email">
-							Email Me Responses
-						</md-checkbox>
-						<!--<div flex="50" flex-offset="50">
+                </md-list>
+            </md-card-content>
+        </md-card>
+        <md-card-content>
+            <md-card class="post-card white-bg">
+                <!--COMMENT FORM-->
+                <div id="comment-form" flex="100">
+                    <form name="commentForm">
+                        <p class="text-center md-title home-post-title">Leave a comment</p>
+                        <div flex="100" layout="row" layout-align="center">
+                            <md-input-container class="display-block" flex="50">
+                                <label>Name</label>
+                                <input required name="commentName" ng-model="newComment.name">
+
+                                <div ng-messages="commentForm.commentName.$error" role="alert" multiple>
+                                    <div ng-message="required" class="warning-text">You need a name!</div>
+                                </div>
+
+                            </md-input-container>
+                            <md-input-container class="display-block" flex="50">
+                                <label>Email (opt)</label>
+                                <input ng-model="newComment.email">
+                            </md-input-container>
+
+
+                        </div>
+                        <md-checkbox class="pull-right comment-checkbox" ng-model="newComment.sendEmail" aria-label="Send Email">
+                            Email Me Responses
+                        </md-checkbox>
+                        <!--<div flex="50" flex-offset="50">
 							
 						</div>-->
-						<div flex="50" layout="row" layout-align="center">
-							<md-input-container class="display-block" flex="100">
-								<label>Website (opt)</label>
-								<input ng-model="newComment.website">
-							</md-input-container>
-						</div>
+                        <div flex="50" layout="row" layout-align="center">
+                            <md-input-container class="display-block" flex="100">
+                                <label>Website (opt)</label>
+                                <input ng-model="newComment.website">
+                            </md-input-container>
+                        </div>
 
-						<div flex="100" layout="row" layout-align="center">
-							<md-input-container class="md-block" flex="100">
-								<label>Comment</label>
-								<textarea md-maxlength="500" rows="5" ng-model="newComment.content"></textarea>
-							</md-input-container>
-						</div>
-						<div flex="50" flex-offset="50" layout="row" layout-align="center">
+                        <div flex="100" layout="row" layout-align="center">
+                            <md-input-container class="md-block" flex="100">
+                                <label>Comment</label>
+                                <textarea md-maxlength="500" rows="5" ng-model="newComment.content"></textarea>
+                            </md-input-container>
+                        </div>
+                        <div flex="50" flex-offset="50" layout="row" layout-align="center">
 
-							<md-button ng-click="submitComment(commentForm)" class="button-ex-pad button-med md-raised">
-								<span>Comment!</span>
-							</md-button>
-						</div>
-						<p class="warning-text">{{errorMsg}}</p>
-						<p class="warning-text">{{successMsg}}</p>
+                            <md-button ng-click="submitComment(commentForm)" class="button-ex-pad button-med md-raised">
+                                <span>Comment!</span>
+                            </md-button>
+                        </div>
+                        <p class="warning-text">{{errorMsg}}</p>
+                        <p class="warning-text">{{successMsg}}</p>
 
-					</form>
-				</div>
-		</md-card-content>
-		</md-card>
-	</div>
+                    </form>
+                </div>
+        </md-card-content>
+        </md-card>
+    </div>
 
-	<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
+    <ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>

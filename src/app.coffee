@@ -7,6 +7,7 @@ if typeof(global.process.env.NODE_ENV) is 'undefined'
 	if fs.existsSync(__dirname + '/../env/development.env')
 		env(__dirname + '/../env/development.env')
 
+
 # Disable logs
 console.log = if global.process.env.NODE_ENV? and global.process.env.NODE_ENV is 'live' then () -> else console.log
 
