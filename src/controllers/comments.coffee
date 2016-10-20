@@ -52,8 +52,8 @@ class Comments extends Main
 				fs.writeFileSync __dirname + '../../comments.txt', commentText + '\n ' + JSON.stringify(body)
 				
 			else
-				# if doc.isSubComment
-				# 	res.send doc
+				if doc.isSubComment
+					res.send doc
 				# 	if doc.sendEmail is true and body.parentComment.email?
 				# 		Mailer.send '651f0a1f-81a9-49ab-9b78-9e801d23c914', [ 
 				# 			{
@@ -73,12 +73,12 @@ class Comments extends Main
 				# 			else
 				# 				console.log('GOOD EMAIL', response)
 					
-				# else
-				Post.findOne {_id : req.params.postID}, (err, foundPost) ->
-					foundPost.comments = foundPost.comments || []
-					foundPost.comments.push(doc._id)
-					foundPost.save()
-					res.send doc
+				else
+					Post.findOne {_id : req.params.postID}, (err, foundPost) ->
+						foundPost.comments = foundPost.comments || []
+						foundPost.comments.push(doc._id)
+						foundPost.save()
+						res.send doc
 			
 			# super(body, req, res)
 	updateComment : (req, res) ->
