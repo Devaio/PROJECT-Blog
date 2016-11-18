@@ -179,6 +179,8 @@ class Posts extends Main
 				
 		createTagList body.tags, (tagList) ->
 			body.tags = tagList
+			if body.title?
+				body.slug = slug(body.title.toLowerCase())
 			
 			body.createdAt = moment.unix(body.createdAt / 1000).format('X')
 			Post.update {_id : req.params.id}, body, (err, post) ->
