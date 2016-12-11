@@ -5144,7 +5144,9 @@ require('ng-file-upload');
 angular.module('BlogApp', ['ngMaterial', 'ngAnimate', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest']);
 
 angular.module('BlogApp').config(function($mdThemingProvider) {
-  return $mdThemingProvider.theme('default').primaryPalette('blue-grey').accentPalette('deep-purple').warnPalette('light-green');
+  return $mdThemingProvider.theme('default').primaryPalette('grey', {
+    "default": '300'
+  }).accentPalette('deep-purple').warnPalette('light-green');
 });
 
 require('./services/authService');

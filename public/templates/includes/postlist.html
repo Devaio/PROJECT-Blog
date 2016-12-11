@@ -1,14 +1,6 @@
- <md-card class="post-card white-bg" ng-repeat="post in posts">
+ <md-card class="post-card post white-bg" ng-repeat="post in posts">
 
 	<!--<img ng-src="{{post.coverImg}}" class="md-card-image post-card-img">-->
-	
-	<div class="post-card-img"
-		alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center">
-		<!--For Pin-it Button -->
-		<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
-		
-	</div>
-	
 	<md-card-title>
 		<md-card-title-text class="text-center">
 			<p class="home-post-title md-display-1">{{post.title}}</p>
@@ -18,19 +10,28 @@
 	<md-card-content class="md-subhead o-h">
 		{{post.preview}}
 	</md-card-content>
-	<md-card-actions layout="row" layout-align="end center">
+	
+	<div class="post-card-img"
+		alt="{{post.title}}" style="background-image:url('{{post.coverImg}}'); background-size:cover; background-position:center">
+		<!--For Pin-it Button -->
+		<img style="width:0px;height:0px;" src="{{post.coverImg}}" alt="{{post.title}}">
+		
+	</div>
+	
+	<md-card-actions class="post-card-foot" layout="row" layout-align="end center">
 		
 		<!--<a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-round="true" href="https://www.pinterest.com/pin/create/button/">
 			<img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png" />
 		</a>-->
 		<a ng-href="/posts/{{post.slug}}#comments" target="_blank">
-			<md-button>
+			<md-button class="post-comment-count">
 				{{commentLengthChecker(post)}} Comments
 			</md-button>
 		</a>
+		<div class="hoz-div"></div>
 		<a ng-href="/posts/{{post.slug}}" target="_blank">
-			<md-button class="md-raised">
-				Read More
+			<md-button class="font-mod read-more-btn">
+				Continue Reading
 			</md-button>
 		</a>
 	</md-card-actions>

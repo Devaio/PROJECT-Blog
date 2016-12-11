@@ -2,10 +2,18 @@
   font-family: 'Modesty';
   src: url("../../fonts/ModestyFreshStyle.ttf");
 }
+@font-face {
+  font-family: 'GeoSans';
+  src: url("../../fonts/GeosansLight.ttf");
+}
 body,
 html {
   height: auto;
-  background-color: #efefef;
+  font-family: 'GeoSans';
+  font-size: 16px;
+}
+html {
+  padding-top: 10px;
 }
 .ad-divider {
   height: 1px;
@@ -106,17 +114,12 @@ a.full-width {
   overflow: hidden;
 }
 .total-content {
-  background-color: #efefef;
   padding-bottom: 20px;
 }
 .white-bg {
   background-color: #fff;
 }
-.gains-bg {
-  background-color: #dcdcdc;
-}
 md-toolbar.gains-bg {
-  background-color: #dcdcdc;
   color: #000;
 }
 @media (min-width: 960px) {
@@ -138,7 +141,7 @@ footer {
   bottom: 0;
   width: 100%;
   height: 18px;
-  background-color: #efefef;
+  background-color: #fff;
   padding: 0px 10px;
 }
 .font-modesty {
@@ -213,13 +216,20 @@ footer {
 .main-header {
   height: 80vh;
 }
-@media (min-width: 600px) {
+@media (min-width: 960px) {
   .main-header {
+    border: 4px solid #e0e0e0;
     height: 20vh;
+    margin-bottom: 30px;
   }
 }
 .main-header.header-small {
   height: 200px;
+}
+.main-header-inside {
+  height: 88%;
+  width: 97%;
+  border: 2px solid #e0e0e0;
 }
 .main-header-text {
   font-family: 'Modesty';
@@ -230,7 +240,7 @@ footer {
   min-height: 0px;
   height: 20vh;
 }
-@media (min-width: 600px) {
+@media (min-width: 960px) {
   .tool-large {
     height: 3px;
   }
@@ -238,6 +248,12 @@ footer {
 .container {
   padding: 0;
   max-width: 1024px;
+}
+.font-mod {
+  font-family: 'Modesty';
+}
+.font-geo {
+  font-family: 'GeoSans';
 }
 .hex-row {
   clear: left;
@@ -489,6 +505,7 @@ footer {
 }
 .desktop-nav {
   display: none;
+  text-align: center;
 }
 @media (min-width: 960px) {
   .desktop-nav {
@@ -520,8 +537,30 @@ footer {
 .margin-auto {
   margin: auto;
 }
+.nav-link {
+  font-weight: bold;
+  line-height: 24px;
+  height: 24px;
+  min-height: 24px;
+}
+.nav-link-div {
+  border-right: 2px solid #000;
+}
+@media (min-width: 960px) {
+  .nav-tool {
+    margin-top: 10px;
+  }
+}
 .post-card {
   margin: 50px 0px;
+}
+.post-card.post {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.post-card-foot {
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
 }
 .post-card-img {
   height: 450px;
@@ -539,11 +578,40 @@ footer {
 }
 .home-post-title {
   padding: 10px 0 0 0;
+  font-weight: bold;
 }
 .comment-date {
   position: absolute;
   top: 10px;
   right: 5px;
+}
+.read-more-btn {
+  font-size: 28px;
+  color: #000;
+  text-transform: capitalize;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+@media (min-width: 600px) {
+  .read-more-btn {
+    font-size: 36px;
+  }
+}
+.post-comment-count {
+  color: #000;
+  font-size: 14px;
+  text-transform: lowercase;
+  font-weight: bold;
+}
+@media (min-width: 600px) {
+  .post-comment-count {
+    font-size: 18px;
+  }
+}
+.hoz-div {
+  border-right: 2px solid #000;
+  height: 36px;
+  widows: 1pxpx;
 }
 .ql-container {
   border: thin solid #000;

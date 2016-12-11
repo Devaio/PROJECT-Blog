@@ -15,7 +15,9 @@ angular.module('BlogApp', [
 angular.module('BlogApp')
 	.config ($mdThemingProvider) ->
 		$mdThemingProvider.theme('default')
-			.primaryPalette('blue-grey')
+			.primaryPalette('grey', {
+				default : '300'
+			})
 			.accentPalette('deep-purple')
 			.warnPalette('light-green')
 
