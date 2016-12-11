@@ -542,6 +542,19 @@ footer {
   line-height: 24px;
   height: 24px;
   min-height: 24px;
+  -webkit-transition: -webkit-transform 0.4s ease;
+  -moz-transition: -moz-transform 0.4s ease;
+  -o-transition: -o-transform 0.4s ease;
+  -ms-transition: -ms-transform 0.4s ease;
+  transition: transform 0.4s ease;
+}
+.nav-link:hover {
+  background: none !important;
+  -webkit-transform: scale(1.35);
+  -moz-transform: scale(1.35);
+  -o-transform: scale(1.35);
+  -ms-transform: scale(1.35);
+  transform: scale(1.35);
 }
 .nav-link-div {
   border-right: 2px solid #000;
