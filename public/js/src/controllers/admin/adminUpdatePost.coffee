@@ -47,7 +47,7 @@ angular.module 'BlogApp'
 				theme : 'modern',
 				browser_spellcheck : true
 				paste_as_text: true
-				height : 800
+				height : 600
 				browser_spellcheck : true
 				fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt"
 				default_link_target: "_blank"
