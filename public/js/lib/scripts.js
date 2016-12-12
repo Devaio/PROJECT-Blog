@@ -5475,7 +5475,7 @@ var moment;
 moment = require('moment');
 
 angular.module('BlogApp').controller('postCont', [
-  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', '$timeout', 'socialFactory', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout, socialFactory) {
+  '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', '$window', '$http', '$filter', '$timeout', 'socialFactory', function($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout, socialFactory, authService) {
     $scope.navheight = 'small';
     $scope.moment = moment;
     $scope.newComment = {};
@@ -5533,7 +5533,7 @@ angular.module('BlogApp').controller('postCont', [
     $scope.subCommentForm = function(comment) {
       return comment.showSubCommentForm = !comment.showSubCommentForm;
     };
-    return $scope.submitSubComment = function(parentComment, subComment, form) {
+    $scope.submitSubComment = function(parentComment, subComment, form) {
       var parentCommentCopy;
       parentCommentCopy = angular.copy(parentComment);
       if (!subComment.name || !subComment.content || !subComment.content.length) {
@@ -5559,6 +5559,13 @@ angular.module('BlogApp').controller('postCont', [
         });
       }
     };
+    return $http.get('/api/me').then(function(returnData) {
+      if (returnData.data.user) {
+        $scope.loggedInUser = returnData.data.user;
+        $scope.loggedInUser.website = 'http://theviewfromhere.is';
+        return $scope.loggedInUser.name = 'Clarissa';
+      }
+    });
   }
 ]);
 

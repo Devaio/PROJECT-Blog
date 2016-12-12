@@ -41,7 +41,7 @@ block content
                                 md-button.comment-reply-button(ng-click='subCommentForm(comment)')
                                     span(ng-show='!comment.showSubCommentForm') REPLY
                                     span(ng-show='comment.showSubCommentForm') CLOSE
-                        #comment-reply-form.collapsible-comment-form(ng-show='comment.showSubCommentForm')
+                        #comment-reply-form.collapsible-comment-form(ng-show='comment.showSubCommentForm', ng-init="subComment = {name : loggedInUser.name, email:loggedInUser.email, website : loggedInUser.website}")
                             form(name='commentForm')
                                 p.text-center.md-title.home-post-title Reply
                                 div(flex='100', layout='row', layout-align='center')

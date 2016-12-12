@@ -11,7 +11,7 @@ angular.module 'BlogApp'
 		'$filter',
 		'$timeout',
 		'socialFactory',
-		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout, socialFactory) ->
+		($scope, $sce, $stateParams, postTagFactory, $location, $window, $http, $filter, $timeout, socialFactory, authService) ->
 			$scope.navheight = 'small'
 			$scope.moment = moment
 			$scope.newComment = {}
@@ -99,6 +99,13 @@ angular.module 'BlogApp'
 								parentCommentCopy.subComments = parentCommentCopy.subComments || []
 								parentCommentCopy.subComments.push(returnData.data)
 								$http.post('/api/comments/' + parentCommentCopy._id, parentCommentCopy)
+
+			$http.get '/api/me'
+				.then (returnData) ->
+					if returnData.data.user
+						$scope.loggedInUser = returnData.data.user
+						$scope.loggedInUser.website = 'http://theviewfromhere.is'
+						$scope.loggedInUser.name = 'Clarissa'
 				
 		]
 	
