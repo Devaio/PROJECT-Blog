@@ -1,14 +1,6 @@
 extends includes/header
 
 block content
-    update-meta(property='og:title', content='#{post.title}')
-    update-meta(property='og:description', content='#{post.preview}')
-    update-meta(property='og:image', content='#{post.coverImg}')
-    update-meta(property='og:image:url', content='#{post.coverImg}')
-    update-meta(property='og:url', content='{{url}}')
-    update-meta(property='og:type', content='article')
-    update-meta(property='fragment', content='!')
-    update-title(title='#{post.title}')
     nav(navheight='navheight')
     div.post-cont(layout='row', ng-controller="postCont")
         .content-side-left(flex='')
