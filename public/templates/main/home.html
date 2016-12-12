@@ -4,7 +4,7 @@
 <nav navheight="navheight"></nav>
 
 
-<div layout="row" flex="100">
+<div class="post-cont" layout="row" flex="100">
 	<div class="content-side-left" flex>
 		<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
 			<a class="pull-left" ng-if="showNextPage" ng-href="/page/{{nextPage}}">
@@ -20,6 +20,5 @@
 	</div>
 	
 	<ng-include class="content-side-right" flex="25"  src="'public/templates/includes/sidenav.html'"></ng-include>
-	
 </div>
 

@@ -28,7 +28,7 @@ angular.module 'BlogApp'
 				$scope.commentBox = angular.element('#comments')
 				window.scrollTo(0, $scope.commentBox.offsetTop)
 			
-			$scope.post = postTagFactory.postModel.get({id : $stateParams.id})
+			$scope.post = postTagFactory.postModel.get({id : window.location.pathname.split('/')[2]})
 
 			$scope.$sce = $sce
 			$scope.linker = (content) ->

@@ -17,6 +17,11 @@ middleware = {
 		res.locals.user = req.user
 		res.locals.ENV = if global.process.env.NODE_ENV is 'live' then global.process.env.NODE_ENV else undefined
 		res.locals.timeStamp = timeStamp
+		res.locals.title = ''
+		res.locals.description = ''
+		res.locals.img = ''
+		res.locals.url = ''
+		res.locals.type = ''
 		next()
 	
 	multi : multipart()
@@ -40,6 +45,8 @@ module.exports = (app, passport, redis) ->
 	
 	auth = require '../controllers/auth'
 	# app.use(middleware.nocache)
+
+	app.get '/posts/:id', middleware.setLocals, posts.getPage
 
 	# API Routes
 	app.get '/api/me', (req, res) ->

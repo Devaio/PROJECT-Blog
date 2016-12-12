@@ -8,6 +8,14 @@ moment = require 'moment'
 _ = require 'underscore'
 slug = require 'slug'
 
+setPostLocals = (post, res) ->
+	res.locals.title = post.title
+	res.locals.description = post.preview
+	res.locals.img = post.coverImg
+	res.locals.url = 'http://theviewfromhere.is/posts/' + post.slug
+	res.locals.type = 'article'
+	console.log(res.locals)
+
 
 
 # Date Conversion helper methods
@@ -189,4 +197,35 @@ class Posts extends Main
 					res.send post
 	delete : (req, res) ->
 		super(req, res)
+
+	getPage : (req, res) ->
+		Post.findOne({_id : req.params.id, deleted : false}).populate('tags').populate({
+				path : 'comments'
+				populate : {
+					path : 'subComments'
+					model : 'Comment'
+				}
+			}).exec (err, post) ->
+				if post
+					toReadableDate(post)
+					setPostLocals(post, res);						
+					return res.render 'post', {post:post}
+				else
+					Post.findOne({slug : req.params.id, deleted : false}).populate('tags').populate({
+						path : 'comments'
+						populate : {
+							path : 'subComments'
+							model : 'Comment'
+						}
+					}).exec (err, post) ->
+						if post
+							toReadableDate(post)
+							setPostLocals(post, res);						
+							return res.render 'post', {post :post}
+						else
+							res.render 'post', {post : {title : 'No Post'}}
+
+
+
+
 module.exports = new Posts()

@@ -5492,7 +5492,7 @@ angular.module('BlogApp').controller('postCont', [
       window.scrollTo(0, $scope.commentBox.offsetTop);
     }
     $scope.post = postTagFactory.postModel.get({
-      id: $stateParams.id
+      id: window.location.pathname.split('/')[2]
     });
     $scope.$sce = $sce;
     $scope.linker = function(content) {
@@ -5702,10 +5702,6 @@ angular.module('BlogApp').config([
       url: '/about',
       controller: 'aboutCont',
       templateUrl: '/public/templates/main/about.html'
-    }).state('post', {
-      url: '/posts/:id',
-      controller: 'postCont',
-      templateUrl: '/public/templates/main/post.html'
     }).state('tag', {
       url: '/tags/:name',
       controller: 'tagCont',
