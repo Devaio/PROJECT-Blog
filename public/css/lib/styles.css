@@ -116,6 +116,9 @@ a.full-width {
 .o-h {
   overflow: hidden;
 }
+.md-body-1 {
+  font-size: 16px;
+}
 .total-content {
   padding-bottom: 20px;
 }
