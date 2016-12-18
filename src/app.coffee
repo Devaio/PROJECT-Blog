@@ -34,7 +34,7 @@ app.set('views', __dirname + '/../views')
 
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))
 # Prerender.io
-app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
+# app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
 
 app.use bodyParser.urlencoded(extended: false)
 app.use bodyParser.json()
