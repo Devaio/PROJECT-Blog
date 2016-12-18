@@ -22,11 +22,11 @@ angular.module 'BlogApp'
 				controller: 'aboutCont',
 				templateUrl: '/public/templates/main/about.html'
 			}
-			# .state 'post', {
-			# 	url: '/posts/:id',
-			# 	controller: 'postCont',
-			# 	templateUrl: '/public/templates/main/post.html'
-			# }
+			.state 'post', {
+				url: '/posts/:id',
+				controller: 'postCont',
+				# templateUrl: '/public/templates/main/post.html'
+			}
 			.state 'tag', {
 				url: '/tags/:name',
 				controller: 'tagCont',
