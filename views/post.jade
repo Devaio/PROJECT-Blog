@@ -18,10 +18,10 @@ block content
                     a(style='margin-top:4px:', ng-click='pinIt()')
                         img(src='http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png')
                     a.black-link(ng-repeat='tag in post.tags', ng-href='/tags/{{::tag.name}}')
-                    md-button.md-raised
-                        span {{::tag.name}}
-                    md-tooltip
-                        | See {{::tag.name | uppercase}} Posts
+                        md-button.md-raised
+                            span {{::tag.name}}
+                        md-tooltip
+                            | See {{::tag.name | uppercase}} Posts
             md-card#comments.post-card.white-bg.comment-card
                 md-card-title
                     md-card-title-text.text-center
