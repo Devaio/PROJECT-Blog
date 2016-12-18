@@ -1,11 +1,11 @@
  
- <md-card class="post-card post-card-spacing post white-bg" ng-repeat="post in posts">
+ <md-card class="post-card post white-bg" ng-class="{'post-card-spacing' : !$first}" ng-repeat="post in posts">
 
 	<!--<img ng-src="{{post.coverImg}}" class="md-card-image post-card-img">-->
 	<md-card-title>
 		<md-card-title-text class="text-center">
 			<p class="home-post-title md-display-1">{{post.title}}</p>
-			<p class="date-text">{{post.createdAt}}</p>
+			<p class="date-text post-date">{{post.createdAt}}</p>
 		</md-card-title-text>
 	</md-card-title>
 	<md-card-content class="md-subhead o-h">
