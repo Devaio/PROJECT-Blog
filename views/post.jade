@@ -16,7 +16,7 @@ block content
                         .post-content-container.md-body-1.o-h
                             | !{post.content}
                             
-                        .post-signature.font-jenna
+                        .post-signature.font-jenna(ng-if="post.content")
                             | xoxo,
                             br
                             | &nbsp;&nbsp;&nbsp;clarissa
@@ -48,7 +48,7 @@ block content
                                 span {{::tag.name}}
                             md-tooltip
                                 | See {{::tag.name | uppercase}} Posts
-                md-card#comments.post-card.white-bg.comment-card
+                md-card#comments.post-card.white-bg.comment-card(ng-if="post.content")
                     md-card-title
                         md-card-title-text.text-center
                             p.home-post-title.md-title Comments
@@ -105,7 +105,7 @@ block content
                                             p(style='padding-left:20px;', ng-bind-html='linker(subcomment.content)')
                                     md-divider
 
-                md-card.post-card.white-bg
+                md-card.post-card.white-bg(ng-if="post.content")
                     // COMMENT FORM
                     #comment-form(flex='100')
                         form(name='commentForm')
