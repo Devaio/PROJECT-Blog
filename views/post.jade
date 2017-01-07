@@ -17,16 +17,13 @@ block content
                             | !{post.content}
                     md-card-actions(layout='row', layout-align='end center')
 
-                        span.st_facebook_large(displayText='Facebook')
-                        span.st_twitter_large(displayText='Tweet')
-                        span.st_instagram_large(displayText='Instagram Badge', st_username='clarissa_theviewfromhereis')
-                        //- span.st_pinterest_large(displayText='Pinterest')
-                        span.st_stumbleupon_large(displayText='StumbleUpon')
-                        span.st_reddit_large(displayText='Reddit')
-                        span.st__large(displayText='')
+                        //- span.st_facebook_large(style='margin-top:8px', displayText='Facebook')
+                        //- span.st_twitter_large(style='margin-top:8px', displayText='Tweet')
+                        //- span.st_instagram_large(style='margin-top:8px', displayText='Instagram Badge', st_username='clarissa_theviewfromhereis')
+                        //- span.st_stumbleupon_large(style='margin-top:8px', displayText='StumbleUpon')
 
 
-                        a(style='margin-top:4px:', ng-click='pinIt()')
+                        a(style='margin-top:4px', ng-click='pinIt()')
                             img(src='http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png')
                         a.black-link(ng-repeat='tag in post.tags', ng-href='/tags/{{::tag.name}}')
                             md-button.md-raised
