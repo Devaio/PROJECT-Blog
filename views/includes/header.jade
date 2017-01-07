@@ -53,6 +53,8 @@ html(lang="en", ng-app="BlogApp")
 		link(rel="stylesheet", href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc4/angular-material.min.css")
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic")
 		link(href="https://fonts.googleapis.com/css?family=Raleway", rel="stylesheet")
+		link(rel="stylesheet", href="/public/css/dist/font-awesome.min.css")
+		
 		- if(typeof ENV !== 'undefined') {
 
 			//- CSS Build File
@@ -72,6 +74,20 @@ html(lang="en", ng-app="BlogApp")
 		//- script(type="text/javascript", id="st_insights_js", src="http://w.sharethis.com/button/buttons.js?publisher=c089dd30-ac30-4013-a2fe-8de7a6c1a6b8")
 		//- script(type="text/javascript")
 		//- 	stLight.options({publisher: "c089dd30-ac30-4013-a2fe-8de7a6c1a6b8", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+
+		// Facebook Pixel Code
+		script.
+			!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+			n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+			document,'script','https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '452232308498153'); // Insert your pixel ID here.
+			fbq('track', 'PageView');
+		noscript
+			img(height='1', width='1', style='display:none', src='https://www.facebook.com/tr?id=452232308498153&ev=PageView&noscript=1')
+		// DO NOT MODIFY
+		// End Facebook Pixel Code
 
 	body
 		.total-content
@@ -99,9 +115,9 @@ html(lang="en", ng-app="BlogApp")
 		script.
 			window.fbAsyncInit = function() {
 				FB.init({
-				appId      : '516708835157103',
+				appId      : '363888400645723',
 				xfbml      : true,
-				version    : 'v2.5'
+				version    : 'v2.8'
 				});
 				};
 				(function(d, s, id){
@@ -112,6 +128,7 @@ html(lang="en", ng-app="BlogApp")
 				fjs.parentNode.insertBefore(js, fjs);
 				}(document, 'script', 'facebook-jssdk'));
 		// script(async, data-pin-hover="true", data-pin-tall="true", data-pin-round="true", src="//assets.pinterest.com/js/pinit.js")
+		
 		
 		
 

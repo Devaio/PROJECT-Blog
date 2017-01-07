@@ -22,9 +22,22 @@ block content
                         //- span.st_instagram_large(style='margin-top:8px', displayText='Instagram Badge', st_username='clarissa_theviewfromhereis')
                         //- span.st_stumbleupon_large(style='margin-top:8px', displayText='StumbleUpon')
 
+                        a(target="_blank", href="https://www.facebook.com/dialog/share?app_id=363888400645723&display=popup&redirect_uri=#{url || 'http://theviewfromhere.is'}&href=#{url || 'http://theviewfromhere.is'}")
+                            .post-social-icon
+                                i.fa.fa-facebook
+                        a(target="_blank", href="https://twitter.com/intent/tweet?url=#{url || 'http://theviewfromhere.is'}&text=#{ title ||'The View From Here Blog'}&hashtags=diy,theviewfromhere")
+                            .post-social-icon
+                                i.fa.fa-twitter
+                        a(target="_blank", href="{{pinIt()}}")
+                            .post-social-icon
+                                i.fa.fa-pinterest-p
+                        a(target="_blank", href="http://www.stumbleupon.com/submit?url=#{url || 'http://theviewfromhere.is'}&title=#{ title ||'The View From Here Blog'}")
+                            .post-social-icon
+                                i.fa.fa-stumbleupon
 
-                        a(style='margin-top:4px', ng-click='pinIt()')
-                            img(src='http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png')
+
+                        //- a(style='margin-top:4px', ng-click='pinIt()')
+                        //-     img(src='http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png')
                         a.black-link(ng-repeat='tag in post.tags', ng-href='/tags/{{::tag.name}}')
                             md-button.md-raised
                                 span {{::tag.name}}
@@ -33,7 +46,7 @@ block content
                 md-card#comments.post-card.white-bg.comment-card
                     md-card-title
                         md-card-title-text.text-center
-                        p.home-post-title.md-title Comments
+                            p.home-post-title.md-title Comments
                     md-card-content
                         // COMMENT LIST
                         md-list
@@ -118,4 +131,6 @@ block content
                             p.warning-text {{errorMsg}}
                             p.warning-text {{successMsg}}
             ng-include.content-side-right(flex='25', src="'public/templates/includes/sidenav.html'")
+    script
+        fbq('track', 'ViewContent');
 

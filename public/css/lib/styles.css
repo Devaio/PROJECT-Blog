@@ -642,6 +642,26 @@ footer {
   height: 36px;
   widows: 1pxpx;
 }
+.post-social-icon {
+  height: 32px;
+  width: 32px;
+  font-size: 20px;
+  margin: 0px 5px;
+  margin-top: 2px;
+  background-color: #e0e0e0;
+  color: #000;
+  text-align: center;
+  line-height: 32px;
+  -webkit-transition: color 0.3s ease;
+  -moz-transition: color 0.3s ease;
+  -o-transition: color 0.3s ease;
+  -ms-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.post-social-icon:hover {
+  color: #fff;
+}
 .ql-container {
   border: thin solid #000;
   min-height: 400px;
