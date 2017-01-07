@@ -2,15 +2,31 @@
 
 
 <div layout="row">
-	
+
 	<div flex>
 		<p class="tag-page-header md-display-1 text-center">All {{tag.name | uppercase}} Posts</p>
 	</div>
 
 </div>
-<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
 
-	<a class="pull-left" ng-if="showNextPage" ng-href="/tags/{{tag.name}}/{{nextPage}}">Older Posts</a>
-	<a class="pull-right" ng-if="(nextPage - 2) > 0" ng-href="/tags/{{tag.name}}/{{nextPage - 2}}">Newer Posts</a>
+<div class="post-cont" layout="row" flex="100">
+	<div class="content-side-left" flex>
+		<ng-include src="'public/templates/includes/postlist.html'"></ng-include>
 
 
+
+		<a class="pull-left" ng-if="showNextPage" ng-href="/tags/{{tag.name}}/{{nextPage}}">
+			<md-button class="md-raised">
+				Older Posts
+			</md-button>
+		</a>
+		<a class="pull-right" ng-if="(nextPage - 2) > 0" ng-href="/tags/{{tag.name}}/{{nextPage - 2}}">
+			<md-button class="md-raised">
+				Newer Posts
+			</md-button>
+		</a>
+
+	</div>
+
+	<ng-include class="content-side-right" flex="25" src="'public/templates/includes/sidenav.html'"></ng-include>
+</div>

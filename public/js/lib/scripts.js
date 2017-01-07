@@ -5743,6 +5743,14 @@ angular.module('BlogApp').config([
       templateUrl: '/public/templates/admin/moderateComments.html'
     });
   }
+]).run([
+  '$rootScope', function($rootScope) {
+    return $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      if (toParams.id && fromState.name) {
+        return location.reload();
+      }
+    });
+  }
 ]);
 
 

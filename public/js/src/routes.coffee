@@ -1,5 +1,6 @@
 angular.module 'BlogApp'
-	.config ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compileProvider', ($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider)->
+	.config ['$stateProvider', '$urlRouterProvider', '$locationProvider', '$compileProvider',
+	($stateProvider, $urlRouterProvider, $locationProvider, $compileProvider)->
 		$compileProvider.debugInfoEnabled(false);
 		$locationProvider.html5Mode(true);
 
@@ -66,4 +67,16 @@ angular.module 'BlogApp'
 				controller : 'adminModerateComments',
 				templateUrl : '/public/templates/admin/moderateComments.html'
 			}
+
+		
+			
+	]
+
+	.run [
+		'$rootScope', 
+		($rootScope)->
+			$rootScope.$on '$stateChangeSuccess', (event, toState, toParams, fromState, fromParams)->
+				# Used to fix routing issue with post
+				if toParams.id and fromState.name
+					location.reload();
 	]

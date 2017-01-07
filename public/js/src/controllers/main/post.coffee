@@ -22,7 +22,7 @@ angular.module 'BlogApp'
 			$scope.socialFactory = socialFactory
 
 			console.log('POST')
-
+			
 			postTagFactory.random (data) ->
 				
 				$scope.morePosts = data
