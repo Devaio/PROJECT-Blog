@@ -6,6 +6,10 @@
   font-family: 'GeoSans';
   src: url("../../fonts/GeosansLight.ttf");
 }
+@font-face {
+  font-family: 'JennaSue';
+  src: url("../../fonts/JennaSue.ttf");
+}
 body,
 html {
   height: auto;
@@ -152,6 +156,9 @@ footer {
 }
 .font-modesty {
   font-family: 'Modesty';
+}
+.font-jenna {
+  font-family: 'JennaSue';
 }
 .font-45 {
   font-size: 45px !important;
@@ -661,6 +668,10 @@ footer {
 }
 .post-social-icon:hover {
   color: #fff;
+}
+.post-signature {
+  font-size: 42px;
+  line-height: 45px;
 }
 .ql-container {
   border: thin solid #000;
