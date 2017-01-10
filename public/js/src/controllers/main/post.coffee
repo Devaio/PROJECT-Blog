@@ -22,7 +22,7 @@ angular.module 'BlogApp'
 			$scope.socialFactory = socialFactory
 
 			console.log('POST')
-
+			
 			postTagFactory.random (data) ->
 				
 				$scope.morePosts = data
@@ -48,8 +48,7 @@ angular.module 'BlogApp'
 			
 			$scope.pinIt = () ->
 				img = ($scope.post.pinImg)
-				$window.myWindow = $window.open('https://www.pinterest.com/pin/create/button/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=theviewfromhere.is%20%7C%7C%20' +  encodeURIComponent($scope.post.title),'MyWindow','width=600,height=400')
-				return true
+				return 'https://pinterest.com/pin/create/bookmarklet/?url=' + $scope.url + '&media=' + encodeURIComponent(img) + '&description=theviewfromhere.is%20%7C%7C%20' +  encodeURIComponent($scope.post.title)
 				
 			$scope.submitComment = (form) ->
 				# $scope.newComment = {}

@@ -1,114 +1,141 @@
 extends includes/header
 
 block content
-    //- div(ui-view)
-    nav(navheight='navheight')
-    div.post-cont(layout='row', ng-controller="postCont")
-        .content-side-left(flex='')
-            md-card.post-card.white-bg
-                .post-card-img(alt='#{post.title}', style="background-image:url('#{post.coverImg}'); background-size:cover; background-position:center")
-                img(style='width:0px;height:0px;', src='#{post.coverImg}', alt='#{post.title}')
-                md-card-title
-                    md-card-title-text.text-center
-                        p.home-post-title.md-display-1 #{post.title}
-                        p.date-text #{post.createdAt}
-                md-card-content
-                    .post-content-container.md-body-1.o-h
-                        | !{post.content}
-                md-card-actions(layout='row', layout-align='end center')
-                    a(style='margin-top:4px:', ng-click='pinIt()')
-                        img(src='http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png')
-                    a.black-link(ng-repeat='tag in post.tags', ng-href='/tags/{{::tag.name}}')
-                        md-button.md-raised
-                            span {{::tag.name}}
-                        md-tooltip
-                            | See {{::tag.name | uppercase}} Posts
-            md-card#comments.post-card.white-bg.comment-card
-                md-card-title
-                    md-card-title-text.text-center
-                    p.home-post-title.md-title Comments
-                md-card-content
-                    // COMMENT LIST
-                    md-list
-                    // Viewer LIST
-                    .comment-list-item(ng-repeat="comment in post.comments | orderBy : 'createdAt' : true", ng-if='comment.approved && !comment.isSubComment')
-                        md-list-item
-                            .md-list-item-text.comment-info
-                                span.date-text.comment-date.minor-text-pad  {{::moment.unix(comment.createdAt).format(&apos;MM/DD/YYYY&apos;)}} 
-                                h4.minor-text-pad(ng-if='!comment.website') {{ ::comment.name }}
-                                h4.minor-text-pad(ng-if='comment.website')
-                                    a.black-link.comment-link(href='{{::urlCheck(comment.website)}}', target='_blank') {{ comment.name }}
-                                p(style='padding-left:20px;', ng-bind-html='linker(comment.content)')
-                                md-button.comment-reply-button(ng-click='subCommentForm(comment)')
-                                    span(ng-show='!comment.showSubCommentForm') REPLY
-                                    span(ng-show='comment.showSubCommentForm') CLOSE
-                        #comment-reply-form.collapsible-comment-form(ng-show='comment.showSubCommentForm', ng-init="subComment = {name : loggedInUser.name, email:loggedInUser.email, website : loggedInUser.website}")
-                            form(name='commentForm')
-                                p.text-center.md-title.home-post-title Reply
-                                div(flex='100', layout='row', layout-align='center')
-                                    md-input-container.display-block(flex='50')
-                                        label Name
-                                        input(required='', name='commentName', ng-model='subComment.name')
-                                        div(ng-messages='commentForm.commentName.$error', role='alert', multiple='')
-                                            .warning-text(ng-message='required') You need a name!
-                                    md-input-container.display-block(flex='50')
-                                        label Email (opt)
-                                        input(ng-model='subComment.email')
-                                div(flex='50', layout='row', layout-align='center')
-                                    md-input-container.display-block(flex='100')
-                                        label Website (opt)
-                                        |                                         
-                                        input(ng-model='subComment.website')
-                                div(flex='100', layout='row', layout-align='center')
-                                    md-input-container.md-block(flex='100')
-                                        label Comment
-                                        textarea(md-maxlength='500', rows='5', ng-model='subComment.content')
-                                div(flex='50', flex-offset='50', layout='row', layout-align='center')
-                                    md-button.button-ex-pad.button-med.md-raised(ng-click='submitSubComment(comment, subComment, commentForm)')
-                                        span Reply!
-                                p.warning-text {{subComment.errorMsg}}
-                                p.warning-text {{subComment.successMsg}}
-                        md-list.subcomment-list(flex='90', flex-offset='10', ng-if='comment.subComments.length')
-                            .subcomment-list-item(ng-if='subcomment.approved', ng-repeat='subcomment in comment.subComments')
-                                // <md-divider ng-if="$first"></md-divider>
-                                md-list-item
-                                    .md-list-item-text.comment-info
-                                        span.date-text.comment-date  {{moment.unix(subcomment.createdAt).format(&apos;MM/DD/YYYY&apos;)}} 
-                                        h4(ng-if='!subcomment.website') {{ subcomment.name }}
-                                        h4(ng-if='subcomment.website')
-                                            a.black-link.comment-link(href='{{urlCheck(subcomment.website)}}', target='_blank') {{ subcomment.name }}
-                                        p(style='padding-left:20px;', ng-bind-html='linker(subcomment.content)')
-                                md-divider
+    div(ui-view)
+        nav(navheight='navheight')
+        div.post-cont(layout='row', ng-controller="postCont")
+            .content-side-left(flex='')
+                md-card.post-card.white-bg
+                    .post-card-img(alt='#{post.title}', style="background-image:url('#{post.coverImg}'); background-size:cover; background-position:center")
+                    img(style='width:0px;height:0px;', src='#{post.coverImg}', alt='#{post.title}')
+                    md-card-title
+                        md-card-title-text.text-center
+                            p.home-post-title.md-display-1 #{post.title}
+                            p.date-text #{post.createdAt}
+                    md-card-content
+                        .post-content-container.md-body-1.o-h
+                            | !{post.content}
+                            
+                        .post-signature.font-jenna(ng-if="post.content")
+                            | xoxo,
+                            br
+                            | &nbsp;&nbsp;&nbsp;clarissa
+                    md-card-actions(layout='row', layout-align='end center')
 
-            md-card.post-card.white-bg
-                // COMMENT FORM
-                #comment-form(flex='100')
-                    form(name='commentForm')
-                        p.text-center.md-title.home-post-title Leave a comment
-                        div(flex='100', layout='row', layout-align='center')
-                            md-input-container.display-block(flex='50')
-                                label Name
-                                input(required='', name='commentName', ng-model='newComment.name')
-                                                                
-                                div(ng-messages='commentForm.commentName.$error', role='alert', multiple='')
-                                        .warning-text(ng-message='required') You need a name!
-                            md-input-container.display-block(flex='50')
-                                label Email (opt)
-                                input(ng-model='newComment.email')
-                        md-checkbox.pull-right.comment-checkbox(ng-model='newComment.sendEmail', aria-label='Send Email')
-                            | Email Me Responses
-                        div(flex='50', layout='row', layout-align='center')
-                            md-input-container.display-block(flex='100')
-                                label Website (opt)
-                                input(ng-model='newComment.website')
-                        div(flex='100', layout='row', layout-align='center')
-                            md-input-container.md-block(flex='100')
-                                label Comment
-                                textarea(md-maxlength='500', rows='5', ng-model='newComment.content')
-                        div(flex='50', flex-offset='50', layout='row', layout-align='center')
-                            md-button.button-ex-pad.button-med.md-raised(ng-click='submitComment(commentForm)')
-                                span Comment!
-                        p.warning-text {{errorMsg}}
-                        p.warning-text {{successMsg}}
-        ng-include.content-side-right(flex='25', src="'public/templates/includes/sidenav.html'")
+                        //- span.st_facebook_large(style='margin-top:8px', displayText='Facebook')
+                        //- span.st_twitter_large(style='margin-top:8px', displayText='Tweet')
+                        //- span.st_instagram_large(style='margin-top:8px', displayText='Instagram Badge', st_username='clarissa_theviewfromhereis')
+                        //- span.st_stumbleupon_large(style='margin-top:8px', displayText='StumbleUpon')
+
+                        a(target="_blank", href="https://www.facebook.com/dialog/share?app_id=363888400645723&display=popup&redirect_uri=#{url || 'http://theviewfromhere.is'}&href=#{url || 'http://theviewfromhere.is'}")
+                            .post-social-icon
+                                i.fa.fa-facebook
+                        a(target="_blank", href="https://twitter.com/intent/tweet?url=#{url || 'http://theviewfromhere.is'}&text=#{ title ||'The View From Here Blog'}&hashtags=diy,theviewfromhere")
+                            .post-social-icon
+                                i.fa.fa-twitter
+                        a(target="_blank", href="{{pinIt()}}")
+                            .post-social-icon
+                                i.fa.fa-pinterest-p
+                        a(target="_blank", href="http://www.stumbleupon.com/submit?url=#{url || 'http://theviewfromhere.is'}&title=#{ title ||'The View From Here Blog'}")
+                            .post-social-icon
+                                i.fa.fa-stumbleupon
+
+
+                        //- a(style='margin-top:4px', ng-click='pinIt()')
+                        //-     img(src='http://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png')
+                        a.black-link(ng-repeat='tag in post.tags', ng-href='/tags/{{::tag.name}}')
+                            md-button.md-raised
+                                span {{::tag.name}}
+                            md-tooltip
+                                | See {{::tag.name | uppercase}} Posts
+                md-card#comments.post-card.white-bg.comment-card(ng-if="post.content")
+                    md-card-title
+                        md-card-title-text.text-center
+                            p.home-post-title.md-title Comments
+                    md-card-content
+                        // COMMENT LIST
+                        md-list
+                        // Viewer LIST
+                        .comment-list-item(ng-repeat="comment in post.comments | orderBy : 'createdAt' : true", ng-if='comment.approved && !comment.isSubComment')
+                            md-list-item
+                                .md-list-item-text.comment-info
+                                    span.date-text.comment-date.minor-text-pad  {{::moment.unix(comment.createdAt).format(&apos;MM/DD/YYYY&apos;)}} 
+                                    h4.minor-text-pad(ng-if='!comment.website') {{ ::comment.name }}
+                                    h4.minor-text-pad(ng-if='comment.website')
+                                        a.black-link.comment-link(href='{{::urlCheck(comment.website)}}', target='_blank') {{ comment.name }}
+                                    p(style='padding-left:20px;', ng-bind-html='linker(comment.content)')
+                                    md-button.comment-reply-button(ng-click='subCommentForm(comment)')
+                                        span(ng-show='!comment.showSubCommentForm') REPLY
+                                        span(ng-show='comment.showSubCommentForm') CLOSE
+                            #comment-reply-form.collapsible-comment-form(ng-show='comment.showSubCommentForm', ng-init="subComment = {name : loggedInUser.name, email:loggedInUser.email, website : loggedInUser.website}")
+                                form(name='commentForm')
+                                    p.text-center.md-title.home-post-title Reply
+                                    div(flex='100', layout='row', layout-align='center')
+                                        md-input-container.display-block(flex='50')
+                                            label Name
+                                            input(required='', name='commentName', ng-model='subComment.name')
+                                            div(ng-messages='commentForm.commentName.$error', role='alert', multiple='')
+                                                .warning-text(ng-message='required') You need a name!
+                                        md-input-container.display-block(flex='50')
+                                            label Email (opt)
+                                            input(ng-model='subComment.email')
+                                    div(flex='50', layout='row', layout-align='center')
+                                        md-input-container.display-block(flex='100')
+                                            label Website (opt)
+                                            |                                         
+                                            input(ng-model='subComment.website')
+                                    div(flex='100', layout='row', layout-align='center')
+                                        md-input-container.md-block(flex='100')
+                                            label Comment
+                                            textarea(md-maxlength='500', rows='5', ng-model='subComment.content')
+                                    div(flex='50', flex-offset='50', layout='row', layout-align='center')
+                                        md-button.button-ex-pad.button-med.md-raised(ng-click='submitSubComment(comment, subComment, commentForm)')
+                                            span Reply!
+                                    p.warning-text {{subComment.errorMsg}}
+                                    p.warning-text {{subComment.successMsg}}
+                            md-list.subcomment-list(flex='90', flex-offset='10', ng-if='comment.subComments.length')
+                                .subcomment-list-item(ng-if='subcomment.approved', ng-repeat='subcomment in comment.subComments')
+                                    // <md-divider ng-if="$first"></md-divider>
+                                    md-list-item
+                                        .md-list-item-text.comment-info
+                                            span.date-text.comment-date  {{moment.unix(subcomment.createdAt).format(&apos;MM/DD/YYYY&apos;)}} 
+                                            h4(ng-if='!subcomment.website') {{ subcomment.name }}
+                                            h4(ng-if='subcomment.website')
+                                                a.black-link.comment-link(href='{{urlCheck(subcomment.website)}}', target='_blank') {{ subcomment.name }}
+                                            p(style='padding-left:20px;', ng-bind-html='linker(subcomment.content)')
+                                    md-divider
+
+                md-card.post-card.white-bg(ng-if="post.content")
+                    // COMMENT FORM
+                    #comment-form(flex='100')
+                        form(name='commentForm')
+                            p.text-center.md-title.home-post-title Leave a comment
+                            div(flex='100', layout='row', layout-align='center')
+                                md-input-container.display-block(flex='50')
+                                    label Name
+                                    input(required='', name='commentName', ng-model='newComment.name')
+                                                                    
+                                    div(ng-messages='commentForm.commentName.$error', role='alert', multiple='')
+                                            .warning-text(ng-message='required') You need a name!
+                                md-input-container.display-block(flex='50')
+                                    label Email (opt)
+                                    input(ng-model='newComment.email')
+                            md-checkbox.pull-right.comment-checkbox(ng-model='newComment.sendEmail', aria-label='Send Email')
+                                | Email Me Responses
+                            div(flex='50', layout='row', layout-align='center')
+                                md-input-container.display-block(flex='100')
+                                    label Website (opt)
+                                    input(ng-model='newComment.website')
+                            div(flex='100', layout='row', layout-align='center')
+                                md-input-container.md-block(flex='100')
+                                    label Comment
+                                    textarea(md-maxlength='500', rows='5', ng-model='newComment.content')
+                            div(flex='50', flex-offset='50', layout='row', layout-align='center')
+                                md-button.button-ex-pad.button-med.md-raised(ng-click='submitComment(commentForm)')
+                                    span Comment!
+                            p.warning-text {{errorMsg}}
+                            p.warning-text {{successMsg}}
+            ng-include.content-side-right(flex='25', src="'public/templates/includes/sidenav.html'")
+    script
+        fbq('track', 'ViewContent');
 

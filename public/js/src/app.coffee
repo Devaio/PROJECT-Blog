@@ -3,7 +3,7 @@ angular.module('BlogApp', [
 	'ngMaterial',
 	'ngAnimate', 
 	'ui.tinymce', 
-	'ui.router', 
+	'ui.router',
 	'ngResource', 
 	'ngSanitize', 
 	'ngFileUpload',

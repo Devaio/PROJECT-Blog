@@ -18,7 +18,9 @@ module.exports = (passport) ->
 		passwordField: 'password'
 
 	}, (email, password, done) ->
+		console.log(email, password)
 		Account.findOne {email : email}, (error, account) ->
+			console.log error, account
 			if not error and account
 
 				passwords.compare password, account.password, (isMatch) ->
