@@ -33,6 +33,8 @@ app.set 'view engine', 'jade'
 app.set('views', __dirname + '/../views')
 
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))
+app.use('/.well-known', express.static(__dirname + '/../public', {maxAge : 86400000}))
+
 # Prerender.io
 # app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
 
