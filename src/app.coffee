@@ -1,5 +1,16 @@
 fs = require 'fs'
 env = require 'node-env-file'
+needHttps = false;
+if fs.existsSync("/etc/letsencrypt/live/theviewfromhere.is/cert.pem")
+  needHttps = true;
+  certificate = fs.readFileSync("/etc/letsencrypt/live/theviewfromhere.is/cert.pem")
+  chain = fs.readFileSync("/etc/letsencrypt/live/theviewfromhere.is/chain.pem")
+  key= fs.readFileSync("/etc/letsencrypt/live/theviewfromhere.is/privkey.pem")
+
+  httpsConfig = {
+    cert: certificate + chain,
+    key: key
+  };
 
 # Read evironment vars from file if no environment exists
 # Load ENV vars
@@ -60,6 +71,25 @@ require('./config/passport')(passport)
 require('./config/routes')(app, passport)
 
 port = process.env.PORT or 3000
-app.listen port, () -> 
-  console.log "Server running on port " + port
+# app.listen port, () -> 
+#   console.log "Server running on port " + port
+
+
+if(needHttps)
+  https.createServer(httpsConfig, app)
+      .listen port, (err) -> 
+        if (err)
+          console.log("https server listen error with error ", err)
+          return process.exit(1)
+        
+
+        console.info("Successfully setup HTTPS server listening at" + port)
+
+else
+  app.listen port, () -> 
+    console.log "Server running on port " + port
+
+
+
+
 
