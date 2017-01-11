@@ -46,9 +46,12 @@ app.set 'view engine', 'jade'
 app.set('views', __dirname + '/../views')
 
 app.all '*', (req, res, next) ->
+  sub = ''
   if req.protocol == 'http'
     res.set 'X-Forwarded-Proto', 'https'
-    res.redirect 'https://' + req.headers.host + req.url
+    if req.subdomains.length
+      sub = req.subdomains[0] + '.'
+    res.redirect 'https://' + sub + req.headers.host + req.url
   else
     next()
   return
