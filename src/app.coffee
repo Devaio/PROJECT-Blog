@@ -45,6 +45,14 @@ app = express()
 app.set 'view engine', 'jade'
 app.set('views', __dirname + '/../views')
 
+app.all '*', (req, res, next) ->
+  if req.protocol == 'http'
+    res.set 'X-Forwarded-Proto', 'https'
+    res.redirect 'https://' + req.headers.host + req.url
+  else
+    next()
+  return
+
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))
 app.use('/.well-known', express.static(__dirname + '/../public/.well-known', {maxAge : 86400000}))
 
