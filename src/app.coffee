@@ -1,6 +1,19 @@
 fs = require 'fs'
 env = require 'node-env-file'
 
+# HTTP = require('http')
+# HTTPS = require('https')
+
+# if fs.existsSync("/etc/letsencrypt/live/theviewfromhere.is/cert.pem")
+#   certificate = fs.readFileSync("/etc/letsencrypt/live/theviewfromhere.is/cert.pem")
+#   chain = fs.readFileSync("/etc/letsencrypt/live/theviewfromhere.is/chain.pem")
+#   key= fs.readFileSync("/etc/letsencrypt/live/theviewfromhere.is/privkey.pem")
+
+#   httpsConfig = {
+#     cert: certificate + chain,
+#     key: key
+#   };
+
 # Read evironment vars from file if no environment exists
 # Load ENV vars
 if typeof(global.process.env.NODE_ENV) is 'undefined'
@@ -38,7 +51,10 @@ app.get '/robots.txt', (req, res) ->
 app.get '/sitemap.xml', (req, res) ->
   res.sendFile('sitemap.xml', {root : './public'})
 
+
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))
+app.use('/.well-known', express.static(__dirname + '/../public/.well-known', {maxAge : 86400000}))
+
 # Prerender.io
 # app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
 
@@ -64,6 +80,18 @@ require('./config/passport')(passport)
 require('./config/routes')(app, passport)
 
 port = process.env.PORT or 3000
-app.listen port, () -> 
-  console.log "Server running on port " + port
+app.listen(port, ()-> console.log('running on' + 3000))
+
+# ports = {
+#   http:  process.env.PORT or 3000
+#   https: process.env.PORT_SSL or 443
+# }
+
+# HTTP.createServer( app )
+#   .listen ports.http, () ->
+#     console.log "Server running on " + ports.http
+
+# try HTTPS.createServer( httpsConfig, app ).listen( ports.https )
+# catch e
+#     console.error('Could not HTTPS server', e)
 
