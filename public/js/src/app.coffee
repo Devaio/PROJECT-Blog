@@ -9,17 +9,14 @@ angular.module('BlogApp', [
 	'ngFileUpload',
 	'updateMeta',
 	'angular-pinterest'
-])
-
-#  'ngQuill'
-angular.module('BlogApp')
-	.config ($mdThemingProvider) ->
-		$mdThemingProvider.theme('default')
-			.primaryPalette('grey', {
-				default : '300'
-			})
-			.accentPalette('deep-purple')
-			.warnPalette('light-green')
+]).config ($mdThemingProvider, $compileProvider) ->
+	$compileProvider.debugInfoEnabled(false)
+	$mdThemingProvider.theme('default')
+		.primaryPalette('grey', {
+			default : '300'
+		})
+		.accentPalette('deep-purple')
+		.warnPalette('light-green')
 
 # angular.module('BlogApp').filter 'htmlToPlaintext', () ->
 # 	return (text) -> 
