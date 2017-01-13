@@ -20,8 +20,6 @@ angular.module 'BlogApp'
 			$scope.socialData = socialFactory.socialData
 			$scope.posts = postTagFactory.posts($stateParams.pageNum)
 			$scope.socialFactory = socialFactory
-
-			console.log('POST')
 			
 			postTagFactory.random (data) ->
 				

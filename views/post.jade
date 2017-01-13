@@ -3,7 +3,7 @@ extends includes/header
 block content
     div(ui-view)
         nav(navheight='navheight')
-        div.post-cont(layout='row', ng-controller="postCont")
+        div.post-cont(layout='row')
             .content-side-left(flex='')
                 md-card.post-card.white-bg
                     .post-card-img(alt='#{post.title}', style="background-image:url('#{post.coverImg}'); background-size:cover; background-position:center")

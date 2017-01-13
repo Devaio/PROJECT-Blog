@@ -5484,7 +5484,6 @@ angular.module('BlogApp').controller('postCont', [
     $scope.socialData = socialFactory.socialData;
     $scope.posts = postTagFactory.posts($stateParams.pageNum);
     $scope.socialFactory = socialFactory;
-    console.log('POST');
     postTagFactory.random(function(data) {
       return $scope.morePosts = data;
     });
