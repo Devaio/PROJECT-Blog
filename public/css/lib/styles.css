@@ -585,8 +585,15 @@ footer {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.pad-or {
+  padding: 10px 0;
+  margin: 0;
+}
 .side-spacing {
   margin: 50px 0px;
+}
+.side-nospacing {
+  margin: 0px;
 }
 .post-card-spacing {
   margin: 100px 0px;
@@ -613,7 +620,8 @@ footer {
   height: auto;
 }
 .home-post-title {
-  padding: 10px 0 0 0;
+  padding: 10px 0;
+  margin: 0;
   font-weight: bold;
 }
 .comment-date {
