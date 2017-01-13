@@ -22,6 +22,7 @@ middleware = {
 		res.locals.img = 'http://theviewfromhere.is/public/img/logo-fb.png'
 		res.locals.url = ''
 		res.locals.type = ''
+		res.locals.requrl = "http://" + req.host + '/' + req.originalUrl
 		next()
 	
 	multi : multipart()

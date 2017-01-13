@@ -9,6 +9,7 @@ html(lang="en", ng-app="BlogApp")
 		meta(name="author", property="author", content="Clarissa Chappell")
 		meta(property="author", content="Clarissa Chappell")		
 		meta(http-equiv="content-type", content="text/html;charset=UTF-8")
+		meta(name="keywords", content="diy,blog,life,colorado,food,travel,recipe,lifestyle,craft,blog,blogger,the view from here,view from here,creative,creativity,project,recipe,exploration,incredible places")
 		meta(property="fb:app_id", content="516708835157103")
 		meta(property="og:image", content="#{ img || 'http://theviewfromhere.is/public/img/logo-fb.png'}")
 		meta(property="og:image:url", content="#{ img || 'http://theviewfromhere.is/public/img/logo-fb.png'}")
@@ -24,7 +25,8 @@ html(lang="en", ng-app="BlogApp")
 		link(rel="manifest", href="/public/manifest.json")
 		link(rel="mask-icon", href="/public/safari-pinned-tab.svg", color="#5bbad5")
 		meta(name="theme-color", content="#ffffff")
-
+		
+		link(rel="canonical", href="#{url || requrl || 'http://theviewfromhere.is'}")
 
 		meta(name="p:domain_verify", content="b67cdc89aac85b36068addbcb011f5f6")
 		meta(name="msvalidate.01", content="4F207E5A62EF236B524FD41EAC56F02B")

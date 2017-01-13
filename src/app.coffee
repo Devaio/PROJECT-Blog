@@ -32,6 +32,12 @@ app = express()
 app.set 'view engine', 'jade'
 app.set('views', __dirname + '/../views')
 
+app.get '/robots.txt', (req, res) ->
+  res.sendFile('robots.txt', {root : './public'})
+
+app.get '/sitemap.xml', (req, res) ->
+  res.sendFile('sitemap.xml', {root : './public'})
+
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))
 # Prerender.io
 # app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
