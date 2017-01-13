@@ -585,8 +585,7 @@ footer {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.pad-or {
-  padding: 10px 0;
+.marg-or {
   margin: 0;
 }
 .side-spacing {
