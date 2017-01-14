@@ -8,7 +8,9 @@ angular.module('BlogApp', [
 	'ngSanitize', 
 	'ngFileUpload',
 	'updateMeta',
-	'angular-pinterest'
+	'angular-pinterest',
+	'angulartics', 
+	'angulartics.google.analytics'
 ]).config ($mdThemingProvider, $compileProvider) ->
 	$compileProvider.debugInfoEnabled(false)
 	$mdThemingProvider.theme('default')

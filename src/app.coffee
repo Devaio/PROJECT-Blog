@@ -32,6 +32,9 @@ cookieParser = require('cookie-parser')
 passport = require('passport')
 multipart = require('connect-multiparty')
 multiMiddle = multipart()
+
+
+
 # Connect to the database and read model files
 mongoose.connect(global.process.env.DB_URI+'?slaveOk=true&connectTimeoutMS=10000', (err) ->
   console.log(err)
@@ -48,8 +51,9 @@ app.set('views', __dirname + '/../views')
 app.get '/robots.txt', (req, res) ->
   res.sendFile('robots.txt', {root : './public'})
 
-app.get '/sitemap.xml', (req, res) ->
-  res.sendFile('sitemap.xml', {root : './public'})
+# app.get '/sitemap.xml', (req, res) ->
+#   res.sendFile('sitemap.xml', {root : './public'})
+
 
 
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))

@@ -5141,7 +5141,7 @@ module.exports = 'ngFileUpload';
 },{"./dist/ng-file-upload-all":2}],4:[function(require,module,exports){
 require('ng-file-upload');
 
-angular.module('BlogApp', ['ngMaterial', 'ngAnimate', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest']).config(function($mdThemingProvider, $compileProvider) {
+angular.module('BlogApp', ['ngMaterial', 'ngAnimate', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest', 'angulartics', 'angulartics.google.analytics']).config(function($mdThemingProvider, $compileProvider) {
   $compileProvider.debugInfoEnabled(false);
   return $mdThemingProvider.theme('default').primaryPalette('grey', {
     "default": '300'

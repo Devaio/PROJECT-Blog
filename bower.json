@@ -16,6 +16,7 @@
   "dependencies": {
     "ngQuill": "ngquill#~1.0.12",
     "textAngular": "~1.4.5",
-    "angular-ui-tinymce": "~0.0.10"
+    "angular-ui-tinymce": "~0.0.10",
+    "angulartics-google-analytics": "^0.4.0"
   }
 }
