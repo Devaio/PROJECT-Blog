@@ -51,8 +51,8 @@ app.set('views', __dirname + '/../views')
 app.get '/robots.txt', (req, res) ->
   res.sendFile('robots.txt', {root : './public'})
 
-# app.get '/sitemap.xml', (req, res) ->
-#   res.sendFile('sitemap.xml', {root : './public'})
+app.get '/sitemap.xml', (req, res) ->
+  res.sendFile('sitemap.xml', {root : './public'})
 
 
 
