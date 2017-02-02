@@ -49,6 +49,7 @@ angular.module 'BlogApp'
 				paste_as_text: true
 				height : 600
 				browser_spellcheck : true
+				font_formats : "GeoSans=GeoSans"
 				fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt"
 				default_link_target: "_blank"
 				toolbar1 : 'core'

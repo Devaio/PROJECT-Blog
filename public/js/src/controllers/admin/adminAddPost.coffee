@@ -28,6 +28,7 @@ angular.module 'BlogApp'
 				skin: 'lightgray'
 				theme : 'modern'
 				browser_spellcheck : true
+				font_formats : "GeoSans=GeoSans"
 				paste_as_text: true
 				height : 600
 				browser_spellcheck : true

@@ -27,6 +27,7 @@ console.log = if global.process.env.NODE_ENV? and global.process.env.NODE_ENV is
 express = require('express')
 bodyParser = require('body-parser')
 mongoose = require('mongoose')
+mongoose.Promise = global.Promise;
 session = require('express-session')
 cookieParser = require('cookie-parser')
 passport = require('passport')
@@ -36,7 +37,7 @@ multiMiddle = multipart()
 
 
 # Connect to the database and read model files
-mongoose.connect(global.process.env.DB_URI+'?slaveOk=true&connectTimeoutMS=10000', (err) ->
+mongoose.connect(global.process.env.DB_URI, (err) ->
   console.log(err)
 )
 models = __dirname + '/models'
@@ -57,7 +58,7 @@ app.get '/sitemap.xml', (req, res) ->
 
 
 app.use('/public', express.static(__dirname + '/../public', {maxAge : 86400000}))
-app.use('/.well-known', express.static(__dirname + '/../public/.well-known', {maxAge : 86400000}))
+# app.use('/.well-known', express.static(__dirname + '/../public/.well-known', {maxAge : 86400000}))
 
 # Prerender.io
 # app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
@@ -84,7 +85,8 @@ require('./config/passport')(passport)
 require('./config/routes')(app, passport)
 
 port = process.env.PORT or 3000
-app.listen(port, ()-> console.log('running on' + 3000))
+app.listen port, (err)-> 
+  console.log(err, 'running on' + 3000)
 
 # ports = {
 #   http:  process.env.PORT or 3000

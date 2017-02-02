@@ -99,12 +99,12 @@ module.exports = (app, passport, redis) ->
 	
 
 
-	sitemapper = require('express-sitemap')
-	sitemap = sitemapper().generate4(app)
+	# sitemapper = require('express-sitemap')
+	# sitemap = sitemapper().generate4(app)
 
-	console.log(sitemapper)
+	# console.log(sitemapper)
 
-	sitemapper({map : sitemap}).toFile()
+	# sitemapper({map : sitemap}).toFile()
 
 	# Wildcard route
 	app.get('/*', middleware.setLocals, (req, res) ->

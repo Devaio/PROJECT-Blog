@@ -118,6 +118,7 @@ class Posts extends Main
 									res.send {title : 'No Post'}
 
 			else
+				console.log q
 				Post.find(q).sort('-createdAt').limit(postLimit).skip(pageSkip).populate('tags comments').exec (err, posts) ->
 					console.log(err, posts)
 					if posts?
