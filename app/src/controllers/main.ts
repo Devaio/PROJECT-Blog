@@ -2,7 +2,7 @@ import helpers = require('../modules/helpers');
 import { NextFunction, Request, Response } from "express";
 
 
-class MainController {
+export class MainController {
 
     private model: any;
 
@@ -30,7 +30,7 @@ class MainController {
 
     }
 
-    public upsert (data: Object, req: Request, res: Response, cb?: Function){
+    public upsert (req: Request, res: Response, data: Object, cb?: Function){
 
         let self = this;
 
@@ -81,5 +81,3 @@ class MainController {
     }
 
 }
-
-export = MainController;

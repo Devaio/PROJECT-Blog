@@ -22,4 +22,4 @@ AccountSchema.pre('save', function(next){
     return next();
 });
 
-export const User: Model<AccountModel> = model<AccountModel>("Account", AccountSchema);
+export const Account: Model<AccountModel> = model<AccountModel>("Account", AccountSchema);
