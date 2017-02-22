@@ -11,6 +11,10 @@ import multipart = require('connect-multiparty');
 var multiMiddle = multipart();
 var port = process.env.PORT || 3000;
 
+// Route Imports
+import { ViewRoutes } from './views';
+
+
 if (typeof (global.process.env.NODE_ENV) === 'undefined') {
     if (fs.existsSync(__dirname + '../../env/development.ev')) {
         env(__dirname + '../../env/development.ev');
@@ -83,7 +87,13 @@ export class Server {
 
 
     private routes() {
-        //empty for now
+        let router: express.Router;
+        router = express.Router();
+
+        ViewRoutes.create(router);
+
+        this.app.use(router);
+        
     }
 }
 
