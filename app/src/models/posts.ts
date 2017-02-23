@@ -22,30 +22,3 @@ var CommentSchema: Schema = new Schema({
 
 
 export const Account: Model<PostModel> = model<PostModel>("Comment", CommentSchema);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// title : String,
-	// slug : String	,
-	// coverImg : String,
-	// pinImg : String,
-	// preview : String,
-	// content : String,
-	// tags : [{type : Schema.ObjectId, ref : "Tag"}],
-	// createdAt : String,
-	// deleted : {type : Boolean, default : false},
-	// comments : [{type : Schema.ObjectId, ref : "Comment"}],

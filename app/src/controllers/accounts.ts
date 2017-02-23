@@ -5,8 +5,6 @@ import helpers = require('../modules/helpers');
 import {MainController} from './main';
 
 
-
-
 class Accounts extends MainController {
 
     constructor (){
