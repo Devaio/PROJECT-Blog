@@ -21,4 +21,4 @@ var CommentSchema: Schema = new Schema({
 
 
 
-export const Account: Model<CommentModel> = model<CommentModel>("Comment", CommentSchema);
+export const Comment: Model<CommentModel> = model<CommentModel>("Comment", CommentSchema);

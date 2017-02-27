@@ -4,7 +4,7 @@ import {post} from '../interfaces/post';
 // add mongoose Document to interface
 interface PostModel extends post, Document{}
 
-var CommentSchema: Schema = new Schema({
+var PostSchema: Schema = new Schema({
     name : String,
 	email : String,
 	website : String,
@@ -21,4 +21,4 @@ var CommentSchema: Schema = new Schema({
 
 
 
-export const Account: Model<PostModel> = model<PostModel>("Comment", CommentSchema);
+export const Post: Model<PostModel> = model<PostModel>("Post", PostSchema);

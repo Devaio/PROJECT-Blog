@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import moment = require('moment');
 
 class Helpers {
 
@@ -40,6 +41,16 @@ class Helpers {
             sortQuery : sortQuery
         }
         
+    }
+
+    public toReadableDate = (doc) =>{
+        doc.createdAt = moment.unix(doc.createdAt).format('MMM DD, YYYY')
+    }
+    public toUnixDate = (doc) =>{
+        doc.createdAt = moment(doc.createdAt).format('X')
+    }
+    public toJSDate = (doc) =>{
+        doc.createdAt = moment.unix(doc.createdAt).toDate()
     }
 
 }
