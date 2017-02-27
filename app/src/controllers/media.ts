@@ -57,7 +57,6 @@ class Media {
             await this.fileUploader(file);
 
         }
-
         res.send({data : files});
 
     }
