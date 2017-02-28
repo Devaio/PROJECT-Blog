@@ -1,6 +1,5 @@
 import { Model, Document, Types } from 'mongoose';
 import { NextFunction, Request, Response } from "express";
-import fs = require('fs');
 import moment = require('moment');
 import _ = require('lodash');
 import slug = require('slug');
