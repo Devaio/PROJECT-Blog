@@ -10,4 +10,4 @@ var TagSchema: Schema = new Schema({
 
 
 
-export const Account: Model<TagModel> = model<TagModel>("Tag", TagSchema);
+export const Tag: Model<TagModel> = model<TagModel>("Tag", TagSchema);
