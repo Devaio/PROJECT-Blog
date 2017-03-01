@@ -2,6 +2,7 @@ import async = require('async');
 import moment = require('moment');
 import s3 = require('s3');
 import { NextFunction, Request, Response } from "express";
+import fs = require('fs');
 
 
 if (global.process.env.AMAZON_KEY) {
@@ -19,31 +20,42 @@ class Media {
     }
 
     private fileUploader(file) {
-        let filename: string = moment().format('X') + file.name;
-        let headers: Object = {
-            'Content-Type': file.type,
-            'x-amz-acl': 'public-read'
-        }
+        // let filename: string = moment().format('X') + file.name;
+        // let headers: Object = {
+        //     'Content-Type': file.type,
+        //     'x-amz-acl': 'public-read'
+        // }
 
-        let uploader = s3Client.uploadFile({
-            localfile: file.path,
-            s3Params: {
-                Bucket: global.process.env.AMAZON_BUCKET,
-                Key: filename,
-                ACL: 'public-read'
-            }
-        })
+        // let uploader = s3Client.uploadFile({
+        //     localfile: file.path,
+        //     s3Params: {
+        //         Bucket: global.process.env.AMAZON_BUCKET,
+        //         Key: filename,
+        //         ACL: 'public-read'
+        //     }
+        // })
 
+        // return new Promise<string>((resolve) => {
+
+        //     uploader.on('end', () => {
+        //         let url = s3.getPublicUrlHttp(global.process.env.AMAZON_BUCKET, filename)
+        //         file.url = url;
+
+        //         resolve('ok')
+        //     })
+        // })
+
+        let url: string = `/public/img/${moment().format('X')}${file.name}`;
         return new Promise<string>((resolve) => {
 
-            uploader.on('end', () => {
-                let url = s3.getPublicUrlHttp(global.process.env.AMAZON_BUCKET, filename)
-                file.url = url;
+            fs.readFile(file.path, (err, data) => {
+                fs.writeFile(`.${url}`, data, (err) => {
 
-                resolve('ok')
+                    file.url = `http://theviewfromhere.is${url}`
+                    resolve(file.url);
+                });
             })
         })
-
 
 
     }
@@ -57,7 +69,7 @@ class Media {
             await this.fileUploader(file);
 
         }
-        res.send({data : files});
+        res.send({ data: files });
 
     }
 }
