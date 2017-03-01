@@ -11,7 +11,7 @@ slug = require 'slug'
 setPostLocals = (post, res) ->
 	res.locals.title = post.title
 	res.locals.description = post.preview
-	res.locals.img = post.coverImg
+	res.locals.img = 'http://theviewfromhere.is' + post.coverImg
 	res.locals.url = 'http://theviewfromhere.is/posts/' + post.slug
 	res.locals.type = 'article'
 	console.log(res.locals)
