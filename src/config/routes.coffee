@@ -96,7 +96,6 @@ module.exports = (app, passport, redis) ->
 			console.log err, body
 			res.send(body)
 
-	
 
 
 	# sitemapper = require('express-sitemap')
