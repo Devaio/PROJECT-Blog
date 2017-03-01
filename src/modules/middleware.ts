@@ -26,7 +26,7 @@ class Middleware {
         next();
     }
     public multi (){
-        multipart();
+        return multipart();
     }
     public nocache (req:Request, res:Response, next:NextFunction){
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')

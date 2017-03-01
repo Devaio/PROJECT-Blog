@@ -12,10 +12,10 @@ var CommentSchema: Schema = new Schema({
 	approved : {type : Boolean, default : false},
 	createdAt : String,
 	deleted : {type : Boolean, default : false},
-	post : {type : Types.ObjectId, ref : 'Post'},
+	post : {type : Schema.Types.ObjectId, ref : 'Post'},
 	
 	isSubComment : {type : Boolean, default : false},
-	subComments : [{type : Types.ObjectId, ref : 'Comment'}],
+	subComments : [{type : Schema.Types.ObjectId, ref : 'Comment'}],
 	sendEmail : {type : Boolean, default : false}
 });
 

@@ -4,7 +4,7 @@ var sg = sendgrid['SendGrid'](process.env.SENDGRID_KEY);
 
 class Mailer {
     private sender (toSend:JSON){
-        let emailReq = sendgrid.['request'];
+        let emailReq = sendgrid['request'];
         emailReq['method'] = 'POST';
         emailReq['path'] = '/v3/mail/send';
         emailReq['body'] = toSend;
@@ -37,7 +37,7 @@ class Mailer {
 
         mail.addPersonalization(personalization);
 
-        return new Promise<any>((resolve) => {
+        return new Promise<any>(async (resolve) => {
             resolve(await self.sender(mail.toJSON()));
         })
         

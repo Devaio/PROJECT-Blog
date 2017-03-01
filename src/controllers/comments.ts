@@ -16,7 +16,7 @@ class Comments extends MainController {
         super(Comment);
     }
 
-    private sendCommentMail(body:Object, doc: Document) {
+    private static sendCommentMail(body:Object, doc: Document) {
         Mailer.send(
             '651f0a1f-81a9-49ab-9b78-9e801d23c914',
             [
@@ -69,7 +69,7 @@ class Comments extends MainController {
                 if (doc.isSubComment) {
                     res.send(doc);
                     if (doc.sendEmail === true && body['parentComment'].email) {
-                        this.sendCommentMail(body, doc);
+                        Comments.sendCommentMail(body, doc);
                     }
                 }
                 else {
@@ -95,7 +95,7 @@ class Comments extends MainController {
             if(doc.isSubComment){
                 Comment.findOne({subComments : doc._id}, (err, parentComment)=>{
                     if(parentComment && parentComment.sendEmail && parentComment.email){
-                        this.sendCommentMail(body, doc);
+                        Comments.sendCommentMail(body, doc);
                     }
                 })
             }

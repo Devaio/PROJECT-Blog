@@ -10,21 +10,20 @@ import passport = require('passport');
 import multipart = require('connect-multiparty');
 var multiMiddle = multipart();
 var port = process.env.PORT || 3000;
+require('./config/passport');
 
 // Route Imports
 import { ViewRoutes } from './routes/views';
 import { ApiRoutes } from './routes/api';
 
 
-
 if (typeof (global.process.env.NODE_ENV) === 'undefined') {
-    if (fs.existsSync(__dirname + '../../env/development.ev')) {
-        env(__dirname + '../../env/development.ev');
+    if (fs.existsSync('./env/development.env')) {
+        env('./env/development.env');
     }
 }
-
 mongoose.connect(global.process.env.DB_URI, (err) => {
-    console.log(err);
+    console.log('CONNECTING TO DB', err);
 })
 
 export class Server {
@@ -44,20 +43,11 @@ export class Server {
         //add routes
         this.routes();
 
-        //add api
-        this.api();
-
     }
-
-
-    public api() {
-        //empty for now
-    }
-
 
     public config() {
-        this.app.set('view engine', 'pug');
-        this.app.set('views', __dirname + '/../views');
+        this.app.set('view engine', 'jade');
+        this.app.set('views', './views');
 
         // Static File Server
         this.app.use('/public', express.static(__dirname + '/../public', { maxAge: 86400000 }));
@@ -92,8 +82,8 @@ export class Server {
         let router: express.Router;
         router = express.Router();
 
-        ViewRoutes.create(router);
         ApiRoutes.create(router);
+        ViewRoutes.create(router);
 
         this.app.use(router);
         

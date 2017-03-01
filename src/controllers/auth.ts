@@ -9,7 +9,7 @@ class Auth {
     constructor (){
     }
 
-    public performLogin (req: Request, res: Response, next: NextFunction, user:Document){
+    public static performLogin (req: Request, res: Response, next: NextFunction, user:Document){
         
         req.login(user, (err)=>{
             if(err){
@@ -30,7 +30,7 @@ class Auth {
                 return res.send({error : 'No User!'});
             }
 
-            this.performLogin(req, res, next, user);
+            Auth.performLogin(req, res, next, user);
         })
 
         authFunc(req, res, next);

@@ -81,10 +81,12 @@
     "gulp-rename": "^1.2.0",
     "gulp-shell": "*",
     "gulp-stylus": "^1.0.2",
+    "gulp-typescript": "^3.1.5",
     "gulp-util": "^2.2.14",
     "jaden": "^0.3.0",
     "jeet": "^5.2.10",
     "nib": "^1.0.2",
-    "run-sequence": "^0.3.7"
+    "run-sequence": "^0.3.7",
+    "typescript": "^2.2.1"
   }
 }

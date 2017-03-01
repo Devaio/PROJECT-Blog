@@ -11,7 +11,7 @@ export class ViewRoutes extends BaseRoute {
         let RouteContainer = new ViewRoutes();
 
         router.get('/posts/:id', Middleware.setLocals, Posts.getPage)
-        router.get('/*', RouteContainer.wildCard)
+        router.get('/*',Middleware.setLocals, RouteContainer.wildCard)
 
 
     }
@@ -20,7 +20,7 @@ export class ViewRoutes extends BaseRoute {
     }
     
     public wildCard(req: Request, res: Response){
-        this.render(req, res, 'index')
+        super.render(req, res, 'index')
     }
 }
 

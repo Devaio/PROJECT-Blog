@@ -17,7 +17,7 @@ class Posts extends MainController {
         super(Post);
     }
 
-    private setPostLocals(post: Document, res: Response) {
+    private static setPostLocals(post: Document, res: Response) {
         res.locals.title = post['title']
         res.locals.description = post['preview']
         res.locals.img = 'http://theviewfromhere.is' + post['coverImg']
@@ -25,7 +25,7 @@ class Posts extends MainController {
         res.locals.type = 'article'
     }
 
-    private async createTagList(newPostTags: Array<string>) {
+    private static async createTagList(newPostTags: Array<string>) {
         var tagList: Array<Types.ObjectId> = [];
         function tagger(tag, tags, tagList, createdTagNames) {
             let tagIndex: number = createdTagNames.indexOf(tag);
@@ -199,15 +199,17 @@ class Posts extends MainController {
         })
 
         // Create Tag List
-        body.tags = await this.createTagList(body.tags);
+        body.tags = await Posts.createTagList(body.tags);
 
         // Convert to Unix Time
-        body.createdAt = moment.uniz(body.createdAt / 1000).format('X')
+        body.createdAt = moment.unix(body.createdAt / 1000).format('X')
 
         // Slugify title
         if (body.title) {
             body.slug = slug(body.title.toLowerCase());
         }
+
+        console.log('BEFORE SAVE POST')
 
         let newPost = new Post(body);
         newPost.save((err, doc) => {
@@ -233,7 +235,7 @@ class Posts extends MainController {
             }
         })
 
-        body.tags = await this.createTagList(body.tags);
+        body.tags = await Posts.createTagList(body.tags);
 
         // Convert to Unix Time
         body.createdAt = moment.uniz(body.createdAt / 1000).format('X')
@@ -258,7 +260,7 @@ class Posts extends MainController {
         }).exec((err, post) => {
             if (post) {
                 helpers.toReadableDate(post);
-                this.setPostLocals(post, res);
+                Posts.setPostLocals(post, res);
                 return res.render('post', { post: post });
             }
             else {
@@ -271,7 +273,7 @@ class Posts extends MainController {
                 }).exec((err, post) => {
                     if (post) {
                         helpers.toReadableDate(post);
-                        this.setPostLocals(post, res);
+                        Posts.setPostLocals(post, res);
                         return res.render('post', { post: post });
                     }
                     else{

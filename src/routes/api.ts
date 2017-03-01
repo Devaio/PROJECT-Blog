@@ -7,7 +7,7 @@ import Accounts = require('../controllers/accounts');
 import Media = require('../controllers/media');
 import Tags = require('../controllers/tags');
 import request = require('request');
-
+import multipart = require('connect-multiparty');
 import Middleware = require('../modules/middleware');
 
 export class ApiRoutes extends BaseRoute {
@@ -34,7 +34,7 @@ export class ApiRoutes extends BaseRoute {
         router.get('/api/tags', Tags.get)
         router.get('/api/tags/:id', Tags.get)
 
-        router.post('/api/media', Middleware.multi, Media.uploadFiles)
+        router.post('/api/media', multipart(), Media.uploadFiles)
 
         router.get('/api/comments', Middleware.authorize, Comments.get)
         router.post('/api/comments/create/:postID', Comments.createComment)
