@@ -73,3 +73,5 @@ class Media {
 
     }
 }
+
+export = new Media();

@@ -12,7 +12,9 @@ var multiMiddle = multipart();
 var port = process.env.PORT || 3000;
 
 // Route Imports
-import { ViewRoutes } from './views';
+import { ViewRoutes } from './routes/views';
+import { ApiRoutes } from './routes/api';
+
 
 
 if (typeof (global.process.env.NODE_ENV) === 'undefined') {
@@ -91,6 +93,7 @@ export class Server {
         router = express.Router();
 
         ViewRoutes.create(router);
+        ApiRoutes.create(router);
 
         this.app.use(router);
         

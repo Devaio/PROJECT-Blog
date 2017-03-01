@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 import moment = require('moment');
-
+import multipart = require('connect-multiparty');
 class Middleware {
     public authorize (req: Request, res: Response, next: NextFunction){
         
@@ -25,7 +25,15 @@ class Middleware {
         res.locals.requrl = "http://" + req.hostname + '/' + req.originalUrl        
         next();
     }
-    
+    public multi (){
+        multipart();
+    }
+    public nocache (req:Request, res:Response, next:NextFunction){
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
+		res.header('Expires', '-1')
+		res.header('Pragma', 'no-cache')
+		next()
+    }
 }
 
 export = new Middleware();
