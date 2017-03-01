@@ -42,6 +42,11 @@
     "npm": "2.x"
   },
   "devDependencies": {
+    "@types/angular": "^1.6.7",
+    "@types/angular-animate": "^1.5.6",
+    "@types/angular-material": "^1.1.45",
+    "@types/angular-resource": "^1.5.8",
+    "@types/angular-ui-router": "^1.1.36",
     "@types/async": "^2.0.38",
     "@types/body-parser": "0.0.34",
     "@types/cookie-parser": "^1.3.30",
