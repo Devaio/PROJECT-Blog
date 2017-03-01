@@ -18,10 +18,10 @@ Account = mongoose.model('Account')
 console.log Account
 
 adminUser = {
-	# email : 'test@test.com',
-	email : global.process.env.ADMIN_EMAIL,
-	password : global.process.env.ADMIN_PASSWORD,
-	# password : 'test'
+	email : 'test@test.com',
+	# email : global.process.env.ADMIN_EMAIL,
+	# password : global.process.env.ADMIN_PASSWORD,
+	password : 'test'
 }
 
 newAdmin = new Account(adminUser)
