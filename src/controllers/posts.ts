@@ -238,7 +238,7 @@ class Posts extends MainController {
         body.tags = await Posts.createTagList(body.tags);
 
         // Convert to Unix Time
-        body.createdAt = moment.uniz(body.createdAt / 1000).format('X')
+        body.createdAt = moment.unix(body.createdAt / 1000).format('X')
 
         // Slugify title
         if (body.title) {
