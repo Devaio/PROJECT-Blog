@@ -17,9 +17,12 @@ Post = mongoose.model('Post')
 Post.find({}).limit(500).exec (err, posts) ->
     for post in posts
         
-        post['coverImg'] = post['coverImg'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/')
-        post['pinImg'] = post['pinImg'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/')
-        post['content'] = post['content'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/')
+        if post.coverImg?
+            post['coverImg'] = post['coverImg'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/')
+        if post.pinImg
+            post['pinImg'] = post['pinImg'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/')
+        if post.content
+            post['content'] = post['content'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/')
         
         post.markModified('coverImg')
         post.markModified('pinImg')
