@@ -70,7 +70,7 @@ angular.module 'BlogApp'
 								$scope.loading = false
 								if returnData.data._id
 									$timeout () ->
-										$location.url('/posts/' + returnData.data._id)
+										$location.url('/posts/' + returnData.data.slug)
 								else
 									$scope.postError = returnData.data
 								

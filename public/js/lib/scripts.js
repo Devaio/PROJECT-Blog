@@ -5141,8 +5141,7 @@ module.exports = 'ngFileUpload';
 },{"./dist/ng-file-upload-all":2}],4:[function(require,module,exports){
 require('ng-file-upload');
 
-angular.module('BlogApp', ['ngMaterial', 'ngAnimate', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest', 'angulartics', 'angulartics.google.analytics']).config(function($mdThemingProvider, $compileProvider) {
-  $compileProvider.debugInfoEnabled(false);
+angular.module('BlogApp', ['ngMaterial', 'ngAnimate', 'ui.tinymce', 'ui.router', 'ngResource', 'ngSanitize', 'ngFileUpload', 'updateMeta', 'angular-pinterest', 'angulartics', 'angulartics.google.analytics']).config(function($mdThemingProvider) {
   return $mdThemingProvider.theme('default').primaryPalette('grey', {
     "default": '300'
   }).accentPalette('deep-purple').warnPalette('light-green');
@@ -5238,7 +5237,7 @@ angular.module('BlogApp').controller('adminAddPost', [
             $scope.loading = false;
             if (returnData.data._id) {
               return $timeout(function() {
-                return $location.url('/posts/' + returnData.data._id);
+                return $location.url('/posts/' + returnData.data.slug);
               });
             } else {
               return $scope.postError = returnData.data;

@@ -11,8 +11,7 @@ angular.module('BlogApp', [
 	'angular-pinterest',
 	'angulartics', 
 	'angulartics.google.analytics'
-]).config ($mdThemingProvider, $compileProvider) ->
-	$compileProvider.debugInfoEnabled(false)
+]).config ($mdThemingProvider) ->
 	$mdThemingProvider.theme('default')
 		.primaryPalette('grey', {
 			default : '300'
