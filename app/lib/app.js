@@ -12,7 +12,8 @@ var multipart = require("connect-multiparty");
 var multiMiddle = multipart();
 var port = process.env.PORT || 3000;
 // Route Imports
-var views_1 = require("./views");
+var views_1 = require("./routes/views");
+var api_1 = require("./routes/api");
 if (typeof (global.process.env.NODE_ENV) === 'undefined') {
     if (fs.existsSync(__dirname + '../../env/development.ev')) {
         env(__dirname + '../../env/development.ev');
@@ -65,6 +66,7 @@ var Server = (function () {
         var router;
         router = express.Router();
         views_1.ViewRoutes.create(router);
+        api_1.ApiRoutes.create(router);
         this.app.use(router);
     };
     return Server;

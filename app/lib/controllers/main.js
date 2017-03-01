@@ -19,7 +19,7 @@ var MainController = (function () {
             });
         }
     };
-    MainController.prototype.upsert = function (data, req, res, cb) {
+    MainController.prototype.upsert = function (req, res, data, cb) {
         var self = this;
         if (req.params.id) {
             var query = { _id: req.params.id };
@@ -64,5 +64,5 @@ var MainController = (function () {
     };
     return MainController;
 }());
-module.exports = MainController;
+exports.MainController = MainController;
 //# sourceMappingURL=main.js.map

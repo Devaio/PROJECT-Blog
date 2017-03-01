@@ -1,6 +1,16 @@
 "use strict";
+var moment = require("moment");
 var Helpers = (function () {
     function Helpers() {
+        this.toReadableDate = function (doc) {
+            doc.createdAt = moment.unix(doc.createdAt).format('MMM DD, YYYY');
+        };
+        this.toUnixDate = function (doc) {
+            doc.createdAt = moment(doc.createdAt).format('X');
+        };
+        this.toJSDate = function (doc) {
+            doc.createdAt = moment.unix(doc.createdAt).toDate();
+        };
     }
     Helpers.prototype.queryBuilder = function (req) {
         var queryParams = req.query;

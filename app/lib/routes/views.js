@@ -5,6 +5,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var route_1 = require("./route");
+var Posts = require("../controllers/posts");
+var Middleware = require("../modules/middleware");
 var ViewRoutes = (function (_super) {
     __extends(ViewRoutes, _super);
     function ViewRoutes() {
@@ -14,6 +16,7 @@ var ViewRoutes = (function (_super) {
         //log
         console.log("[ViewRoutes::create] Creating view routes.");
         var RouteContainer = new ViewRoutes();
+        router.get('/posts/:id', Middleware.setLocals, Posts.getPage);
         router.get('/*', RouteContainer.wildCard);
     };
     ViewRoutes.prototype.wildCard = function (req, res) {

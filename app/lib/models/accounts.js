@@ -15,5 +15,5 @@ AccountSchema.pre('save', function (next) {
     user.password = passwords.encrypt(user.password);
     return next();
 });
-exports.User = mongoose_1.model("Account", AccountSchema);
+exports.Account = mongoose_1.model("Account", AccountSchema);
 //# sourceMappingURL=accounts.js.map

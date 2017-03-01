@@ -1,5 +1,6 @@
 "use strict";
 var moment = require("moment");
+var multipart = require("connect-multiparty");
 var Middleware = (function () {
     function Middleware() {
     }
@@ -21,6 +22,15 @@ var Middleware = (function () {
         res.locals.url = '';
         res.locals.type = '';
         res.locals.requrl = "http://" + req.hostname + '/' + req.originalUrl;
+        next();
+    };
+    Middleware.prototype.multi = function () {
+        multipart();
+    };
+    Middleware.prototype.nocache = function (req, res, next) {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
         next();
     };
     return Middleware;
