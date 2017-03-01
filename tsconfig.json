@@ -5,11 +5,11 @@
         "noImplicitAny": false,
         "sourceMap": true,
         "watch": true,
-        "outDir" : "./app/lib",
+        "outDir" : "./lib",
         "lib" : ["es2015"]
     },
     "include" : [
-        "./app/src"
+        "./src"
     ],
     "exclude": [
         "node_modules"
