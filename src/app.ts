@@ -9,7 +9,7 @@ import cookieParser = require('cookie-parser');
 import passport = require('passport');
 import multipart = require('connect-multiparty');
 var multiMiddle = multipart();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 require('./config/passport');
 
 // Route Imports
