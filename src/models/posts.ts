@@ -22,6 +22,10 @@ PostSchema.path('createdAt').default(function(){
 	return moment().format('X')
 
 })
+PostSchema.path('tags').default(function(){
+	return []
+
+})
 
 PostSchema.index({slug : 1})
 

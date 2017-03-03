@@ -14,10 +14,14 @@ angular.module 'BlogApp'
 		($scope, $location, $http, $sce, $timeout, authService, $stateParams, postTagFactory, Upload) ->
 			$scope.navheight = 'small'
 			$scope.loading = false
-			$scope.posts = postTagFactory.postModel.query({all : 10000, deleted : true})
+			postTagFactory.postModel.query {all : 10000, deleted : true}, (data)->
+				$scope.posts = data
+				$scope.posts.forEach (post) ->
+					post.tags = post.tags || [];
+					# post.date = post.createdAt;
 			$scope.$sce = $sce
 			# $scope.files = []		
-			
+			console.log($scope)
 			$scope.transformDate = () ->
 				# console.log $scope
 				$scope.selectedPost.createdAt = new Date($scope.selectedPost.createdAt)
@@ -68,9 +72,10 @@ angular.module 'BlogApp'
 					# console.log $scope.selectedPost
 					if $scope.selectedPost?.content?.length
 						$scope.loading = true
-						$scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime()
+						# $scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime()
 						
 						$scope.selectedPost.$save () ->
+							# $scope.selectPost.createdAt = moment.unix($scope.selectPost.createdAt).toDate()
 							$scope.loading = false
 							window.alert('Done!')
 							window.location.reload()

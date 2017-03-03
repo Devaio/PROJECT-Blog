@@ -5358,11 +5358,17 @@ angular.module('BlogApp').controller('adminUpdatePost', [
   '$scope', '$location', '$http', '$sce', '$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', function($scope, $location, $http, $sce, $timeout, authService, $stateParams, postTagFactory, Upload) {
     $scope.navheight = 'small';
     $scope.loading = false;
-    $scope.posts = postTagFactory.postModel.query({
+    postTagFactory.postModel.query({
       all: 10000,
       deleted: true
+    }, function(data) {
+      $scope.posts = data;
+      return $scope.posts.forEach(function(post) {
+        return post.tags = post.tags || [];
+      });
     });
     $scope.$sce = $sce;
+    console.log($scope);
     $scope.transformDate = function() {
       return $scope.selectedPost.createdAt = new Date($scope.selectedPost.createdAt);
     };
@@ -5409,7 +5415,6 @@ angular.module('BlogApp').controller('adminUpdatePost', [
         var _ref, _ref1;
         if ((_ref = $scope.selectedPost) != null ? (_ref1 = _ref.content) != null ? _ref1.length : void 0 : void 0) {
           $scope.loading = true;
-          $scope.selectedPost.createdAt = $scope.selectedPost.createdAt.getTime();
           return $scope.selectedPost.$save(function() {
             $scope.loading = false;
             window.alert('Done!');

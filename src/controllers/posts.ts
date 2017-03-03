@@ -46,20 +46,19 @@ class Posts extends MainController {
                 })
             }
         }
+        return new Promise<Array<Types.ObjectId>>((resolve) => {
 
-        Tag.find({ name: { $in: newPostTags } }, async (err, tags) => {
-            let createdTagNames = tags.map((tag) => {
-                return tag.name
-            });
+            Tag.find({ name: { $in: newPostTags } }, async (err, tags) => {
+                let createdTagNames = tags.map((tag) => {
+                    return tag.name
+                });
 
-            for (let tag of newPostTags) {
+                for (let tag of newPostTags) {
+                    await tagger(tag, tags, tagList, createdTagNames);
 
-                await tagger(tag, tags, tagList, createdTagNames);
+                }
 
-            }
-
-            return new Promise<Array<Types.ObjectId>>((resolve) => {
-                return tagList
+                resolve(tagList)
             })
         })
     }
@@ -158,6 +157,7 @@ class Posts extends MainController {
                             for (let post of posts) {
                                 if (post) {
                                     helpers.toReadableDate(post);
+                                    console.log(post.createdAt)
                                 }
                             }
                         }
@@ -236,9 +236,9 @@ class Posts extends MainController {
         })
 
         body.tags = await Posts.createTagList(body.tags);
-
+        console.log("TAGS", body.tags)
         // Convert to Unix Time
-        body.createdAt = moment.unix(body.createdAt / 1000).format('X')
+        body.createdAt = moment(body.createdAt).format('X')
 
         // Slugify title
         if (body.title) {
@@ -276,8 +276,8 @@ class Posts extends MainController {
                         Posts.setPostLocals(post, res);
                         return res.render('post', { post: post });
                     }
-                    else{
-                        res.render('post', {post : {title : 'No Post'}});
+                    else {
+                        res.render('post', { post: { title: 'No Post' } });
                     }
                 })
             }
