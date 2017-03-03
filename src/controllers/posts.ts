@@ -20,7 +20,7 @@ class Posts extends MainController {
     private static setPostLocals(post: Document, res: Response) {
         res.locals.title = post['title']
         res.locals.description = post['preview']
-        res.locals.img = 'http://theviewfromhere.is' + post['coverImg']
+        res.locals.img = post['coverImg']
         res.locals.url = 'http://theviewfromhere.is/posts/' + post['slug']
         res.locals.type = 'article'
     }
@@ -208,7 +208,8 @@ class Posts extends MainController {
         if (body.title) {
             body.slug = slug(body.title.toLowerCase());
         }
-
+        // body['coverImg'].replace("http://theviewfromhere.is", "");
+        // body['pinImg'].replace("http://theviewfromhere.is", "");
         console.log('BEFORE SAVE POST')
 
         let newPost = new Post(body);
