@@ -1,6 +1,6 @@
 import {Document, Schema, Model, model, Types} from 'mongoose';
 import {comment} from '../interfaces/comment';
-
+import moment = require("moment");
 // add mongoose Document to interface
 interface CommentModel extends comment, Document{}
 
@@ -19,6 +19,10 @@ var CommentSchema: Schema = new Schema({
 	sendEmail : {type : Boolean, default : false}
 });
 
+CommentSchema.path('createdAt').default(function(){
+	return moment().format('X')
+
+})
 
 
 export const Comment: Model<CommentModel> = model<CommentModel>("Comment", CommentSchema);
