@@ -12,6 +12,24 @@ angular.module 'BlogApp'
 		'postTagFactory', 
 		'Upload', 
 		($scope, $location, $http, $sce, $timeout, authService, $stateParams, postTagFactory, Upload) ->
+
+			# Tiny MCE Custom Link plugins
+			tinymce.PluginManager.add 'htmllink', (editor, url) ->
+				editor.addButton 'htmllinkbtn',
+					text: 'HTML Link'
+					icon: false
+					onclick: ->
+						editor.windowManager.open
+							title: 'Please input text'
+							body: [ {
+								type: 'textbox'
+								name: 'link'
+								label: 'Paste Link'
+							} ]
+							onsubmit: (e) ->
+								# Insert content when the window form is submitted
+								editor.insertContent e.data.link
+
 			$scope.navheight = 'small'
 			$scope.loading = false
 			postTagFactory.postModel.query {all : 10000, deleted : true}, (data)->
@@ -46,7 +64,7 @@ angular.module 'BlogApp'
 				onChange: (e) ->
 					# put logic here for keypress and cut/paste changes
 				inline: false,
-				plugins : 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect code',
+				plugins : 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect htmllink',
 				skin: 'lightgray',
 				theme : 'modern',
 				browser_spellcheck : true
@@ -57,7 +75,7 @@ angular.module 'BlogApp'
 				fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt"
 				default_link_target: "_blank"
 				toolbar1 : 'core'
-				toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image | code"
+				toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image | htmllinkbtn"
 				# toolbar3 : 'emoticons textcolor'
 				width : 740
 
