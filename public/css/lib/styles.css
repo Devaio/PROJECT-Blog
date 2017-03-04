@@ -167,6 +167,9 @@ footer {
   height: 104px;
   margin: 1px;
 }
+#influenster-widget-container {
+  display: none;
+}
 .warning-text {
   color: #f00;
 }
