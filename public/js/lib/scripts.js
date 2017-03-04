@@ -5481,6 +5481,7 @@ angular.module('BlogApp').controller('aboutCont', [
 },{}],11:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
   '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', 'socialFactory', function($scope, $sce, postTagFactory, $stateParams, $location, socialFactory) {
+    window.scrollTo(0, 0);
     $scope.navheight = 'large';
     console.log($scope, socialFactory);
     $scope.socialData = socialFactory.socialData;
