@@ -5621,6 +5621,7 @@ angular.module('BlogApp').controller('postCont', [
 angular.module('BlogApp').controller('tagCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', 'socialFactory', function($scope, $sce, $stateParams, postTagFactory, $location, socialFactory) {
     $scope.navheight = 'small';
+    window.scrollTo(0, 0);
     $scope.tag = postTagFactory.tagModel.get({
       name: $stateParams.name
     });
