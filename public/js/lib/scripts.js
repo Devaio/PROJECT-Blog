@@ -5192,7 +5192,7 @@ angular.module('BlogApp').controller('adminAddPost', [
     $scope.tinymceOptions = {
       onChange: function(e) {},
       inline: false,
-      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect',
+      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect code',
       skin: 'lightgray',
       theme: 'modern',
       browser_spellcheck: true,
@@ -5203,7 +5203,7 @@ angular.module('BlogApp').controller('adminAddPost', [
       fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt",
       default_link_target: "_blank",
       toolbar1: 'core',
-      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
+      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image | code ",
       width: 740
     };
     $scope.submit = function() {
@@ -5392,7 +5392,7 @@ angular.module('BlogApp').controller('adminUpdatePost', [
     $scope.tinymceOptions = {
       onChange: function(e) {},
       inline: false,
-      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect',
+      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect code',
       skin: 'lightgray',
       theme: 'modern',
       browser_spellcheck: true,
@@ -5403,7 +5403,7 @@ angular.module('BlogApp').controller('adminUpdatePost', [
       fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt",
       default_link_target: "_blank",
       toolbar1: 'core',
-      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
+      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image | code",
       width: 740
     };
     $scope.copyText = function(event) {
