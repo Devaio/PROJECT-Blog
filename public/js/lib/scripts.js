@@ -5788,6 +5788,12 @@ angular.module('BlogApp').config([
       url: '/admin/moderatecomments',
       controller: 'adminModerateComments',
       templateUrl: '/public/templates/admin/moderateComments.html'
+    }).state('contact', {
+      url: '/contact',
+      templateUrl: '/public/templates/main/contact.html'
+    }).state('disclosure', {
+      url: '/disclosure',
+      templateUrl: '/public/templates/main/disclosure.html'
     });
   }
 ]).run([
