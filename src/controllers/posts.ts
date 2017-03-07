@@ -171,7 +171,7 @@ class Posts extends MainController {
 
     public random(req: Request, res: Response) {
         Post
-            .find()
+            .find({deleted : false})
             .exec((err, posts) => {
                 let shufflePosts = _.shuffle(posts)
                 res.send(shufflePosts.slice(0, 5))

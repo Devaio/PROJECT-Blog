@@ -24,6 +24,9 @@ html {
   background-color: #dcdcdc;
   margin-bottom: 25px;
 }
+.ad-divider.top {
+  margin-top: 25px;
+}
 #_mN_main_957624352_0_n,
 #_mN_dy_957624352_1 {
   margin: auto;
@@ -166,6 +169,9 @@ footer {
 .pinterest-pin-img {
   height: 104px;
   margin: 1px;
+}
+#influenster-widget-container {
+  display: none;
 }
 .warning-text {
   color: #f00;

@@ -5179,6 +5179,27 @@ require('./routes');
 },{"./controllers/admin/adminAddPost":5,"./controllers/admin/adminDashboard":6,"./controllers/admin/adminLogin":7,"./controllers/admin/adminModerateComments":8,"./controllers/admin/adminUpdatePost":9,"./controllers/main/about":10,"./controllers/main/home":11,"./controllers/main/post":12,"./controllers/main/tag":13,"./directives/nav":14,"./factories/post-tag":15,"./factories/social":16,"./routes":17,"./services/authService":18,"ng-file-upload":3}],5:[function(require,module,exports){
 angular.module('BlogApp').controller('adminAddPost', [
   '$scope', '$location', '$http', '$sce', '$timeout', 'authService', 'Upload', function($scope, $location, $http, $sce, $timeout, authService, Upload) {
+    tinymce.PluginManager.add('htmllink', function(editor, url) {
+      return editor.addButton('htmllinkbtn', {
+        text: 'HTML Link',
+        icon: false,
+        onclick: function() {
+          return editor.windowManager.open({
+            title: 'Please input text',
+            body: [
+              {
+                type: 'textbox',
+                name: 'link',
+                label: 'Paste Link'
+              }
+            ],
+            onsubmit: function(e) {
+              return editor.insertContent(e.data.link);
+            }
+          });
+        }
+      });
+    });
     $scope.navheight = 'small';
     $scope.loading = false;
     $scope.newPost = {
@@ -5192,7 +5213,7 @@ angular.module('BlogApp').controller('adminAddPost', [
     $scope.tinymceOptions = {
       onChange: function(e) {},
       inline: false,
-      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect',
+      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect htmllink',
       skin: 'lightgray',
       theme: 'modern',
       browser_spellcheck: true,
@@ -5203,7 +5224,7 @@ angular.module('BlogApp').controller('adminAddPost', [
       fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt",
       default_link_target: "_blank",
       toolbar1: 'core',
-      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
+      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image | htmllinkbtn",
       width: 740
     };
     $scope.submit = function() {
@@ -5356,6 +5377,27 @@ moment = require('moment');
 
 angular.module('BlogApp').controller('adminUpdatePost', [
   '$scope', '$location', '$http', '$sce', '$timeout', 'authService', '$stateParams', 'postTagFactory', 'Upload', function($scope, $location, $http, $sce, $timeout, authService, $stateParams, postTagFactory, Upload) {
+    tinymce.PluginManager.add('htmllink', function(editor, url) {
+      return editor.addButton('htmllinkbtn', {
+        text: 'HTML Link',
+        icon: false,
+        onclick: function() {
+          return editor.windowManager.open({
+            title: 'Please input text',
+            body: [
+              {
+                type: 'textbox',
+                name: 'link',
+                label: 'Paste Link'
+              }
+            ],
+            onsubmit: function(e) {
+              return editor.insertContent(e.data.link);
+            }
+          });
+        }
+      });
+    });
     $scope.navheight = 'small';
     $scope.loading = false;
     postTagFactory.postModel.query({
@@ -5392,7 +5434,7 @@ angular.module('BlogApp').controller('adminUpdatePost', [
     $scope.tinymceOptions = {
       onChange: function(e) {},
       inline: false,
-      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect',
+      plugins: 'advlist autolink hr link image lists charmap print preview fontselect fontsizeselect htmllink',
       skin: 'lightgray',
       theme: 'modern',
       browser_spellcheck: true,
@@ -5403,7 +5445,7 @@ angular.module('BlogApp').controller('adminUpdatePost', [
       fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 26pt 36pt",
       default_link_target: "_blank",
       toolbar1: 'core',
-      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image ",
+      toolbar2: "undo redo pastetext | styleselect | fontselect | fontsizeselect | bold italic |  alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent blockquote hr | link image | htmllinkbtn",
       width: 740
     };
     $scope.copyText = function(event) {
@@ -5439,6 +5481,7 @@ angular.module('BlogApp').controller('aboutCont', [
 },{}],11:[function(require,module,exports){
 angular.module('BlogApp').controller('homeCont', [
   '$scope', '$sce', 'postTagFactory', '$stateParams', '$location', 'socialFactory', function($scope, $sce, postTagFactory, $stateParams, $location, socialFactory) {
+    window.scrollTo(0, 0);
     $scope.navheight = 'large';
     console.log($scope, socialFactory);
     $scope.socialData = socialFactory.socialData;
@@ -5578,6 +5621,7 @@ angular.module('BlogApp').controller('postCont', [
 angular.module('BlogApp').controller('tagCont', [
   '$scope', '$sce', '$stateParams', 'postTagFactory', '$location', 'socialFactory', function($scope, $sce, $stateParams, postTagFactory, $location, socialFactory) {
     $scope.navheight = 'small';
+    window.scrollTo(0, 0);
     $scope.tag = postTagFactory.tagModel.get({
       name: $stateParams.name
     });
@@ -5744,6 +5788,12 @@ angular.module('BlogApp').config([
       url: '/admin/moderatecomments',
       controller: 'adminModerateComments',
       templateUrl: '/public/templates/admin/moderateComments.html'
+    }).state('contact', {
+      url: '/contact',
+      templateUrl: '/public/templates/main/contact.html'
+    }).state('disclosure', {
+      url: '/disclosure',
+      templateUrl: '/public/templates/main/disclosure.html'
     });
   }
 ]).run([

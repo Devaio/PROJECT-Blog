@@ -8,7 +8,7 @@ angular.module 'BlogApp'
 		'socialFactory',
 		($scope, $sce, $stateParams, postTagFactory, $location, socialFactory) ->
 			$scope.navheight = 'small'
-			
+			window.scrollTo(0, 0)
 			$scope.tag = postTagFactory.tagModel.get({name : $stateParams.name})
 			$scope.$sce = $sce
 			$scope.socialFactory = socialFactory

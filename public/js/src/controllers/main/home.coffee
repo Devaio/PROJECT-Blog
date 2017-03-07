@@ -7,6 +7,7 @@ angular.module 'BlogApp'
 		'$location', 
 		'socialFactory', 
 		($scope, $sce, postTagFactory,$stateParams, $location, socialFactory) ->
+			window.scrollTo(0, 0);
 			$scope.navheight = 'large'
 			# console.log 'hello!', postTagFactory
 			console.log($scope, socialFactory)

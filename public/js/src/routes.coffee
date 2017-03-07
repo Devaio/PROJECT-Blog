@@ -68,6 +68,16 @@ angular.module 'BlogApp'
 				templateUrl : '/public/templates/admin/moderateComments.html'
 			}
 
+			.state 'contact', {
+				url : '/contact'
+				templateUrl : '/public/templates/main/contact.html'
+			}
+
+			.state 'disclosure', {
+				url : '/disclosure'
+				templateUrl : '/public/templates/main/disclosure.html'
+			}
+			
 		
 			
 	]
