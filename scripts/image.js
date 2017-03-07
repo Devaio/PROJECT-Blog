@@ -26,13 +26,13 @@ Post.find({}).limit(500).exec(function(err, posts) {
   for (_i = 0, _len = posts.length; _i < _len; _i++) {
     post = posts[_i];
     if (post.coverImg != null) {
-      post['coverImg'] = post['coverImg'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/');
+      post['coverImg'] = post['coverImg'].replace(/http:\/\/theviewfromhere\.s3\.amazonaws\.com\//, '/public/img/');
     }
     if (post.pinImg) {
-      post['pinImg'] = post['pinImg'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/');
+      post['pinImg'] = post['pinImg'].replace(/http:\/\/theviewfromhere\.s3\.amazonaws\.com\//, '/public/img/');
     }
     if (post.content) {
-      post['content'] = post['content'].replace('http://theviewfromhere.s3.amazonaws.com/', '/public/img/');
+      post['content'] = post['content'].replace(/http:\/\/theviewfromhere\.s3\.amazonaws\.com\//, '/public/img/');
     }
     post.markModified('coverImg');
     post.markModified('pinImg');
