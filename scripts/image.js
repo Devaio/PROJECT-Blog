@@ -16,7 +16,7 @@ if (typeof global.process.env.NODE_ENV === 'undefined') {
   }
 }
 
-require('..lib/models/posts');
+require('../lib/models/posts');
 
 Post = mongoose.model('Post');
 
