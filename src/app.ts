@@ -12,6 +12,28 @@ var multiMiddle = multipart();
 var port = process.env.PORT || 80;
 require('./config/passport');
 
+import HTTP = require('http');
+import HTTPS = require('https');
+
+var httpConfig = {
+  httpPort : 80,
+  httpsPort : 443
+}
+
+// find our keys
+import fs = require('fs'); // file system module used to read our SSL certificates
+
+var cert = fs.readFileSync('/etc/letsencrypt/live/theviewfromhere.is/cert.pem')
+var key = fs.readFileSync('/etc/letsencrypt/live/theviewfromhere.is/privkey.pem')
+var chain = fs.readFileSync('/etc/letsencrypt/live/theviewfromhere.is/chain.pem')
+
+// Create a config object for our HTTPS server
+var httpsConfig = {
+  cert : cert + chain,
+  key : key
+}
+
+
 // Route Imports
 import { ViewRoutes } from './routes/views';
 import { ApiRoutes } from './routes/api';
@@ -74,9 +96,18 @@ export class Server {
         // app.use(require('prerender-node').set('prerenderToken', 'HvuxVE0VSpnkqjIBIn0p'));
 
 
-        this.app.listen(port, (err) =>{
-            console.log(err, `Server Running on ${port}!`);
-        });
+//         this.app.listen(port, (err) =>{
+//             console.log(err, `Server Running on ${port}!`);
+//         });
+        
+        HTTP.createServer(this.app).listen(httpConfig.httpPort, ()=>{
+          console.log('HTTP - Server is running!')
+        })
+        
+        HTTPS.createServer(httpsConfig, this.app).listen(httpConfig.httpsPort, ()=>{
+          console.log('HTTPS IS WORKING TOO')
+        })
+        
     }
 
 
