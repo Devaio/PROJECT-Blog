@@ -51,7 +51,9 @@ export class Server {
 
         // Static File Server
         this.app.use('/public', express.static(__dirname + '/../public', { maxAge: 86400000 }));
-
+        
+        this.app.use(express.static(__dirname + '/../public'));
+      
         // Parsing Middleware
         this.app.use(bodyParser.urlencoded({extended : true}), bodyParser.json(), cookieParser());
 
