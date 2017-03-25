@@ -15,22 +15,21 @@ require('./config/passport');
 import HTTP = require('http');
 import HTTPS = require('https');
 
-var httpConfig = {
-  httpPort : 80,
-  httpsPort : 443
-}
-
-// find our keys
-import fs = require('fs'); // file system module used to read our SSL certificates
-
-var cert = fs.readFileSync('/etc/letsencrypt/live/theviewfromhere.is/cert.pem')
-var key = fs.readFileSync('/etc/letsencrypt/live/theviewfromhere.is/privkey.pem')
-var chain = fs.readFileSync('/etc/letsencrypt/live/theviewfromhere.is/chain.pem')
 
 // Create a config object for our HTTPS server
-var httpsConfig = {
-  cert : cert + chain,
-  key : key
+
+if (fs.existsSync(process.env.SSL)) {
+	var certificate = fs.readFileSync(process.env.SSL);
+	var key = fs.readFileSync(process.env.SSLKEY);
+	
+	var chain: Buffer = null;
+	if(process.env.NODE_ENV === 'production'){
+		var chain = fs.readFileSync(process.env.SSLCHAIN);
+	}
+	var httpsConfig = {
+		cert: Buffer.concat([certificate, chain]),
+		key: key
+	};
 }
 
 
@@ -100,14 +99,34 @@ export class Server {
 //             console.log(err, `Server Running on ${port}!`);
 //         });
         
-        HTTP.createServer(this.app).listen(httpConfig.httpPort, ()=>{
-          console.log('HTTP - Server is running!')
-        })
+        // HTTP.createServer(this.app).listen(httpConfig.httpPort, ()=>{
+        //   console.log('HTTP - Server is running!')
+        // })
         
-        HTTPS.createServer(httpsConfig, this.app).listen(httpConfig.httpsPort, ()=>{
-          console.log('HTTPS IS WORKING TOO')
-        })
+        // HTTPS.createServer(httpsConfig, this.app).listen(httpConfig.httpsPort, ()=>{
+        //   console.log('HTTPS IS WORKING TOO')
+        // })
         
+        var ports = {
+            http: process.env.PORT || 80,
+            https: process.env.PORT_SSL || 443
+        }
+
+
+        HTTP.createServer(this.app).listen(ports.http, function () {
+            return console.log("Server running on " + ports.http);
+        });
+
+
+        if (fs.existsSync(process.env.SSL)) {
+            try {
+                HTTPS.createServer(httpsConfig, this.app).listen(ports.https);
+                console.log('HTTPS up!')
+            } catch (err) {
+                console.error('Could not HTTPS server', err);
+            }
+        }
+
     }
 
 
