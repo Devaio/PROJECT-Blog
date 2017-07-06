@@ -284,6 +284,40 @@ class Posts extends MainController {
             }
         })
     }
+    public getPageHidden(req: Request, res: Response) {
+        console.log('GETTING HIDDEN', req.params)
+        Post.findOne({ _id: req.params.id, deleted: true }).populate('tags').populate({
+            path: 'comments',
+            populate: {
+                path: 'subComments',
+                model: 'Comment'
+            }
+        }).exec((err, post) => {
+            if (post) {
+                helpers.toReadableDate(post);
+                Posts.setPostLocals(post, res);
+                return res.render('post', { post: post });
+            }
+            else {
+                Post.findOne({ slug: req.params.id, deleted: true }).populate('tags').populate({
+                    path: 'comments',
+                    populate: {
+                        path: 'subComments',
+                        model: 'Comment'
+                    }
+                }).exec((err, post) => {
+                    if (post) {
+                        helpers.toReadableDate(post);
+                        Posts.setPostLocals(post, res);
+                        return res.render('post', { post: post });
+                    }
+                    else {
+                        res.render('post', { post: { title: 'No Post' } });
+                    }
+                })
+            }
+        })
+    }
 
 }
 

@@ -5760,6 +5760,9 @@ angular.module('BlogApp').config([
     }).state('post', {
       url: '/posts/:id',
       controller: 'postCont'
+    }).state('postEdit', {
+      url: '/editing/:id',
+      controller: 'postCont'
     }).state('tag', {
       url: '/tags/:name',
       controller: 'tagCont',

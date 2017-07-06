@@ -16,7 +16,9 @@ export class ApiRoutes extends BaseRoute {
         console.log("[ApiRoutes::create] Creating api routes.");
 
 
+        router.get('/editing/:id', Middleware.setLocals, Posts.getPageHidden)
         router.get('/posts/:id', Middleware.setLocals, Posts.getPage)
+        
 
         router.get('/api/me', (req: Request, res: Response) => {
             res.send({ user: req.user });

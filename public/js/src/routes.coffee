@@ -28,6 +28,11 @@ angular.module 'BlogApp'
 				controller: 'postCont',
 				# templateUrl: '/public/templates/main/post.html'
 			}
+			.state 'postEdit', {
+				url: '/editing/:id',
+				controller: 'postCont',
+				# templateUrl: '/public/templates/main/post.html'
+			}
 			.state 'tag', {
 				url: '/tags/:name',
 				controller: 'tagCont',
