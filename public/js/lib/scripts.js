@@ -5714,7 +5714,7 @@ angular.module('BlogApp').factory('socialFactory', [
     var socialFactory;
     socialFactory = {};
     socialFactory.socialData = {};
-    $http.get('https://api.pinterest.com/v1/me/pins/?access_token=AaMv-yr8NsypzC7J-M4ljuoP0F4TFEY4A4PaXCxDBkAMyiAp6QAAAAA&fields=id%2Cnote%2Curl%2Cimage').then(function(returnData) {
+    $http.get('https://api.pinterest.com/v1/me/pins/?access_token=Ai5IOiQg8IAUUVqV3M_9kC9q5CP8FXK5CaTpzTxDBj_v88AsKAE-wDAAAAfQRXx0UFkgb_EAAAAA&fields=id%2Cnote%2Curl%2Cimage').then(function(returnData) {
       return socialFactory.socialData.sidebarPins = returnData.data.data.slice(0, 12);
     });
     socialFactory.subscribe = function(sub) {
