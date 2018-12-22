@@ -27,16 +27,18 @@ Post.find({}).limit(500).exec(function(err, posts) {
     post = posts[_i];
     if (post.coverImg != null) {
       // post['coverImg'] = post['coverImg'].replace(/http:\/\/theviewfromhere\.s3\.amazonaws\.com\//g, '/public/img/');
-      post['coverImg'] = post['coverImg'].replace(/https:\/\/s3.amazonaws.com\/theviewfromhere\//g, '/public/img/');
+      // post['coverImg'] = post['coverImg'].replace(/https:\/\/s3.amazonaws.com\/theviewfromhere\//g, '/public/img/');
+      post['coverImg'] = post['coverImg'].replace(/Oct+11th/g, 'Oct 11th');
     }
     if (post.pinImg) {
       // post['pinImg'] = post['pinImg'].replace(/http:\/\/theviewfromhere\.s3\.amazonaws\.com\//g, '/public/img/');
-      post['pinImg'] = post['pinImg'].replace(/https:\/\/s3.amazonaws.com\/theviewfromhere\//g, '/public/img/');
-      
+      // post['pinImg'] = post['pinImg'].replace(/https:\/\/s3.amazonaws.com\/theviewfromhere\//g, '/public/img/');
+      post['pinImg'] = post['pinImg'].replace(/Oct+11th/g, 'Oct 11th');
     }
     if (post.content) {
       // post['content'] = post['content'].replace(/http:\/\/theviewfromhere\.s3\.amazonaws\.com\//g, '/public/img/');
-      post['content'] = post['content'].replace(/https:\/\/s3.amazonaws.com\/theviewfromhere\//g, '/public/img/');
+      // post['content'] = post['content'].replace(/https:\/\/s3.amazonaws.com\/theviewfromhere\//g, '/public/img/');
+      post['content'] = post['content'].replace(/Oct+11th/g, 'Oct 11th');
       
     }
     post.markModified('coverImg');
